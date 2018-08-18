@@ -18,7 +18,6 @@ class UserModel(db.Model):
     password = db.Column(db.String(128), nullable=False)
     created_at = db.Column(db.DateTime)
     modified_at = db.Column(db.DateTime)
-    blogposts = db.relationship('BlogpostModel', backref='users', lazy=True)
 
     # class constructor
     def __init__(self, data):
