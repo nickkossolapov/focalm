@@ -1,9 +1,9 @@
 module.exports = {
+  mode: 'production',
   entry: ['./static/src/index.js'],
   output: {
     path: __dirname + '/static',
-    publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
@@ -18,13 +18,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
-  },
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './',
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000
-    }
   }
 };
