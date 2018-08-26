@@ -1,22 +1,21 @@
 module.exports = {
-  mode: 'production',
-  entry: ['./static/src/index.js'],
+  mode: 'development',
+  entry: './static/src/index.js',
   output: {
     path: __dirname + '/static',
-    filename: 'bundle.js',
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015', 'stage-1']
-        }
+        use: ['babel-loader']
       }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
-  }
+    extensions: ['*', '.js', '.jsx']
+  },
 };
