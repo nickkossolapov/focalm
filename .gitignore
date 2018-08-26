@@ -104,3 +104,6 @@ chrome-user-data
 #dev setup
 static/package.json
 static/webpack.config.js
+
+#generated files
+bundle.js
