@@ -1,7 +1,7 @@
 import datetime
 from functools import wraps, update_wrapper
 
-from flask import Flask, render_template, make_response
+from flask import Flask, render_template, make_response, redirect, url_for
 
 from .config import app_config
 from .models import db, bcrypt
@@ -15,11 +15,16 @@ def create_app(env_name):
     bcrypt.init_app(app)
     db.init_app(app)
 
-    app.register_blueprint(user_blueprint, url_prefix='/api/v1/users')
+    app.register_blueprint(user_blueprint, subdomain='api')
 
-    @app.route('/', methods=['GET'])
+    @app.route('/<path:path>')
+    def catch_all(path):
+        return redirect(url_for('index'), 303)
+
+    @app.route('/')
     def index():
         return render_template('index.html')
+
 
     @app.after_request
     def add_header(r):

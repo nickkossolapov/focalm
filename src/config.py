@@ -9,6 +9,7 @@ class Development(object):
     TESTING = False
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+    SERVER_NAME = os.getenv('SERVER_NAME')
 
 
 class Production(object):
@@ -19,6 +20,7 @@ class Production(object):
     TESTING = False
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
+    SERVER_NAME = os.getenv('SERVER_NAME')
 
 
 app_config = {
