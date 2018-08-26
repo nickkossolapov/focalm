@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack -p",
     "postinstall": "npm run build",
-    "echo": "echo \"Working\" && exit 0"
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
