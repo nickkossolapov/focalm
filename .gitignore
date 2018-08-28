@@ -107,3 +107,6 @@ static/webpack.config.js
 
 #generated files
 bundle.js
+
+#misc scripts
+run-dev.py
