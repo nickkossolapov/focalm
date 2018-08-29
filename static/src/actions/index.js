@@ -1,6 +1,51 @@
 import axios from 'axios';
-import {AUTH_USER} from "./types";
+import _ from 'lodash'
+import {AUTH_USER, AUTH_ERROR} from "./types";
 
-export const signup = (formProps) => (dispatch) => {
-  axios.post('http://api.localhost:5000/signup', formProps);
+export const signup = (formProps, callback) => async (dispatch) => {
+  try{
+    const response = await axios.post('http://api.localhost:5000/signup', formProps);
+
+    dispatch({type: AUTH_USER, payload: response.data.token});
+    localStorage.setItem('token', response.data.token);
+    callback();
+  } catch ({response: {data}}) {
+    let errorMessage;
+
+    if (data['error']){
+      errorMessage = data['error'];
+    }
+    else if (_.size(data) > 1){ //TODO: improve API validation and remove
+      errorMessage = Object.keys(data).join(', ') + ' are required';
+    }
+
+    dispatch({
+      type: AUTH_ERROR,
+      payload: errorMessage
+    });
+  }
+};
+
+export const signin = (formProps, callback) => async (dispatch) => {
+  try{
+    const response = await axios.post('http://api.localhost:5000/signin', formProps);
+
+    dispatch({type: AUTH_USER, payload: response.data.token});
+    localStorage.setItem('token', response.data.token);
+    callback();
+  } catch ({response: {data: {error}}}) { //TODO: refactor to errorMessage in API and set standard for error handling
+    dispatch({
+      type: AUTH_ERROR,
+      payload: errorMessage
+    });
+  }
+};
+
+export const signout = () => {
+  localStorage.removeItem('token');
+
+  return {
+    type: AUTH_USER,
+    payload: ''
+  }
 };

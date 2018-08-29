@@ -4,9 +4,9 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import * as actions from '../../actions'
 
-class SignUp extends Component {
+class SignIn extends Component {
   onSubmit = (formProps) => {
-    this.props.signup(formProps, () => {
+    this.props.signin(formProps, () => {
       this.props.history.push('/feature');
     });
   };
@@ -16,15 +16,6 @@ class SignUp extends Component {
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
-        <fieldset>
-          <label>Name</label>
-          <Field
-            name="name"
-            type="text"
-            component="input"
-            autoComplete="none"
-          />
-        </fieldset>
         <fieldset>
           <label>Email</label>
           <Field
@@ -44,7 +35,7 @@ class SignUp extends Component {
           />
         </fieldset>
         <div>{this.props.errorMessage}</div>
-        <button>Sign up</button>
+        <button>Sign in</button>
       </form>
     )
   }
@@ -56,5 +47,5 @@ function mapStateToProps(state){
 
 export default compose(
   connect(mapStateToProps, actions),
-  reduxForm({form: 'signup'})
-)(SignUp);
+  reduxForm({form: 'signin'})
+)(SignIn);
