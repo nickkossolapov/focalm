@@ -15,17 +15,17 @@ def create():
         data = user_schema.load(req_data)
         user_in_db = UserModel.get_user_by_email(data.get('email'))
         if user_in_db:
-            message = {'error': 'User already exist, please supply another email address'}
-            return custom_response(message, 400)
+            message = {'error': 'User already exists, please supply another email address'}
+            return custom_response(message, 409)
 
         user = UserModel(data)
         user.save()
         ser_data_id = user_schema.dump(user).get('id')
         token = Auth.generate_token(ser_data_id)
-        return custom_response({'jwt_token': token}, 201)
+        return custom_response({'token': token}, 201)
 
     except ValidationError as err:
-        return custom_response(err, 400)
+        return custom_response(err.messages, 400)
 
 
 @user_api.route('/signin', methods=['POST'])
@@ -40,17 +40,17 @@ def login():
         user = UserModel.get_user_by_email(data.get('email'))
 
         if not user:
-            return custom_response({'error': 'Invalid credentials'}, 400)
+            return custom_response({'error': 'Invalid credentials'}, 401)
         if not user.check_hash(data.get('password')):
-            return custom_response({'error': 'Invalid credentials'}, 400)
+            return custom_response({'error': 'Invalid credentials'}, 401)
 
         ser_data_id = user_schema.dump(user).get('id')
         token = Auth.generate_token(ser_data_id)
 
-        return custom_response({'jwt_token': token}, 200)
+        return custom_response({'token': token}, 200)
 
     except ValidationError as err:
-        return custom_response(err, 400)
+        return custom_response(err.messages, 400)
 
 
 @user_api.route('/me', methods=['PUT'])
@@ -67,7 +67,7 @@ def update():
         return custom_response(ser_user, 200)
 
     except ValidationError as err:
-        return custom_response(err, 400)
+        return custom_response(err.messages, 400)
 
 
 @user_api.route('/me', methods=['DELETE'])
