@@ -1,6 +1,8 @@
 module.exports = {
   mode: 'development',
-  entry: './static/src/index.js',
+  entry: {
+    index: ['@babel/polyfill', './static/src/index.js']
+  },
   output: {
     path: __dirname + '/static',
     publicPath: '/',
