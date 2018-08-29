@@ -1,12 +1,10 @@
-import datetime
-from functools import wraps, update_wrapper
-
-from flask import Flask, render_template, make_response, redirect, url_for
+from flask import Flask, render_template, redirect, url_for
+from flask_cors import CORS
 
 from .config import app_config
 from .models import db, bcrypt
-
 from .controllers.UserController import user_api as user_blueprint
+
 
 def create_app(env_name):
     app = Flask(__name__, static_folder='../static', template_folder="../static")
@@ -16,6 +14,7 @@ def create_app(env_name):
     db.init_app(app)
 
     app.register_blueprint(user_blueprint, subdomain='api')
+    CORS(app)
 
     @app.route('/<path:path>')
     def catch_all(path):
