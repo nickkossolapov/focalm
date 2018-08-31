@@ -13,17 +13,16 @@ def create_app(env_name):
     bcrypt.init_app(app)
     db.init_app(app)
 
-    app.register_blueprint(user_blueprint, subdomain='api')
+    app.register_blueprint(user_blueprint, url_prefix='/api/users')
     CORS(app)
 
     @app.route('/<path:path>')
     def catch_all(path):
-        return redirect(url_for('index'), 303)
+        return render_template('index.html')
 
     @app.route('/')
     def index():
         return render_template('index.html')
-
 
     @app.after_request
     def add_header(r):

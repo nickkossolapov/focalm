@@ -4,9 +4,9 @@
   "description": "React front-end for focalm",
   "main": "index.js",
   "scripts": {
-    "build": "webpack -p",
+    "build": "webpack -p --env.API_URL=https://www.focalm.com/api --config webpack.config.js",
     "postinstall": "npm run build",
-    "watch": "webpack --watch"
+    "dev": "webpack --env.API_URL=http://localhost:5000/api --watch --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^1.0.0",
     "mini-css-extract-plugin": "^0.4.2",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"
   },

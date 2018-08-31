@@ -1,9 +1,9 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+
 module.exports = (env) => {
   return {
-    mode: 'production',
+    mode: 'development',
     entry: {
       index: ['@babel/polyfill', './static/src/index.js']
     },
@@ -11,11 +11,6 @@ module.exports = (env) => {
       path: __dirname + '/static',
       publicPath: '/',
       filename: 'bundle.js'
-    },
-    optimization: {
-      minimizer: [
-        new OptimizeCSSAssetsPlugin({})
-      ]
     },
     plugins: [
       new MiniCssExtractPlugin({
