@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = (env) => {
   return {
     mode: 'production',
@@ -14,7 +15,8 @@ module.exports = (env) => {
     },
     optimization: {
       minimizer: [
-        new OptimizeCSSAssetsPlugin({})
+        new OptimizeCSSAssetsPlugin({}),
+        new UglifyJsPlugin()
       ]
     },
     plugins: [
