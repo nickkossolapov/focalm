@@ -5,11 +5,6 @@ from . import db, bcrypt
 
 
 class UserModel(db.Model):
-    """
-    User Model
-    """
-
-    # table name
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -19,11 +14,7 @@ class UserModel(db.Model):
     created_at = db.Column(db.DateTime)
     modified_at = db.Column(db.DateTime)
 
-    # class constructor
     def __init__(self, data):
-        """
-        Class constructor
-        """
         self.name = data.get('name')
         self.email = data.get('email')
         self.password = self.__generate_hash(data.get('password'))

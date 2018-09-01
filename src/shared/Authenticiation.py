@@ -6,7 +6,7 @@ from functools import wraps
 from ..models.UserModel import UserModel
 
 
-class Auth():
+class Auth:
     """
     Auth Class
     """

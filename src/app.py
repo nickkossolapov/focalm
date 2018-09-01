@@ -1,19 +1,23 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template
 from flask_cors import CORS
+from flask_mail import Mail
 
+from src.services.MailService import MailService
 from .config import app_config
 from .models import db, bcrypt
-from .controllers.UserController import user_api as user_blueprint
+from .views.UserView import create_user_view
 
 
 def create_app(env_name):
-    app = Flask(__name__, static_folder='../static', template_folder="../static")
+    app = Flask(__name__, static_folder='../static')
     app.config.from_object(app_config[env_name])
 
     bcrypt.init_app(app)
     db.init_app(app)
 
-    app.register_blueprint(user_blueprint, url_prefix='/api/users')
+    mail_service = MailService(app)
+
+    app.register_blueprint(create_user_view(mail_service), url_prefix='/api/users')
     CORS(app)
 
     @app.route('/<path:path>')
