@@ -4,7 +4,7 @@ from . import db
 
 
 class StepModel(db.Model):
-    __tablename__ = 'users'
+    __tablename__ = 'steps'
 
     id = db.Column(db.Integer, primary_key=True)
     meal_id = db.Column(db.Integer, db.ForeignKey('meals.id'), nullable=False)

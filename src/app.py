@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 from flask_cors import CORS
-from flask_mail import Mail
 
 from src.services.MailService import MailService
 from .config import app_config

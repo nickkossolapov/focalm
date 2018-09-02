@@ -3,7 +3,7 @@ from marshmallow import fields, Schema
 from . import db
 
 
-class StepModel(db.Model):
+class IngredientModel(db.Model):
     __tablename__ = 'ingredients'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -31,7 +31,7 @@ class StepModel(db.Model):
         return '<id {}>'.format(self.id)
 
 
-class StepSchema(Schema):
+class IngredientSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Int(required=True)
     metric = fields.Str(required=True)

@@ -1,13 +1,10 @@
 from marshmallow import fields, Schema
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
 from . import db
 
-Base = declarative_base()
 
-
-class MealIngredientsModel(Base):
+class MealIngredientsModel(db.Model):
     __tablename__ = 'meal_ingredients'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -37,7 +34,7 @@ class MealIngredientsModel(Base):
         return '<id {}>'.format(self.id)
 
 
-class StepSchema(Schema):
+class MealIngredientSchema(Schema):
     id = fields.Int(dump_only=True)
     meal_id = fields.Int(required=True)
     ingredient_id = fields.Int(required=True)

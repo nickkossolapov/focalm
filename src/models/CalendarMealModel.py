@@ -1,15 +1,12 @@
 import datetime
 from marshmallow import fields, Schema
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
 from . import db
 
-Base = declarative_base()
 
-
-class MealModel(Base):
-    __tablename__ = 'calendar_items'
+class CalendarMealModel(db.Model):
+    __tablename__ = 'calendar_meals'
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
@@ -43,7 +40,7 @@ class MealModel(Base):
         return '<id {}>'.format(self.id)
 
 
-class UserSchema(Schema):
+class CalendarMealSchema(Schema):
     id = fields.Int(dump_only=True)
     user_id = fields.Int(required=True)
     meal_id = fields.Int(required=True)
