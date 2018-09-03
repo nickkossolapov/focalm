@@ -13,9 +13,6 @@ class Auth:
 
     @staticmethod
     def generate_token(user_id):
-        """
-        Generate Token Method
-        """
         try:
             payload = {
                 'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1),
@@ -36,9 +33,6 @@ class Auth:
 
     @staticmethod
     def decode_token(token):
-        """
-        Decode token method
-        """
         re = {'data': {}, 'error': {}}
         try:
             payload = jwt.decode(token, os.getenv('JWT_SECRET_KEY'))
@@ -51,14 +45,8 @@ class Auth:
             re['error'] = {'message': 'Invalid token, please try again with a new token'}
             return re
 
-        # decorator
-
     @staticmethod
     def auth_required(func):
-        """
-        Auth decorator
-        """
-
         @wraps(func)
         def decorated_auth(*args, **kwargs):
             if 'api-token' not in request.headers:

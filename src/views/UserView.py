@@ -83,7 +83,7 @@ def create_user_view(mail_service):
         ser_user = user_schema.dump(user)
         return custom_response(ser_user, 200)
 
-    def custom_response(res, status_code):
+    def custom_response(res, status_code):  #TODO refactor/redo
         return Response(
             mimetype="application/json",
             response=json.dumps(res),
