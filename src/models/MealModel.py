@@ -3,6 +3,8 @@ from marshmallow import fields, Schema
 from sqlalchemy.orm import relationship
 
 from . import db
+from .MealIngredientModel import MealIngredientSchema
+from .StepModel import StepSchema
 
 
 class MealModel(db.Model):
@@ -13,7 +15,8 @@ class MealModel(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     description = db.Column(db.String(256))
     servings = db.Column(db.Integer, nullable=False)
-    meal_ingredients = relationship("MealIngredientsModel")
+    meal_ingredients = relationship("MealIngredientModel")
+    steps = relationship("StepsModel")
     created_at = db.Column(db.DateTime)
 
     def __init__(self, data):
@@ -47,4 +50,6 @@ class MealSchema(Schema):
     user_id = fields.Int(required=True)
     description = fields.Str(required=True)
     servings = fields.Int(required=True)
+    meal_ingredients = fields.Nested(MealIngredientSchema, many=True)
+    steps = fields.Nested(StepSchema, many=True)
     created_at = fields.DateTime(dump_only=True)

@@ -2,9 +2,10 @@ from marshmallow import fields, Schema
 from sqlalchemy.orm import relationship
 
 from . import db
+from .IngredientModel import IngredientSchema
 
 
-class MealIngredientsModel(db.Model):
+class MealIngredientModel(db.Model):
     __tablename__ = 'meal_ingredients'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -38,4 +39,5 @@ class MealIngredientSchema(Schema):
     id = fields.Int(dump_only=True)
     meal_id = fields.Int(required=True)
     ingredient_id = fields.Int(required=True)
+    ingredient = fields.Nested(IngredientSchema)
     qty = fields.Int(required=True)
