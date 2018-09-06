@@ -25,7 +25,7 @@ class MealModel(db.Model):
         self.description = data.get('description')
         self.servings = data.get('servings')
         self.ingredients = [MealIngredientModel(i, user_id) for i in data.get('ingredients')]
-        self.steps = map(MealIngredientModel, data.get('steps'))
+        self.steps = [StepModel(s) for s in data.get('steps')]
         self.created_at = datetime.datetime.utcnow()
 
     def save(self):
