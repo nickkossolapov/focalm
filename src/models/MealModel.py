@@ -3,8 +3,8 @@ from marshmallow import fields, Schema
 from sqlalchemy.orm import relationship
 
 from . import db
-from .MealIngredientModel import MealIngredientSchema
-from .StepModel import StepSchema
+from .MealIngredientModel import MealIngredientModel, MealIngredientSchema
+from .StepModel import StepModel, StepSchema
 
 
 class MealModel(db.Model):
@@ -15,16 +15,17 @@ class MealModel(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     description = db.Column(db.String(256))
     servings = db.Column(db.Integer, nullable=False)
-    meal_ingredients = relationship("MealIngredientModel")
-    steps = relationship("StepsModel")
+    ingredients = relationship('MealIngredientModel')
+    steps = relationship('StepModel')
     created_at = db.Column(db.DateTime)
 
-    def __init__(self, data):
+    def __init__(self, data, user_id):
         self.name = data.get('name')
-        self.user_id = data.get('user_id')
+        self.user_id = user_id
         self.description = data.get('description')
         self.servings = data.get('servings')
-        self.ingredients = data.get('ingredients')
+        self.ingredients = [MealIngredientModel(i, user_id) for i in data.get('ingredients')]
+        self.steps = map(MealIngredientModel, data.get('steps'))
         self.created_at = datetime.datetime.utcnow()
 
     def save(self):
@@ -47,9 +48,9 @@ class MealModel(db.Model):
 class MealSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
-    user_id = fields.Int(required=True)
+    user_id = fields.Int()
     description = fields.Str(required=True)
     servings = fields.Int(required=True)
-    meal_ingredients = fields.Nested(MealIngredientSchema, many=True)
+    ingredients = fields.Nested(MealIngredientSchema, many=True)
     steps = fields.Nested(StepSchema, many=True)
     created_at = fields.DateTime(dump_only=True)

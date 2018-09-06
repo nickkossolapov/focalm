@@ -11,7 +11,7 @@ class CalendarMealModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     meal_id = db.Column(db.Integer, db.ForeignKey('meals.id'), nullable=False)
-    meal = relationship("MealModel")
+    meal = relationship('MealModel')
     meal_time = db.Column(db.Integer, nullable=False)
     meal_date = db.Column(db.DateTime, nullable=False)
 

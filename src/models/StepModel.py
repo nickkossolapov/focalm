@@ -12,9 +12,8 @@ class StepModel(db.Model):
     order = db.Column(db.Integer, nullable=False)
 
     def __init__(self, data):
-        self.meal_id = data.get('meal_id')
         self.step = data.get('step')
-        self.order = data.get('step')
+        self.order = data.get('order')
 
     def save(self):
         db.session.add(self)
@@ -35,6 +34,6 @@ class StepModel(db.Model):
 
 class StepSchema(Schema):
     id = fields.Int(dump_only=True)
-    meal_id = fields.Int(required=True)
+    meal_id = fields.Int()
     step = fields.Str(required=True)
     order = fields.Int(required=True)

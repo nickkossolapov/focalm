@@ -9,10 +9,12 @@ class IngredientModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), nullable=False)
     metric = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    def __init__(self, data):
+    def __init__(self, data, user_id):
         self.name = data.get('name')
         self.metric = data.get('metric')
+        self.user_id = user_id
 
     def save(self):
         db.session.add(self)
@@ -33,5 +35,6 @@ class IngredientModel(db.Model):
 
 class IngredientSchema(Schema):
     id = fields.Int(dump_only=True)
-    name = fields.Int(required=True)
+    name = fields.Str(required=True)
     metric = fields.Str(required=True)
+    user_id = fields.Int()

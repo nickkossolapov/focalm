@@ -49,13 +49,13 @@ class Auth:
     def auth_required(func):
         @wraps(func)
         def decorated_auth(*args, **kwargs):
-            if 'api-token' not in request.headers:
+            if 'token' not in request.headers:
                 return Response(
                     mimetype="application/json",
                     response=json.dumps({'error': 'Authentication token is not available, please login to get one'}),
                     status=400
                 )
-            token = request.headers.get('api-token')
+            token = request.headers.get('token')
             data = Auth.decode_token(token)
             if data['error']:
                 return Response(

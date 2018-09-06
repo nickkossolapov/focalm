@@ -2,7 +2,7 @@ from marshmallow import fields, Schema
 from sqlalchemy.orm import relationship
 
 from . import db
-from .IngredientModel import IngredientSchema
+from .IngredientModel import IngredientModel, IngredientSchema
 
 
 class MealIngredientModel(db.Model):
@@ -11,12 +11,12 @@ class MealIngredientModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     meal_id = db.Column(db.Integer, db.ForeignKey('meals.id'), nullable=False)
     ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredients.id'), nullable=False)
-    ingredient = relationship("IngredientModel")
+    ingredient = relationship('IngredientModel')
     qty = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, data):
-        self.step = data.get('step')
-        self.order = data.get('step')
+    def __init__(self, data, user_id):
+        self.ingredient = IngredientModel(data, user_id)
+        self.qty = data.get('qty')
 
     def save(self):
         db.session.add(self)
@@ -37,7 +37,7 @@ class MealIngredientModel(db.Model):
 
 class MealIngredientSchema(Schema):
     id = fields.Int(dump_only=True)
-    meal_id = fields.Int(required=True)
-    ingredient_id = fields.Int(required=True)
+    meal_id = fields.Int()
+    ingredient_id = fields.Int()
     ingredient = fields.Nested(IngredientSchema)
     qty = fields.Int(required=True)
