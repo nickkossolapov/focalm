@@ -1,8 +1,16 @@
 import datetime
+from enum import Enum
+
 from marshmallow import fields, Schema
 from sqlalchemy.orm import relationship
 
 from . import db
+
+
+class MealTime(Enum):
+    BREAKFAST = 1,
+    LUNCH = 2,
+    DINNER = 3
 
 
 class CalendarMealModel(db.Model):
@@ -12,16 +20,15 @@ class CalendarMealModel(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     meal_id = db.Column(db.Integer, db.ForeignKey('meals.id'), nullable=False)
     meal = relationship('MealModel')
-    meal_time = db.Column(db.Integer, nullable=False)
+    meal_time = db.Column(db.String(16), Enum(MealTime),nullable=False)
     meal_date = db.Column(db.DateTime, nullable=False)
 
-    def __init__(self, data):
+    def __init__(self, data, user_id):
         self.name = data.get('name')
         self.user_id = data.get('user_id')
-        self.description = data.get('description')
         self.servings = data.get('servings')
-        self.ingredients = data.get('ingredients')
-        self.created_at = datetime.datetime.utcnow()
+        self.meal_time = data.get('meal_time')
+        self.meal_date = datetime.datetime.utcnow()
 
     def save(self):
         db.session.add(self)
