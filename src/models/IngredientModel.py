@@ -27,6 +27,12 @@ class IngredientModel(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+    @staticmethod
+    def get_by_user_id(user_id):
+        return (IngredientModel.query.filter_by(user_id=user_id)
+                                     .with_entities(IngredientModel.id, IngredientModel.name)
+                                     .all())
+
     def __repr(self):
         return '<id {}>'.format(self.id)
 

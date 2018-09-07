@@ -2,10 +2,12 @@ from flask import Flask, render_template
 from flask_cors import CORS
 
 from src.services.MailService import MailService
+from src.views.IngredientsView import create_ingredient_view
 from src.views.MealView import create_meal_view
+from src.views.UserView import create_user_view
+
 from .config import app_config
 from .models import db, bcrypt
-from .views.UserView import create_user_view
 
 
 def create_app(env_name):
@@ -19,6 +21,7 @@ def create_app(env_name):
 
     app.register_blueprint(create_user_view(mail_service), url_prefix='/api/users')
     app.register_blueprint(create_meal_view(), url_prefix='/api/meals')
+    app.register_blueprint(create_ingredient_view(), url_prefix='/api/ingredients')
     CORS(app)
 
     @app.route('/<path:path>')
