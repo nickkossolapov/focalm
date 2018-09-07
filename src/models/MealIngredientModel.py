@@ -13,10 +13,12 @@ class MealIngredientModel(db.Model):
     ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredients.id'), nullable=False)
     ingredient = relationship('IngredientModel')
     qty = db.Column(db.Integer, nullable=False)
+    metric = db.Column(db.String(16), nullable=False)
 
     def __init__(self, data, user_id):
-        self.ingredient = IngredientModel(data, user_id)
+        self.ingredient = IngredientModel(data.get('ingredient'), user_id)
         self.qty = data.get('qty')
+        self.metric = data.get('metric')
 
     def save(self):
         db.session.add(self)
@@ -41,3 +43,4 @@ class MealIngredientSchema(Schema):
     ingredient_id = fields.Int()
     ingredient = fields.Nested(IngredientSchema)
     qty = fields.Int(required=True)
+    metric = fields.Str(required=True)

@@ -17,9 +17,9 @@ def create_meal_view():
             data = meal_schema.load(req_data)
 
             meal = MealModel(data, g.user.get('id'))
-            # meal.save()
+            meal.save()
 
-            return Response(201)
+            return Response(status=201)
         except ValidationError as err:
             return custom_response(err.messages, 400)
 
