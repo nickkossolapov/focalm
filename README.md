@@ -1,16 +1,12 @@
 # focalm
 
-A basic meal planner to save recipes, keep track of meals, and to form shopping lists.
+A basic meal planner to save recipes, keep track of meals, and to generate shopping lists for selected periods of time.
 
 
 ### Dependencies
 
 * Python 3.6+
 * npm 5.6+
-
-```
-Give examples
-```
 
 ### Setup
 
@@ -51,6 +47,7 @@ python run.py
 ## Built With
 
 * [React](https://reactjs.org/) - Front-end
+* [TypeScript](https://www.typescriptlang.org/) - Front-end language
 * [Flask](http://flask.pocoo.org/) - Back-end
 * [SQLAlchemy](https://www.sqlalchemy.org/) - ORM
 * [PostgreSQL](https://www.postgresql.org/) - Database
