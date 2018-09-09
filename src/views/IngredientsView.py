@@ -12,16 +12,12 @@ def create_ingredient_view():
     @ingredient_api.route('/', methods=['GET'])
     @Auth.auth_required
     def fetch_ingredients_by_user():
-        try:
-            user_id = g.user.get('id')
-            ingredients = IngredientModel.get_by_user_id(user_id)
-            ser_ingredients = jsonify([ingredient_schema.dump(i) for i in ingredients])
+        user_id = g.user.get('id')
+        ingredients = IngredientModel.get_by_user_id(user_id)
+        ser_ingredients = jsonify([ingredient_schema.dump(i) for i in ingredients])
 
-            response = make_response(ser_ingredients, 200)
-            response.mimetype = "application/json"
-
-            return response
-        except ValidationError as err:
-            return Response(status=400)
+        response = make_response(ser_ingredients, 200)
+        response.mimetype = "application/json"
+        return response
 
     return ingredient_api

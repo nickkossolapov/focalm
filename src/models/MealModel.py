@@ -15,8 +15,8 @@ class MealModel(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     description = db.Column(db.String(256))
     servings = db.Column(db.Integer, nullable=False)
-    ingredients = relationship('MealIngredientModel')
-    steps = relationship('StepModel')
+    ingredients = relationship('MealIngredientModel', cascade='save-update, delete')
+    steps = relationship('StepModel', cascade='save-update, delete')
     created_at = db.Column(db.DateTime)
 
     def __init__(self, data, user_id):
@@ -40,6 +40,16 @@ class MealModel(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+    @staticmethod
+    def get_all_meals_by_user(user_id):
+        return (MealModel.query.filter_by(user_id=user_id)
+                               .with_entities(MealModel.id, MealModel.name, MealModel.description)
+                               .all())
+
+    @staticmethod
+    def get_meal(meal_id):
+        return MealModel.query.filter_by(id=meal_id).first()
 
     def __repr(self):
         return '<id {}>'.format(self.id)

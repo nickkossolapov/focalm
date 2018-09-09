@@ -42,6 +42,10 @@ class CalendarMealModel(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+    @staticmethod
+    def get_calendar_by_meal(meal_id):
+        return CalendarMealModel.query.filter_by(meal_id=meal_id).all()
+
     def __repr(self):
         return '<id {}>'.format(self.id)
 
