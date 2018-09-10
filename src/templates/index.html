@@ -9,6 +9,7 @@
     <div id="root"></div>
   </body>
   <script type="text/javascript" src="{{ url_for('static', filename='bundle.js') }}"></script>
+  {% if not config['DEBUG'] %}
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125072936-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -17,4 +18,5 @@
 
     gtag('config', 'UA-125072936-1');
   </script>
+  {% endif %}
 </html>
