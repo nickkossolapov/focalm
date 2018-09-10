@@ -11,7 +11,7 @@ import SignUp from './components/auth/signup';
 import SignIn from './components/auth/signin';
 import Feature from './components/feature';
 import SignOut from './components/auth/signout';
-import reducers from './reducers';
+import reducers from './store';
 
 
 const store = createStore(
