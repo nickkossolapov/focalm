@@ -46,8 +46,7 @@ python run.py
 
 ## Built With
 
-* [React](https://reactjs.org/) - Front-end
-* [TypeScript](https://www.typescriptlang.org/) - Front-end language
+* [React](https://reactjs.org/) with [Redux](https://redux.js.org/) - Front-end
 * [Flask](http://flask.pocoo.org/) - Back-end
 * [SQLAlchemy](https://www.sqlalchemy.org/) - ORM
 * [PostgreSQL](https://www.postgresql.org/) - Database
