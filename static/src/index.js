@@ -9,8 +9,8 @@ import App from './components/app';
 import Welcome from './components/welcome';
 import SignUp from './components/auth/signup';
 import SignIn from './components/auth/signin';
-import Feature from './components/feature';
 import SignOut from './components/auth/signout';
+import Welcome from './components/welcome';
 import reducers from './store';
 
 
@@ -30,7 +30,6 @@ ReactDOM.render(
         <Route path="/" exact component={Welcome}/>
         <Route path="/signup" component={SignUp}/>
         <Route path="/signin" component={SignIn}/>
-        <Route path="/feature" component={Feature}/>
         <Route path="/signout" component={SignOut}/>
       </App>
     </BrowserRouter>
