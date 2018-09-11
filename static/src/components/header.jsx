@@ -9,7 +9,7 @@ class Header extends Component {
       return (
         <div>
           <Link to="/signout">Sign Out</Link>
-          <Link to="/feature">Feature</Link>
+          <Link to="/meals">meals</Link>
         </div>
       )
     } else {
