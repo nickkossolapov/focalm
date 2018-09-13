@@ -1,7 +1,7 @@
 import _ from "lodash";
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import {fetchMeals} from "../store/meals/actions";
 import requireAuth from './require_auth';
 
@@ -14,7 +14,7 @@ class Meals extends Component {
     return _.map(this.props.meals, meal => {
       return (
         <li className="list-group-item" key={meal.id}>
-          <Link to={`/posts/${meal.id}`}>
+          <Link to={`/meal/${meal.id}`}>
             {meal.name}
           </Link>
         </li>

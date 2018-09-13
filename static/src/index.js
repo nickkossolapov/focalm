@@ -6,6 +6,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/app';
+import Meal from './components/meal'
 import Meals from './components/meals';
 import SignUp from './components/auth/signup';
 import SignIn from './components/auth/signin';
@@ -32,6 +33,7 @@ ReactDOM.render(
         <Route path="/signin" component={SignIn}/>
         <Route path="/signout" component={SignOut}/>
         <Route path="/meals" component={Meals}/>
+        <Route path="/meal/:id" component={Meal}/>
       </App>
     </BrowserRouter>
   </Provider>
