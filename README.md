@@ -19,7 +19,7 @@ npm install
 Then run the build script to generate the bundle.js and style.css files.
 
 ```
-npm build
+npm run build
 ```
 
 For the Flask back-end, first install the requirements.
