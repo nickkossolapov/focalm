@@ -12,8 +12,11 @@ def create_meal_view():
 
     @meal_api.route('/<meal_id>', methods=['GET'])
     @Auth.auth_required
-    def fetch_meal(meal_id):
+    def fetch(meal_id):
         meal = MealModel.get_meal(meal_id)
+        if meal.user_id != g.user.get('id'):
+            return make_response(None, 403)
+
         ser_meal = jsonify(meal_schema.dump(meal))
 
         response = make_response(ser_meal, 200)
@@ -22,7 +25,7 @@ def create_meal_view():
 
     @meal_api.route('/<meal_id>', methods=['DELETE'])
     @Auth.auth_required
-    def delete_meal(meal_id):
+    def delete(meal_id):
         calendar_meals = CalendarMealModel.get_calendar_by_meal(meal_id)
         for calendar_meal in calendar_meals:
             calendar_meal.delete()
@@ -48,7 +51,7 @@ def create_meal_view():
 
     @meal_api.route('/', methods=['GET'])
     @Auth.auth_required
-    def get_all_meals():
+    def get_all():
         user_id = g.user.get('id')
         meals = MealModel.get_all_meals_by_user(user_id)
         ser_meals = jsonify([meal_schema.dump(m) for m in meals])
