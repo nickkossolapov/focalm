@@ -26,7 +26,6 @@ class StepModel(db.Model):
 
     def delete(self):
         db.session.delete(self)
-        db.session.commit()
 
     def __repr(self):
         return '<id {}>'.format(self.id)

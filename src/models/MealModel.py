@@ -3,7 +3,7 @@ from marshmallow import fields, Schema
 from sqlalchemy.orm import relationship
 
 from . import db
-from .MealIngredientModel import MealIngredientModel, MealIngredientSchema
+from .IngredientModel import IngredientModel, IngredientSchema
 from .StepModel import StepModel, StepSchema
 
 
@@ -15,8 +15,8 @@ class MealModel(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     description = db.Column(db.String(256))
     servings = db.Column(db.Integer, nullable=False)
-    ingredients = relationship('MealIngredientModel', cascade='save-update, delete')
-    steps = relationship('StepModel', cascade='save-update, delete')
+    ingredients = relationship('IngredientModel', cascade='save-update, delete, delete-orphan')
+    steps = relationship('StepModel', cascade='save-update, delete, delete-orphan')
     created_at = db.Column(db.DateTime)
 
     def __init__(self, data, user_id):
@@ -24,7 +24,7 @@ class MealModel(db.Model):
         self.user_id = user_id
         self.description = data.get('description')
         self.servings = data.get('servings')
-        self.ingredients = [MealIngredientModel(i, user_id) for i in data.get('ingredients')]
+        self.ingredients = [IngredientModel(i) for i in data.get('ingredients')]
         self.steps = [StepModel(s) for s in data.get('steps')]
         self.created_at = datetime.datetime.utcnow()
 
@@ -33,9 +33,16 @@ class MealModel(db.Model):
         db.session.commit()
 
     def update(self, data):
-        for key, item in data.items():
-            setattr(self, key, item)
-        db.session.commit()
+        self.name = data.get('name')
+        self.description = data.get('description')
+        self.servings = data.get('servings')
+        for i in range(len(self.ingredients)):
+            self.ingredients[i].update(data.get('ingredients'))
+
+        for i in range(len(self.steps)):
+            self.steps[i].update(data.get('steps'))
+
+        # db.session.commit()
 
     def delete(self):
         db.session.delete(self)
@@ -61,6 +68,6 @@ class MealSchema(Schema):
     user_id = fields.Int()
     description = fields.Str(required=True)
     servings = fields.Int(required=True)
-    ingredients = fields.Nested(MealIngredientSchema, many=True)
+    ingredients = fields.Nested(IngredientSchema, many=True)
     steps = fields.Nested(StepSchema, many=True)
     created_at = fields.DateTime(dump_only=True)

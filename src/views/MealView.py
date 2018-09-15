@@ -35,6 +35,22 @@ def create_meal_view():
 
         return make_response(None, 204)
 
+    @meal_api.route('/<meal_id>', methods=['PUT'])
+    @Auth.auth_required
+    def update(meal_id):
+        try:
+            req_data = request.get_json()
+            data = meal_schema.load(req_data, partial=True)
+
+            meal = MealModel.get_meal(meal_id)
+            meal.update(data)
+            ser_meal = meal_schema.dump(meal)
+
+            return custom_response(ser_meal, 200)
+
+        except ValidationError as err:
+            return custom_response(err.messages, 400)
+
     @meal_api.route('/', methods=['POST'])
     @Auth.auth_required
     def create():

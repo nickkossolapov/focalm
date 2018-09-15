@@ -1,37 +1,46 @@
+from enum import IntEnum
 from marshmallow import fields, Schema
+from marshmallow_enum import EnumField
+from sqlalchemy.orm import relationship
 
 from . import db
+
+
+class MealMetric(IntEnum):
+    TEASPOON = 1,
+    TABLESPOON = 2,
+    CUP = 3,
+    MILLILITRE = 4,
+    LITRE = 5,
+    GRAM = 6,
+    KILOGRAM = 7
 
 
 class IngredientModel(db.Model):
     __tablename__ = 'ingredients'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    meal_id = db.Column(db.Integer, db.ForeignKey('meals.id'), nullable=False)
+    ingredient = db.Column(db.String(32), nullable=False)
+    qty = db.Column(db.Integer, nullable=False)
+    metric = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, data, user_id):
-        self.name = data.get('name')
-        self.user_id = user_id
+    def __init__(self, data):
+        self.ingredient = data.get('ingredient')
+        self.qty = data.get('qty')
+        self.metric = int(data.get('metric'))
 
     def save(self):
         db.session.add(self)
         db.session.commit()
 
     def update(self, data):
-        for key, item in data.items():
-            setattr(self, key, item)
-        db.session.commit()
+        self.ingredient = data.get('qty')
+        self.qty = data.get('qty')
+        self.metric = data.get('metric')
 
     def delete(self):
         db.session.delete(self)
-        db.session.commit()
-
-    @staticmethod
-    def get_by_user_id(user_id):
-        return (IngredientModel.query.filter_by(user_id=user_id)
-                                     .with_entities(IngredientModel.id, IngredientModel.name)
-                                     .all())
 
     def __repr(self):
         return '<id {}>'.format(self.id)
@@ -39,5 +48,7 @@ class IngredientModel(db.Model):
 
 class IngredientSchema(Schema):
     id = fields.Int(dump_only=True)
-    name = fields.Str(required=True)
-    user_id = fields.Int()
+    meal_id = fields.Int()
+    ingredient = fields.Str(required=True)
+    qty = fields.Int(required=True)
+    metric = EnumField(MealMetric, required=True)
