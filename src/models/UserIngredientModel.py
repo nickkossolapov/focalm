@@ -1,7 +1,7 @@
 from marshmallow import fields, Schema
-from marshmallow_enum import EnumField
 
 from . import db
+from .helpers.IntEnumField import IntEnumField
 from .IngredientModel import MealMetric
 
 
@@ -22,4 +22,4 @@ class UserIngredientModel(db.Model):
 
 class UserIngredientSchema(Schema):
     ingredient = fields.Str(dump_only=True)
-    metric = EnumField(MealMetric, dump_only=True)
+    metric = IntEnumField(MealMetric, dump_only=True)

@@ -1,10 +1,8 @@
-import datetime
 from enum import IntEnum
 from marshmallow import fields, Schema
-from marshmallow_enum import EnumField
-from sqlalchemy.orm import relationship
 
 from . import db
+from .helpers import IntEnumField
 
 
 class MealTime(IntEnum):
@@ -54,5 +52,5 @@ class CalendarMealSchema(Schema):
     id = fields.Int(dump_only=True)
     user_id = fields.Int(dump_only=True)
     meal_id = fields.Int(required=True)
-    time = EnumField(MealTime, required=True)
+    time = IntEnumField(MealTime, required=True)
     date = fields.Date(required=True)

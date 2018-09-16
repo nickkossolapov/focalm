@@ -1,8 +1,8 @@
 from enum import Enum
 from marshmallow import fields, Schema
-from marshmallow_enum import EnumField
 
 from . import db
+from .helpers.IntEnumField import IntEnumField
 
 
 class MealMetric(Enum):
@@ -13,9 +13,6 @@ class MealMetric(Enum):
     LITRE = 5,
     GRAM = 6,
     KILOGRAM = 7
-
-    def __int__(self):
-        return self.value[0]
 
 
 class IngredientModel(db.Model):
@@ -53,4 +50,4 @@ class IngredientSchema(Schema):
     meal_id = fields.Int()
     ingredient = fields.Str(required=True)
     qty = fields.Int(required=True)
-    metric = EnumField(MealMetric, required=True)
+    metric = IntEnumField(required=True)
