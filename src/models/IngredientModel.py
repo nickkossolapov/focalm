@@ -1,12 +1,11 @@
-from enum import IntEnum
+from enum import Enum
 from marshmallow import fields, Schema
 from marshmallow_enum import EnumField
-from sqlalchemy.orm import relationship
 
 from . import db
 
 
-class MealMetric(IntEnum):
+class MealMetric(Enum):
     TEASPOON = 1,
     TABLESPOON = 2,
     CUP = 3,
@@ -14,6 +13,9 @@ class MealMetric(IntEnum):
     LITRE = 5,
     GRAM = 6,
     KILOGRAM = 7
+
+    def __int__(self):
+        return self.value[0]
 
 
 class IngredientModel(db.Model):
