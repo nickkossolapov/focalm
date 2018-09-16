@@ -61,7 +61,12 @@ def create_meal_view():
             meal = MealModel(data, g.user.get('id'))
             meal.save()
 
-            return Response(status=201)
+            ser_meal = meal_schema.dump(meal)
+
+            response = make_response(ser_meal, 201)
+            response.mimetype = "application/json"
+            return response
+
         except ValidationError as err:
             return custom_response(err.messages, 400)
 

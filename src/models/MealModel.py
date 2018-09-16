@@ -50,9 +50,7 @@ class MealModel(db.Model):
 
     @staticmethod
     def get_all_meals_by_user(user_id):
-        return (MealModel.query.filter_by(user_id=user_id)
-                               .with_entities(MealModel.id, MealModel.name, MealModel.description)
-                               .all())
+        return MealModel.query.filter_by(user_id=user_id).all()
 
     @staticmethod
     def get_meal(meal_id):
