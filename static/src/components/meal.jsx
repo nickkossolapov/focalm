@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {fetchMeal, clearMeal} from "../store/meal/actions";
+import {fetchMeal} from "../store/meals/actions";
 
 class Meal extends Component {
   componentDidMount() {
@@ -9,14 +9,10 @@ class Meal extends Component {
     this.props.fetchMeal(id);
   }
 
-  componentWillUnmount(){
-    this.props.clearMeal();
-  }
-
   render() {
     const {meal} = this.props;
 
-    if (!Object.keys(meal).length) {
+    if (!this.props.meal) {
       return <div>Loading...</div>;
     }
 
@@ -32,8 +28,8 @@ class Meal extends Component {
   }
 }
 
-function mapStateToProps({ currentMeal }, ownProps) {
-  return {meal: currentMeal};
+function mapStateToProps({meals}, ownProps) {
+  return {meal: meals[ownProps.match.params.id]};
 }
 
-export default connect(mapStateToProps, {fetchMeal, clearMeal})(Meal);
+export default connect(mapStateToProps, {fetchMeal})(Meal);
