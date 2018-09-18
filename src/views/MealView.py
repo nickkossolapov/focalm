@@ -61,7 +61,7 @@ def create_meal_view():
             meal = MealModel(data, g.user.get('id'))
             meal.save()
 
-            ser_meal = meal_schema.dump(meal)
+            ser_meal = jsonify(meal_schema.dump(meal))
 
             response = make_response(ser_meal, 201)
             response.mimetype = "application/json"

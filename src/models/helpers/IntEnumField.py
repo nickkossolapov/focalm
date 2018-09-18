@@ -16,7 +16,7 @@ class IntEnumField(fields.Field):
         try:
             if value is None:
                 return None
-            return self.enum[value.upper()]
+            return self.enum[value.upper()].value
 
         except KeyError:
             raise ValidationError('not_valid_enum_value')

@@ -36,13 +36,10 @@ class MealModel(db.Model):
         self.name = data.get('name')
         self.description = data.get('description')
         self.servings = data.get('servings')
-        for i in range(len(self.ingredients)):
-            self.ingredients[i].update(data.get('ingredients'))
+        self.ingredients = [IngredientModel(i) for i in data.get('ingredients')]
+        self.steps = [StepModel(s) for s in data.get('steps')]
 
-        for i in range(len(self.steps)):
-            self.steps[i].update(data.get('steps'))
-
-        # db.session.commit()
+        db.session.commit()
 
     def delete(self):
         db.session.delete(self)

@@ -1,11 +1,11 @@
-from enum import Enum
+from enum import IntEnum
 from marshmallow import fields, Schema
 
 from . import db
 from .helpers.IntEnumField import IntEnumField
 
 
-class MealMetric(Enum):
+class MealMetric(IntEnum):
     TEASPOON = 1,
     TABLESPOON = 2,
     CUP = 3,
@@ -50,4 +50,4 @@ class IngredientSchema(Schema):
     meal_id = fields.Int()
     ingredient = fields.Str(required=True)
     qty = fields.Int(required=True)
-    metric = IntEnumField(required=True)
+    metric = IntEnumField(MealMetric, required=True)

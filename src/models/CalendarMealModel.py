@@ -2,7 +2,7 @@ from enum import IntEnum
 from marshmallow import fields, Schema
 
 from . import db
-from .helpers import IntEnumField
+from .helpers.IntEnumField import IntEnumField
 
 
 class MealTime(IntEnum):
