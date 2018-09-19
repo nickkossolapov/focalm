@@ -1,12 +1,14 @@
 import _ from 'lodash';
-import {FETCH_MEALS, FETCH_MEAL} from "./types";
+import {CREATE_MEAL, FETCH_MEAL, FETCH_MEALS} from "./types";
 
 export default (state = {}, action) => {
   switch (action.type){
-    case FETCH_MEALS:
-      return _.mapKeys(action.payload, "id");
+    case CREATE_MEAL:
+      return {...state, [action.payload.id]: action.payload};
     case FETCH_MEAL:
       return {...state, [action.payload.id]: action.payload};
+    case FETCH_MEALS:
+      return _.mapKeys(action.payload, "id");
     default:
       return state;
   }
