@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/app';
 import Meal from './components/meal'
 import Meals from './components/meals';
+import MealForm from './components/meal_form';
 import SignUp from './components/auth/signup';
 import SignIn from './components/auth/signin';
 import SignOut from './components/auth/signout';
@@ -28,12 +29,15 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <App>
-        <Route path="/" exact component={Welcome}/>
-        <Route path="/signup" component={SignUp}/>
-        <Route path="/signin" component={SignIn}/>
-        <Route path="/signout" component={SignOut}/>
-        <Route path="/meals" component={Meals}/>
-        <Route path="/meal/:id" component={Meal}/>
+        <Switch>
+          <Route path="/signup" component={SignUp}/>
+          <Route path="/signin" component={SignIn}/>
+          <Route path="/signout" component={SignOut}/>
+          <Route path="/meals" component={Meals}/>
+          <Route path="/meal/create" component={MealForm}/>
+          <Route path="/meal/:id" component={Meal}/>
+          <Route path="/" component={Welcome}/>
+        </Switch>
       </App>
     </BrowserRouter>
   </Provider>
