@@ -4,8 +4,10 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {createMeal} from "../store/meals/actions";
 
+import {MEAL_METRIC} from "../store/constants/meals"
+
 class MealForm extends Component {
-  renderField({input, label, type, meta: {touched, error}}) {
+  static renderField({input, label, type, meta: {touched, error}}) {
     const className = `form-group ${touched && error ? "has-danger" : ""}`;
 
     return (
@@ -27,13 +29,13 @@ class MealForm extends Component {
             Add Step
           </button>
         </li>
-        {fields.map((step, index) => (
+        {fields.map((step, index) => {
+          return (
           <li key={index}>
-            <h4>Step #{index + 1}</h4>
             <Field
-              name={`${step.step}`}
+              name={`${step}.step`}
               type="text"
-              component={this.renderField}
+              component={MealForm.renderField}
             />
             <button
               type="button"
@@ -43,13 +45,71 @@ class MealForm extends Component {
               Delete
             </button>
           </li>
-        ))}
+        )})}
       </ul>
     )
   };
 
+  renderIngredients({fields, meta: {error}}) {
+    return (
+      <ul>
+        <li>
+          <button type="button" onClick={() => fields.push({})}>
+            Add Ingredient
+          </button>
+        </li>
+        {fields.map((ingredient, index) => {
+          return (
+            <li key={index}>
+              <p>Ingredient</p>
+              <Field
+                name={`${ingredient}.ingredient`}
+                type="text"
+                component={MealForm.renderField}
+              />
+              <p>Amount</p>
+              <Field
+                name={`${ingredient}.qty`}
+                type="number"
+                component={MealForm.renderField}
+              />
+              <Field
+                name={`${ingredient}.metric`}
+                type="text"
+                component="select"
+                default="">
+                <option value="" disabled="disabled">Select a unit</option>
+                {this.renderIngredientDropdown()}
+              </Field>
+              <button
+                type="button"
+                title="Remove Ingredient"
+                onClick={() => fields.remove(index)}
+                label="Delete">
+                Delete
+              </button>
+            </li>
+          )})}
+      </ul>
+    )
+  };
+
+  renderIngredientDropdown() {
+    return Object.keys(MEAL_METRIC).map(key => {
+      return <option value={key} key={key}>{MEAL_METRIC[key].name}</option>
+    });
+  };
+
+
+
+
   onSubmit(values) {
-    console.log('submitted')
+    if (values.steps) {
+      for (let i = 0; i < values.steps.length; i++) {
+        values.steps[i].order = i;
+      }
+    }
+    console.log(values);
     // this.props.createMeal(values, () => {
     //   this.props.history.push("/");
     // });
@@ -63,19 +123,20 @@ class MealForm extends Component {
         <Field
           label="Name"
           name="name"
-          component={this.renderField}
+          component={MealForm.renderField}
         />
         <Field
           label="Description"
           name="description"
-          component={this.renderField}
+          component={MealForm.renderField}
         />
         <Field
           label="Servings"
           name="servings"
-          component={this.renderField}
+          component={MealForm.renderField}
         />
         <FieldArray name="steps" component={this.renderSteps.bind(this)} />
+        <FieldArray name="ingredients" component={this.renderIngredients.bind(this)} />
         <div>
           <button type="submit" disabled={submitting}>Submit</button>
           <button type="button" disabled={pristine || submitting} onClick={reset}>
@@ -90,19 +151,25 @@ class MealForm extends Component {
 
 function validate(values) {
   const errors = {};
-
-  if (!values.name) {
-    errors.title = "Enter a name";
-  }
-  if (!values.description) {
-    errors.description = "Enter a description";
-  }
-  if (!values.servings) {
-    errors.servings = "Enter the number of servings";
-  }
+  //
+  // if (!values.name) {
+  //   errors.title = "Enter a name";
+  // }
+  // if (!values.description) {
+  //   errors.description = "Enter a description";
+  // }
+  // if (!values.servings) {
+  //   errors.servings = "Enter the number of servings";
+  // }
 
   return errors;
 }
+
+// export default compose(
+//   connect(null, {createMeal}),
+//   reduxForm(validate, {form: 'MealForm'})
+// )(MealForm);
+
 
 export default reduxForm({
   validate,

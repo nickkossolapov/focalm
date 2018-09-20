@@ -3,7 +3,7 @@ import {CREATE_MEAL, FETCH_MEAL, FETCH_MEALS} from "./types";
 
 const ROOT_URL = process.env.API_URL;
 
-export const createMeal = (meal) => async (dispatch, getState) => {
+export const createMeal = (meal, callback) => async (dispatch, getState) => {
   try {
     const { auth: {authenticated: token} } = getState();
     const apiRequest = {
@@ -20,6 +20,7 @@ export const createMeal = (meal) => async (dispatch, getState) => {
       type: CREATE_MEAL,
       payload: response.data
     });
+    callback();
   } catch (err) {
     console.log(err);
   }
