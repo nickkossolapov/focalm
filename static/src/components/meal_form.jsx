@@ -75,7 +75,7 @@ class MealForm extends Component {
                 component="select"
                 default="">
                 <option value="" disabled="disabled">Select a unit</option>
-                {this.renderIngredientDropdown()}
+                {MealForm.renderIngredientDropdown()}
               </Field>
               <button
                 type="button"
@@ -90,7 +90,7 @@ class MealForm extends Component {
     )
   };
 
-  renderIngredientDropdown() {
+  static renderIngredientDropdown() {
     return Object.keys(MEAL_METRIC).map(key => {
       return <option value={key} key={key}>{MEAL_METRIC[key].name}</option>
     });
@@ -112,7 +112,7 @@ class MealForm extends Component {
     const {handleSubmit, pristine, reset, submitting} = this.props;
 
     return (
-      <form onSubmit={handleSubmit(MealForm.onSubmit.bind(this))}>
+      <form onSubmit={handleSubmit(MealForm.onSubmit)}>
         <Field
           label="Name"
           name="name"
@@ -128,8 +128,8 @@ class MealForm extends Component {
           name="servings"
           component={MealForm.renderField}
         />
-        <FieldArray name="steps" component={this.renderSteps.bind(this)} />
-        <FieldArray name="ingredients" component={this.renderIngredients.bind(this)} />
+        <FieldArray name="steps" component={this.renderSteps} />
+        <FieldArray name="ingredients" component={this.renderIngredients} />
         <div>
           <button type="submit" disabled={submitting}>Submit</button>
           <button type="button" disabled={pristine || submitting} onClick={reset}>
