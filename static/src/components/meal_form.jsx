@@ -8,15 +8,11 @@ import {MEAL_METRIC} from "../store/constants/meals"
 
 class MealForm extends Component {
   static renderField({input, label, type, meta: {touched, error}}) {
-    const className = `form-group ${touched && error ? "has-danger" : ""}`;
-
     return (
-      <div className={className}>
+      <div>
         <label>{label}</label>
-        <input className="form-control" type="text" {...input} />
-        <div className="text-help">
-          {touched ? error : ""}
-        </div>
+        <input type="text" {...input} />
+        {touched && error && <span>{error}</span>}
       </div>
     );
   }
@@ -61,14 +57,14 @@ class MealForm extends Component {
         {fields.map((ingredient, index) => {
           return (
             <li key={index}>
-              <p>Ingredient</p>
               <Field
+                label="Ingredient"
                 name={`${ingredient}.ingredient`}
                 type="text"
                 component={MealForm.renderField}
               />
-              <p>Amount</p>
               <Field
+                label="Qty"
                 name={`${ingredient}.qty`}
                 type="number"
                 component={MealForm.renderField}
@@ -100,10 +96,7 @@ class MealForm extends Component {
     });
   };
 
-
-
-
-  onSubmit(values) {
+  static onSubmit(values) {
     if (values.steps) {
       for (let i = 0; i < values.steps.length; i++) {
         values.steps[i].order = i;
@@ -119,7 +112,7 @@ class MealForm extends Component {
     const {handleSubmit, pristine, reset, submitting} = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+      <form onSubmit={handleSubmit(MealForm.onSubmit.bind(this))}>
         <Field
           label="Name"
           name="name"
@@ -142,7 +135,7 @@ class MealForm extends Component {
           <button type="button" disabled={pristine || submitting} onClick={reset}>
             Clear Values
           </button>
-          <Link to="/" className="btn btn-danger">Cancel</Link>
+          <Link to="/">Cancel</Link>
         </div>
       </form>
     );
@@ -150,18 +143,45 @@ class MealForm extends Component {
 }
 
 function validate(values) {
-  const errors = {};
-  //
-  // if (!values.name) {
-  //   errors.title = "Enter a name";
-  // }
-  // if (!values.description) {
-  //   errors.description = "Enter a description";
-  // }
-  // if (!values.servings) {
-  //   errors.servings = "Enter the number of servings";
-  // }
+  const errors = {steps: [], ingredients: []};
 
+  if (!values.name) {
+    errors.name = "Required";
+  }
+  if (!values.description) {
+    errors.description = "Required";
+  }
+  if (!values.servings) {
+    errors.servings = "Required";
+  }
+
+  if (values.ingredients) {
+    values.ingredients.forEach((ingredient, i) => {
+      let ingredientError = {};
+      if (!ingredient.ingredient){
+        ingredientError.ingredient = "Required";
+      }
+      if (!ingredient.qty){
+        ingredientError.qty = "Required";
+      }
+      if (!ingredient.metric){
+        ingredientError.metric = "Required";
+      }
+      errors.ingredients[i] = ingredientError;
+    });
+  }
+
+  if (values.steps) {
+    values.steps.forEach((step, i) => {
+      let stepError = {};
+      if (!step.step){
+        stepError.step = "Required";
+      }
+      errors.steps[i] = stepError;
+    });
+  }
+  console.log(values);
+  console.log(errors);
   return errors;
 }
 
