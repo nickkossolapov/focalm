@@ -102,7 +102,6 @@ class MealForm extends Component {
         values.steps[i].order = i;
       }
     }
-    console.log(values);
     // this.props.createMeal(values, () => {
     //   this.props.history.push("/");
     // });
@@ -180,8 +179,6 @@ function validate(values) {
       errors.steps[i] = stepError;
     });
   }
-  console.log(values);
-  console.log(errors);
   return errors;
 }
 
