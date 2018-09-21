@@ -5,7 +5,7 @@ from . import db
 from .helpers.IntEnumField import IntEnumField
 
 
-class MealMetric(IntEnum):
+class IngredientUnit(IntEnum):
     GRAM = 1,
     KILOGRAM = 2,
     MILLILITRE = 3,
@@ -15,21 +15,19 @@ class MealMetric(IntEnum):
     CUP = 7
 
 
-
-
 class IngredientModel(db.Model):
     __tablename__ = 'ingredients'
 
     id = db.Column(db.Integer, primary_key=True)
     meal_id = db.Column(db.Integer, db.ForeignKey('meals.id'), nullable=False)
     ingredient = db.Column(db.String(32), nullable=False)
-    qty = db.Column(db.Integer, nullable=False)
-    metric = db.Column(db.Integer, nullable=False)
+    qty = db.Column(db.Float, nullable=False)
+    unit = db.Column(db.Integer, nullable=False)
 
     def __init__(self, data):
         self.ingredient = data.get('ingredient')
         self.qty = data.get('qty')
-        self.metric = int(data.get('metric'))
+        self.unit = int(data.get('unit'))
 
     def save(self):
         db.session.add(self)
@@ -38,7 +36,7 @@ class IngredientModel(db.Model):
     def update(self, data):
         self.ingredient = data.get('qty')
         self.qty = data.get('qty')
-        self.metric = data.get('metric')
+        self.unit = data.get('unit')
 
     def delete(self):
         db.session.delete(self)
@@ -52,4 +50,4 @@ class IngredientSchema(Schema):
     meal_id = fields.Int()
     ingredient = fields.Str(required=True)
     qty = fields.Int(required=True)
-    metric = IntEnumField(MealMetric, required=True)
+    unit = IntEnumField(IngredientUnit, required=True)

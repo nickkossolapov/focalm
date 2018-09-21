@@ -1,4 +1,4 @@
-export let MEAL_METRIC = Object.freeze({
+export let MEAL_UNIT = Object.freeze({
   "GRAM": {name: "g", id: 1},
   "KILOGRAM": {name: "kg", id: 2},
   "MILLILITRE": {name: "ml", id: 3},

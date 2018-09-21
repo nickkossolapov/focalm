@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {createMeal} from "../store/meals/actions";
 
-import {MEAL_METRIC} from "../store/constants/meals"
+import {MEAL_UNIT} from "../store/constants/meals"
 
 class MealForm extends Component {
   static renderField({input, label, type, pattern, meta: {touched, error}}) {
@@ -71,7 +71,7 @@ class MealForm extends Component {
                 component={MealForm.renderField}
               />
               <Field
-                name={`${ingredient}.metric`}
+                name={`${ingredient}.unit`}
                 type="text"
                 component="select"
               >
@@ -98,8 +98,8 @@ class MealForm extends Component {
   }
 
   static renderIngredientDropdown() {
-    return Object.keys(MEAL_METRIC).map(key => {
-      return <option value={key} key={key}>{MEAL_METRIC[key].name}</option>
+    return Object.keys(MEAL_UNIT).map(key => {
+      return <option value={key} key={key}>{MEAL_UNIT[key].name}</option>
     });
   };
 
@@ -172,9 +172,6 @@ function validate(values) {
         ingredientError.qty = "Required";
       } else if (ingredient.qty <= 0){
         ingredientError.qty = "Must be positive";
-      }
-      if (!ingredient.metric){
-        ingredientError.metric = "Required";
       }
       errors.ingredients[i] = ingredientError;
     });
