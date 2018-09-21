@@ -6,13 +6,15 @@ from .helpers.IntEnumField import IntEnumField
 
 
 class MealMetric(IntEnum):
-    TEASPOON = 1,
-    TABLESPOON = 2,
-    CUP = 3,
-    MILLILITRE = 4,
-    LITRE = 5,
-    GRAM = 6,
-    KILOGRAM = 7
+    GRAM = 1,
+    KILOGRAM = 2,
+    MILLILITRE = 3,
+    LITRE = 4,
+    TEASPOON = 5,
+    TABLESPOON = 6,
+    CUP = 7
+
+
 
 
 class IngredientModel(db.Model):

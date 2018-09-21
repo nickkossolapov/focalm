@@ -7,11 +7,11 @@ import {createMeal} from "../store/meals/actions";
 import {MEAL_METRIC} from "../store/constants/meals"
 
 class MealForm extends Component {
-  static renderField({input, label, type, meta: {touched, error}}) {
+  static renderField({input, label, type, pattern, meta: {touched, error}}) {
     return (
       <div>
         <label>{label}</label>
-        <input type="text" {...input} />
+        <input type={type} pattern={pattern} {...input} />
         {touched && error && <span>{error}</span>}
       </div>
     );
@@ -46,7 +46,8 @@ class MealForm extends Component {
     )
   };
 
-  renderIngredients({fields, meta: {error}}) {
+  renderIngredients(props) {
+    let {fields, meta: {error}} = props;
     return (
       <ul>
         <li>
@@ -73,10 +74,12 @@ class MealForm extends Component {
                 name={`${ingredient}.metric`}
                 type="text"
                 component="select"
-                default="">
-                <option value="" disabled="disabled">Select a unit</option>
+              >
+                {/*TODO: add a default and validation? Maybe try again to creat field element*/}
+                {/*<option value="" disabled="disabled">Select a unit</option>*/}
                 {MealForm.renderIngredientDropdown()}
               </Field>
+              {MealForm.renderIngredientDropdownError(props)}
               <button
                 type="button"
                 title="Remove Ingredient"
@@ -90,6 +93,10 @@ class MealForm extends Component {
     )
   };
 
+  static renderIngredientDropdownError(fields) {
+    console.log(fields);
+  }
+
   static renderIngredientDropdown() {
     return Object.keys(MEAL_METRIC).map(key => {
       return <option value={key} key={key}>{MEAL_METRIC[key].name}</option>
@@ -102,6 +109,7 @@ class MealForm extends Component {
         values.steps[i].order = i;
       }
     }
+    console.log(values);
     // this.props.createMeal(values, () => {
     //   this.props.history.push("/");
     // });
@@ -162,6 +170,8 @@ function validate(values) {
       }
       if (!ingredient.qty){
         ingredientError.qty = "Required";
+      } else if (ingredient.qty <= 0){
+        ingredientError.qty = "Must be positive";
       }
       if (!ingredient.metric){
         ingredientError.metric = "Required";
