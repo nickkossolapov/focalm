@@ -6,13 +6,12 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/app';
+import Home from './components/home'
 import Meal from './components/meals/meal'
-import Meals from './components/meals/meals';
 import MealForm from './components/meals/meal_form';
 import SignUp from './components/auth/signup';
 import SignIn from './components/auth/signin';
 import SignOut from './components/auth/signout';
-import Welcome from './components/welcome';
 import reducers from './store';
 
 
@@ -33,10 +32,9 @@ ReactDOM.render(
           <Route path="/signup" component={SignUp}/>
           <Route path="/signin" component={SignIn}/>
           <Route path="/signout" component={SignOut}/>
-          <Route path="/meals" component={Meals}/>
           <Route path="/meal/create" component={MealForm}/>
           <Route path="/meal/:id" component={Meal}/>
-          <Route path="/" component={Welcome}/>
+          <Route path="/" component={Home}/>
         </Switch>
       </App>
     </BrowserRouter>
