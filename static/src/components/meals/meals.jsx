@@ -2,8 +2,8 @@ import _ from "lodash";
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {fetchMeals} from "../store/meals/actions";
-import requireAuth from './require_auth';
+import {fetchMeals} from "../../store/meals/actions";
+import requireAuth from '../require_auth';
 
 class Meals extends Component {
   componentDidMount() {

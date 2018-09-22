@@ -6,7 +6,7 @@ const ROOT_URL = process.env.API_URL;
 
 export const createMeal = (meal, callback) => async (dispatch, getState) => {
   try {
-    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+    console.log(meal);
 
     const { auth: {authenticated: token} } = getState();
     const apiRequest = {
@@ -15,7 +15,7 @@ export const createMeal = (meal, callback) => async (dispatch, getState) => {
       headers: {
         ...(token && {token: token})
       },
-      body: meal
+      data: meal
     };
 
     const response = await axios(apiRequest);

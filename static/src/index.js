@@ -6,9 +6,9 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/app';
-import Meal from './components/meal'
-import Meals from './components/meals';
-import MealForm from './components/meal_form';
+import Meal from './components/meals/meal'
+import Meals from './components/meals/meals';
+import MealForm from './components/meals/meal_form';
 import SignUp from './components/auth/signup';
 import SignIn from './components/auth/signin';
 import SignOut from './components/auth/signout';

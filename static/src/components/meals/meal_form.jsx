@@ -2,9 +2,9 @@ import React, {Component} from "react";
 import {Field, FieldArray, reduxForm, startSubmit, stopSubmit, setSubmitFailed} from "redux-form";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {createMeal} from "../store/meals/actions";
+import {createMeal} from "../../store/meals/actions";
 
-import {MEAL_UNIT} from "../store/constants/meals"
+import {MEAL_UNIT} from "../../store/constants/meals"
 
 class MealForm extends Component {
   constructor(){
@@ -62,7 +62,9 @@ class MealForm extends Component {
     return (
       <ul>
         <li>
-          <button type="button" onClick={() => fields.push({})}>
+          <button type="button" onClick={() => fields.push({
+            unit: "GRAM"
+          })}>
             Add Ingredient
           </button>
         </li>
@@ -116,18 +118,18 @@ class MealForm extends Component {
         values.steps[i].order = i;
       }
     }
+
     startSubmit();
     try{
       await this.props.createMeal(values, (id) => {
         stopSubmit();
-        this.props.history.push('/meal' + id);
+        this.props.history.push('/meal/' + id);
       });
     } catch (err) {
       this.setState({
         promiseFailed: true
       })
     }
-
   }
 
   render() {
