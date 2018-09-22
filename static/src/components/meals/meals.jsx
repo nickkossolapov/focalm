@@ -5,6 +5,8 @@ import {Link} from "react-router-dom";
 import {fetchMeals} from "../../store/meals/actions";
 import requireAuth from '../require_auth';
 
+import './meals.css';
+
 class Meals extends Component {
   componentDidMount() {
     this.props.fetchMeals();
@@ -29,12 +31,12 @@ class Meals extends Component {
 
   render() {
     return (
-      <div>
+      <section className="home-meals">
         <h3>Meals</h3>
-        <ul className="list-group">
+        <ul>
           {this.renderMeals()}
         </ul>
-      </div>
+      </section>
     );
   }
 }

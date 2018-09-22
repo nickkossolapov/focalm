@@ -1,0 +1,7 @@
+.main{
+  grid-column: span 8;
+  grid-column-start: 2;
+  display: grid;
+  grid-template-columns: repeat(6, 180px);
+  grid-template-rows: 100px;
+}

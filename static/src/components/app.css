@@ -1,3 +1,27 @@
 * {
   font-family: 'Montserrat', sans-serif;
 }
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr repeat(6, 180px) 1fr;
+  grid-template-rows: 40px 1fr;
+}
+
+.increment-button {
+  border:0;
+  background:none;
+}
+
+.general-list {
+  list-style: none;
+}
+
+input {
+  border: 1px solid grey;
+  border-radius: 2px;
+}
+
+.input-danger {
+  border-color: #dc3545;
+}

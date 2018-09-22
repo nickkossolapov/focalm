@@ -8,7 +8,7 @@ library.add(faPlusCircle, faTimesCircle);
 
 export default ({children}) => {
   return (
-    <div>
+    <div className="wrapper">
       <Header/>
       {children}
     </div>

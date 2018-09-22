@@ -24,10 +24,10 @@ class Header extends Component {
 
   render() {
     return (
-      <div className="header">
-        <Link to="/">Focalm</Link>
+      <header className="header">
+        <Link className="logo" to="/">Focalm</Link>
         {this.renderLinks()}
-      </div>
+      </header>
     );
   }
 }

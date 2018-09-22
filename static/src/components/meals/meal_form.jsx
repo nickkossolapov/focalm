@@ -3,8 +3,10 @@ import {Field, FieldArray, reduxForm, startSubmit, stopSubmit, setSubmitFailed} 
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {createMeal} from "../../store/meals/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {MEAL_UNIT} from "../../store/constants/meals"
+import "./meal_form.css"
 
 class MealForm extends Component {
   constructor(){
@@ -18,56 +20,63 @@ class MealForm extends Component {
     this.props.initialize({servings: '1'});
   }
 
-  static renderField({input, label, type, meta: {touched, error}}) {
+  static renderField({input, label, type, className, meta: {touched, error}}) {
     return (
-      <div>
+      <div className={className}>
         <label>{label}</label>
-        <input type={type} {...input} />
-        {touched && error && <span>{error}</span>}
+        <input
+          type={type}
+          className={touched && error ? "input-danger" : undefined}
+          placeholder={touched && error ? `${error}` : undefined}
+          {...input}
+        />
       </div>
     );
   }
 
   renderSteps({fields, meta: {error}}) {
     return (
-      <ul>
-        <li>
-          <button type="button" onClick={() => fields.push({})}>
-            Add Step
+      <ol className="">
+        <div>
+          <h3>Steps</h3>
+          <button type="button" className="increment-button" onClick={() => fields.push({})}>
+            <FontAwesomeIcon icon="plus-circle" />
           </button>
-        </li>
+        </div>
         {fields.map((step, index) => {
           return (
           <li key={index}>
             <Field
               name={`${step}.step`}
               type="text"
+              className="list-field"
               component={MealForm.renderField}
             />
             <button
               type="button"
               title="Remove Step"
               onClick={() => fields.remove(index)}
-              label="Delete">
-              Delete
+              label="Delete"
+              className="increment-button"
+            >
+              <FontAwesomeIcon icon="times-circle" />
             </button>
           </li>
         )})}
-      </ul>
+      </ol>
     )
   };
 
   renderIngredients(props) {
     let {fields, meta: {error}} = props;
     return (
-      <ul>
-        <li>
-          <button type="button" onClick={() => fields.push({
-            unit: "GRAM"
-          })}>
-            Add Ingredient
+      <ul className="general-list">
+        <div>
+          <h3>Ingredients</h3>
+          <button type="button" className="increment-button" onClick={() => fields.push({unit: "GRAM"})}>
+            <FontAwesomeIcon icon="plus-circle" />
           </button>
-        </li>
+        </div>
         {fields.map((ingredient, index) => {
           return (
             <li key={index}>
@@ -97,8 +106,10 @@ class MealForm extends Component {
                 type="button"
                 title="Remove Ingredient"
                 onClick={() => fields.remove(index)}
-                label="Delete">
-                Delete
+                label="Delete"
+                className="increment-button"
+              >
+                <FontAwesomeIcon icon="times-circle" />
               </button>
             </li>
           )})}
@@ -136,29 +147,33 @@ class MealForm extends Component {
     const {handleSubmit, pristine, reset, submitting} = this.props;
 
     return (
-      <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
-        <Field
-          label="Name"
-          name="name"
-          type="text"
-          component={MealForm.renderField}
-        />
-        <Field
-          label="Description"
-          name="description"
-          type="text"
-          component={MealForm.renderField}
-        />
-        <Field
-          label="Servings"
-          name="servings"
-          type="number"
-          defaultValue="1"
-          normalize={value => value < 1 ? 1 : Number.parseInt(value)}
-          component={MealForm.renderField}
-        />
-        <FieldArray name="steps" component={this.renderSteps} />
-        <FieldArray name="ingredients" component={this.renderIngredients} />
+      <form className="meal-form" onSubmit={handleSubmit(values => this.onSubmit(values))}>
+        <div>
+          <Field
+            label="Name"
+            name="name"
+            type="text"
+            component={MealForm.renderField}
+          />
+          <Field
+            label="Description"
+            name="description"
+            type="text"
+            component={MealForm.renderField}
+          />
+          <Field
+            label="Servings"
+            name="servings"
+            type="number"
+            defaultValue="1"
+            normalize={value => value < 1 ? 1 : Number.parseInt(value)}
+            component={MealForm.renderField}
+          />
+        </div>
+        <div>
+          <FieldArray name="steps" component={this.renderSteps} />
+          <FieldArray name="ingredients" component={this.renderIngredients} />
+        </div>
         <div>
           <button type="submit" disabled={submitting}>Submit</button>
           <button type="button" disabled={pristine || submitting} onClick={reset}>

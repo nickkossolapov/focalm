@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {fetchMeal} from "../../store/meals/actions";
 
+import "./meal.css"
+
 class Meal extends Component {
   componentDidMount() {
     const {id} = this.props.match.params;
@@ -13,17 +15,16 @@ class Meal extends Component {
     const {meal} = this.props;
 
     if (!this.props.meal) {
-      return <div>Loading...</div>;
+      return <section className="meal">Loading...</section>;
     }
 
     return (
-      <div>
-        <Link to="/">Back To Home</Link>
+      <section className="meal">
         <h3>{meal.name}</h3>
         <h6>{meal.description}</h6>
         <p>{meal.servings} servings</p>
         <p>Created on {meal.created_at}</p>
-      </div>
+      </section>
     );
   }
 }

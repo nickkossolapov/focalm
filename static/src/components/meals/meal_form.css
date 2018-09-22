@@ -1,0 +1,15 @@
+.meal-form{
+  grid-column: span 2;
+  grid-column-start: 3;
+  display: grid;
+  grid-template-columns: repeat(2, 360px);
+  grid-template-rows: 400px;
+}
+
+.list-field{
+  display: inline;
+}
+
+h3{
+  display: inline;
+}

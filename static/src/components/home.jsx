@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import Meals from './meals/meals'
+import './home.css';
 
 class Home extends Component {
   render() {
     if (this.props.authenticated){
       return (
-        <div>
-          <Meals />
-        </div>
+        <main className="main">
+          <Meals className="home-meals"/>
+        </main>
       );
     } else {
       return <h3>Welcome!</h3>

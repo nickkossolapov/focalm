@@ -1,8 +1,16 @@
 .header {
+  grid-column: span 12;
+  grid-column-start: 2;
+  grid-column-end: 8;
   display: flex;
   justify-content: space-between;
+}
+
+.logo {
+  align: center;
 }
 
 .header a {
   margin: 0 10px;
 }
+
