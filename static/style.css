@@ -1,11 +1,74 @@
 .header {
+  grid-column: span 12;
+  grid-column-start: 2;
+  grid-column-end: 8;
   display: flex;
   justify-content: space-between;
+}
+
+.logo {
+  align: center;
 }
 
 .header a {
   margin: 0 10px;
 }
+
+
 * {
   font-family: 'Montserrat', sans-serif;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr repeat(6, 180px) 1fr;
+  grid-template-rows: 40px 1fr;
+}
+
+.increment-button {
+  border:0;
+  background:none;
+}
+
+.general-list {
+  list-style: none;
+}
+
+input {
+  border: 1px solid grey;
+  border-radius: 2px;
+}
+
+.input-danger {
+  border-color: #dc3545;
+}
+.home-meals{
+  grid-column: span 2;
+  grid-column-start: 5;
+}
+.main{
+  grid-column: span 8;
+  grid-column-start: 2;
+  display: grid;
+  grid-template-columns: repeat(6, 180px);
+  grid-template-rows: 100px;
+}
+.meal{
+  grid-column: span 6;
+  grid-column-start: 2;
+}
+.meal-form{
+  grid-column: span 2;
+  grid-column-start: 3;
+  display: grid;
+  grid-template-columns: repeat(2, 360px);
+  grid-template-rows: 400px;
+}
+
+.list-field{
+  display: inline;
+}
+
+h3{
+  display: inline;
 }
