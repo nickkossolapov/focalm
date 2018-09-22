@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Field, FieldArray, reduxForm} from "redux-form";
+import {Field, FieldArray, reduxForm, startSubmit, stopSubmit, setSubmitFailed} from "redux-form";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {createMeal} from "../store/meals/actions";
@@ -7,11 +7,22 @@ import {createMeal} from "../store/meals/actions";
 import {MEAL_UNIT} from "../store/constants/meals"
 
 class MealForm extends Component {
-  static renderField({input, label, type, pattern, meta: {touched, error}}) {
+  constructor(){
+    super();
+
+    this.state = {
+      promiseFailed: false
+    }
+  }
+  componentWillMount () {
+    this.props.initialize({servings: '1'});
+  }
+
+  static renderField({input, label, type, meta: {touched, error}}) {
     return (
       <div>
         <label>{label}</label>
-        <input type={type} pattern={pattern} {...input} />
+        <input type={type} {...input} />
         {touched && error && <span>{error}</span>}
       </div>
     );
@@ -67,7 +78,8 @@ class MealForm extends Component {
               <Field
                 label="Qty"
                 name={`${ingredient}.qty`}
-                type="number"
+                type="text"
+                normalize={value => value < 0 ? 0 : value.replace(/[^\d.]/g, '', '')}
                 component={MealForm.renderField}
               />
               <Field
@@ -79,7 +91,6 @@ class MealForm extends Component {
                 {/*<option value="" disabled="disabled">Select a unit</option>*/}
                 {MealForm.renderIngredientDropdown()}
               </Field>
-              {MealForm.renderIngredientDropdownError(props)}
               <button
                 type="button"
                 title="Remove Ingredient"
@@ -93,46 +104,55 @@ class MealForm extends Component {
     )
   };
 
-  static renderIngredientDropdownError(fields) {
-    console.log(fields);
-  }
-
   static renderIngredientDropdown() {
     return Object.keys(MEAL_UNIT).map(key => {
       return <option value={key} key={key}>{MEAL_UNIT[key].name}</option>
     });
   };
 
-  static onSubmit(values) {
+  async onSubmit(values) {
     if (values.steps) {
       for (let i = 0; i < values.steps.length; i++) {
         values.steps[i].order = i;
       }
     }
-    console.log(values);
-    // this.props.createMeal(values, () => {
-    //   this.props.history.push("/");
-    // });
+    startSubmit();
+    try{
+      await this.props.createMeal(values, (id) => {
+        stopSubmit();
+        this.props.history.push('/meal' + id);
+      });
+    } catch (err) {
+      this.setState({
+        promiseFailed: true
+      })
+    }
+
   }
 
   render() {
     const {handleSubmit, pristine, reset, submitting} = this.props;
 
     return (
-      <form onSubmit={handleSubmit(MealForm.onSubmit)}>
+      <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
         <Field
           label="Name"
           name="name"
+          type="text"
           component={MealForm.renderField}
         />
         <Field
           label="Description"
           name="description"
+          type="text"
           component={MealForm.renderField}
         />
         <Field
           label="Servings"
           name="servings"
+          type="number"
+          defaultValue="1"
+          normalize={value => value < 1 ? 1 : Number.parseInt(value)}
           component={MealForm.renderField}
         />
         <FieldArray name="steps" component={this.renderSteps} />
@@ -144,6 +164,8 @@ class MealForm extends Component {
           </button>
           <Link to="/">Cancel</Link>
         </div>
+        {submitting && <div>Loading...</div>}
+        {this.state.promiseFailed && !submitting && <div>Submit failed, please try again</div>}
       </form>
     );
   }
@@ -160,6 +182,8 @@ function validate(values) {
   }
   if (!values.servings) {
     errors.servings = "Required";
+  } else if (values.serving <= 0 || Number.isInteger(values.serving)) {
+    errors.servings = "Must be positive whole number"
   }
 
   if (values.ingredients) {
@@ -189,13 +213,7 @@ function validate(values) {
   return errors;
 }
 
-// export default compose(
-//   connect(null, {createMeal}),
-//   reduxForm(validate, {form: 'MealForm'})
-// )(MealForm);
-
-
 export default reduxForm({
   validate,
-  form: "MealForm"
+  form: "mealForm"
 })(connect(null, {createMeal})(MealForm));

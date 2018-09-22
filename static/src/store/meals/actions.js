@@ -1,10 +1,13 @@
 import axios from 'axios';
 import {CREATE_MEAL, FETCH_MEAL, FETCH_MEALS} from "./types";
+import {SubmissionError} from "redux-form";
 
 const ROOT_URL = process.env.API_URL;
 
 export const createMeal = (meal, callback) => async (dispatch, getState) => {
   try {
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
     const { auth: {authenticated: token} } = getState();
     const apiRequest = {
       method: 'POST',
@@ -14,15 +17,17 @@ export const createMeal = (meal, callback) => async (dispatch, getState) => {
       },
       body: meal
     };
+
     const response = await axios(apiRequest);
 
     dispatch({
       type: CREATE_MEAL,
       payload: response.data
     });
-    callback();
+    callback(response.data.id);
   } catch (err) {
     console.log(err);
+    throw new SubmissionError({ username: 'User does not exist', _error: 'Login failed!' })
   }
 };
 

@@ -38,7 +38,7 @@ export const signin = (formProps, callback) => async (dispatch) => {
   } catch ({response: {data: {error}}}) { //TODO: refactor to errorMessage in API and set standard for error handling
     dispatch({
       type: AUTH_ERROR,
-      payload: errorMessage
+      payload: error
     });
   }
 };
