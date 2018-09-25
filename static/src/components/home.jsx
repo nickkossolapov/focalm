@@ -13,7 +13,7 @@ class Home extends Component {
         </main>
       );
     } else {
-      return <h3>Welcome!</h3>
+      return <h3 className="main-welcome">Welcome!</h3>
     }
   }
 }
