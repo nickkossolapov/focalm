@@ -148,16 +148,10 @@ class MealForm extends Component {
 
     return (
       <form className="meal-form" onSubmit={handleSubmit(values => this.onSubmit(values))}>
-        <div>
+        <div className="meal-form-title">
           <Field
             label="Name"
             name="name"
-            type="text"
-            component={MealForm.renderField}
-          />
-          <Field
-            label="Description"
-            name="description"
             type="text"
             component={MealForm.renderField}
           />
@@ -170,10 +164,16 @@ class MealForm extends Component {
             component={MealForm.renderField}
           />
         </div>
-        <div>
-          <FieldArray name="steps" component={this.renderSteps} />
-          <FieldArray name="ingredients" component={this.renderIngredients} />
+        <div className="meal-form-description">
+          <Field
+            label="Description"
+            name="description"
+            type="text"
+            component={MealForm.renderField}
+          />
         </div>
+        <FieldArray name="steps" component={this.renderSteps} />
+        <FieldArray name="ingredients" component={this.renderIngredients} />
         <div>
           <button type="submit" disabled={submitting}>Submit</button>
           <button type="button" disabled={pristine || submitting} onClick={reset}>

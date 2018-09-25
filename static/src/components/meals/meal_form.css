@@ -1,15 +1,23 @@
-.meal-form{
+.meal-form {
   grid-column: span 2;
   grid-column-start: 3;
   display: grid;
   grid-template-columns: repeat(2, 360px);
-  grid-template-rows: 400px;
+  grid-template-rows: 50px 50px 1fr 50px;
 }
 
-.list-field{
+.list-field {
   display: inline;
 }
 
-h3{
+h3 {
   display: inline;
+}
+
+.meal-form-title {
+  grid-column-start: span 2;
+}
+
+.meal-form-description {
+  grid-column-start: span 2;
 }
