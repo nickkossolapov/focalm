@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import * as actions from '../../store/auth/actions'
+
+import * as actions from '../../store/auth/actions';
+import authField from './auth_field';
+import './auth.css';
 
 class SignIn extends Component {
   onSubmit = (formProps) => {
@@ -15,25 +18,21 @@ class SignIn extends Component {
     const {handleSubmit} = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)}>
-        <fieldset>
-          <label>Email</label>
-          <Field
-            name="email"
-            type="text"
-            component="input"
-            autoComplete="none"
-          />
-        </fieldset>
-        <fieldset>
-          <label>Password</label>
-          <Field
-            name="password"
-            type="password"
-            component="input"
-            autoComplete="none"
-          />
-        </fieldset>
+      <form onSubmit={handleSubmit(this.onSubmit)} className="auth-form">
+        <Field
+          label="Email"
+          name="email"
+          type="text"
+          component={authField}
+          autoComplete="none"
+        />
+        <Field
+          label="Password"
+          name="password"
+          type="password"
+          component={authField}
+          autoComplete="none"
+        />
         <div>{this.props.errorMessage}</div>
         <button>Sign in</button>
       </form>
