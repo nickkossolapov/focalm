@@ -79,7 +79,6 @@ h3{
 }
 .auth-field {
   border: none;
-  display: flex;
 }
 .auth-form {
   grid-column: span 2;
