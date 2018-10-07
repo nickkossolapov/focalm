@@ -1,4 +1,7 @@
-.home-meals{
-  grid-column: span 2;
+.home-meals {
   grid-column-start: 5;
+}
+
+.meal-list-item:hover {
+  background-color: grey;
 }
