@@ -22,7 +22,7 @@ class MealForm extends Component {
 
   static renderField({input, label, type, className, meta: {touched, error}}) {
     return (
-      <div className={className}>
+      <fieldset className={className}>
         <label>{label}</label>
         <input
           type={type}
@@ -30,7 +30,7 @@ class MealForm extends Component {
           placeholder={touched && error ? `${error}` : undefined}
           {...input}
         />
-      </div>
+      </fieldset>
     );
   }
 
@@ -86,22 +86,24 @@ class MealForm extends Component {
                 type="text"
                 component={MealForm.renderField}
               />
-              <Field
-                label="Qty"
-                name={`${ingredient}.qty`}
-                type="text"
-                normalize={value => value < 0 ? 0 : value.replace(/[^\d.]/g, '', '')}
-                component={MealForm.renderField}
-              />
-              <Field
-                name={`${ingredient}.unit`}
-                type="text"
-                component="select"
-              >
-                {/*TODO: add a default and validation? Maybe try again to creat field element*/}
-                {/*<option value="" disabled="disabled">Select a unit</option>*/}
-                {MealForm.renderIngredientDropdown()}
-              </Field>
+              <div className="meal-form-qty">
+                <Field
+                  label="Qty"
+                  name={`${ingredient}.qty`}
+                  type="text"
+                  normalize={value => value < 0 ? 0 : value.replace(/[^\d.]/g, '', '')}
+                  component={MealForm.renderField}
+                />
+                <Field
+                  name={`${ingredient}.unit`}
+                  type="text"
+                  component="select"
+                >
+                  {/*TODO: add a default and validation? Maybe try again to creat field element*/}
+                  {/*<option value="" disabled="disabled">Select a unit</option>*/}
+                  {MealForm.renderIngredientDropdown()}
+                </Field>
+              </div>
               <button
                 type="button"
                 title="Remove Ingredient"

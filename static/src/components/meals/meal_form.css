@@ -10,6 +10,10 @@
   display: inline;
 }
 
+fieldset {
+  border: none;
+}
+
 h3 {
   display: inline;
 }
@@ -20,4 +24,8 @@ h3 {
 
 .meal-form-description {
   grid-column-start: span 2;
+}
+
+.meal-form-qty {
+  display: inline;
 }

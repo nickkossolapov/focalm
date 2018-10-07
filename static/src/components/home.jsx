@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import Meals from './meals/meals'
+import Meals from './meals/meals';
+import Calendar from './calendar/calendar';
 import './home.css';
 
 class Home extends Component {
@@ -9,6 +10,7 @@ class Home extends Component {
     if (this.props.authenticated){
       return (
         <main className="main">
+          <Calendar/>
           <Meals className="home-meals"/>
         </main>
       );
