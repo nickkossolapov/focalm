@@ -19,7 +19,7 @@ class Meals extends Component {
       return <div>Loading...</div>
     } else {
       return _.map(meals, meal => {
-        return <MealTile {...meal}/>;
+        return <MealTile {...meal} key={meal.id}/>;
       });
     }
   }

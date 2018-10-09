@@ -1,5 +1,9 @@
-import React from "react";
+import React, {Component} from "react";
 
-export default function Day(props) {
-  return <li key={props.key}>{props.day + 1}</li>;
+class Day extends Component {
+  render() {
+    return <li>{this.props.day + 1}</li>;
+  }
 }
+
+export default Day;
