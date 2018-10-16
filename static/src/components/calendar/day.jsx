@@ -4,9 +4,8 @@ import { DropTarget } from 'react-dnd';
 import {MEAL_TILE} from "../../store/calendar/drag_types";
 
 const itemTarget = {
-  drop(props) {
-    console.log('received');
-    console.log(props);
+  drop(props, monitor) {
+    console.log(monitor.getItem());
   }
 };
 

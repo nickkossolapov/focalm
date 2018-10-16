@@ -6,7 +6,6 @@ import {MEAL_TILE} from "../../store/calendar/drag_types";
 
 const itemSource = {
   beginDrag(props) {
-    console.log(props);
     return {id: props.id}
   }
 };
