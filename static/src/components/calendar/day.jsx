@@ -6,6 +6,7 @@ import {MEAL_TILE} from "../../store/calendar/drag_types";
 const itemTarget = {
   drop(props, monitor) {
     console.log(monitor.getItem());
+    console.log(props);
   }
 };
 
@@ -19,7 +20,7 @@ class Day extends Component {
   render() {
     const { connectDropTarget } = this.props;
     return connectDropTarget(
-      <li>{this.props.day + 1}</li>
+      <li>{this.props.day}</li>
     );
   }
 }

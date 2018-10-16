@@ -3,25 +3,42 @@ import React, {Component} from 'react';
 import Day from './day';
 import './calendar.css';
 
+function getDates() {
+  let indexDate = new Date(Date.now());
+  indexDate.setDate(indexDate.getDate() - (indexDate.getDay() + 1));
+  let dates = [];
+
+  for (let i = 0; i < 28; i++){
+    indexDate.setDate(indexDate.getDate() + 1);
+    dates.push({
+      day: indexDate.getDate(),
+      month: indexDate.getMonth()
+    });
+  }
+
+  return dates;
+}
+
+function renderDayNames() {
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  return days.map((day) => {
+    return <li key={day}>{day}</li>
+  });
+}
+
 class Calendar extends Component {
   render() {
-    const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
+    const dates = getDates();
+    console.log(dates);
     return (
       <ul className="calendar">
-        {this.renderDayNames()}
-        {numbers.map(number => {
-          return <Day key={number} day={number}/>
+        {renderDayNames()}
+        {dates.map(({day, month}) => {
+          return <Day key={day} day={day} month={month}/>
         })}
       </ul>
     );
-  }
-
-  renderDayNames() {
-    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    return days.map((day) => {
-      return <li>{day}</li>
-    });
   }
 }
 
