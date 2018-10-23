@@ -10,9 +10,15 @@ function getDates() {
 
   for (let i = 0; i < 28; i++){
     indexDate.setDate(indexDate.getDate() + 1);
+    let day = indexDate.getDate(),
+        month = indexDate.getMonth(),
+        year = indexDate.getFullYear();
+
     dates.push({
-      day: indexDate.getDate(),
-      month: indexDate.getMonth()
+      day,
+      month,
+      year,
+      dateId: `${year}${month}${day}`
     });
   }
 
@@ -30,12 +36,11 @@ function renderDayNames() {
 class Calendar extends Component {
   render() {
     const dates = getDates();
-    console.log(dates);
     return (
       <ul className="calendar">
         {renderDayNames()}
-        {dates.map(({day, month}) => {
-          return <Day key={day} day={day} month={month}/>
+        {dates.map(({day, month, year, dateId}) => {
+          return <Day key={day} day={day} month={month} year={year} dateId={dateId}/>
         })}
       </ul>
     );
