@@ -20,10 +20,6 @@ function collect(connect, monitor) {
 }
 
 class Day extends Component {
-  componentDidUpdate(prevProps){
-
-  }
-
   render() {
     const { connectDropTarget } = this.props;
     return connectDropTarget(
