@@ -1,11 +1,12 @@
 import {ADD_DAY_ITEM} from "./types";
 
-export const addDayItem = (meal, dateId) => async (dispatch) =>  {
+export const addDayItem = (mealName, dateId) => async (dispatch) =>  {
+  console.log(mealName);
   dispatch({
     type: ADD_DAY_ITEM,
     payload: {
       dateId,
-      mealName: meal.name
+      mealName
     }
   });
 };

@@ -9,12 +9,7 @@ import {addDayItem} from "../../store/calendar/actions";
 const itemTarget = {
   drop(props, monitor) {
     let item = monitor.getItem();
-    // console.log(item);
-    console.log(props);
-
-    //TODO: figure out way to access action creator
-    // maybe https://github.com/jcolemorrison/react-dnd-redux-example/blob/master/src/Board.js ?
-    // props.addDayItem(item.mealName, props.dateId);
+    props.addDayItem(item.mealName, props.dateId);
   }
 };
 
@@ -25,6 +20,10 @@ function collect(connect, monitor) {
 }
 
 class Day extends Component {
+  componentDidUpdate(prevProps){
+
+  }
+
   render() {
     const { connectDropTarget } = this.props;
     return connectDropTarget(
@@ -40,4 +39,4 @@ function mapStateToProps({dayItems}, ownProps) {
   return {dayItems: dayItems[ownProps.dateId]};
 }
 
-export default DropTarget(MEAL_TILE, itemTarget, collect)(connect(mapStateToProps, {addDayItem})(Day));
+export default connect(mapStateToProps, {addDayItem})(DropTarget(MEAL_TILE, itemTarget, collect)(Day));
