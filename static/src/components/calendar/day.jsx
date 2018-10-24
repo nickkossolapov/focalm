@@ -21,11 +21,12 @@ function collect(connect, monitor) {
 
 class Day extends Component {
   render() {
+    console.log(this.props.dayItems);
     const { connectDropTarget } = this.props;
     return connectDropTarget(
       <li>
         <p>{this.props.day}</p>
-        <p>{this.props.dayItems}</p>
+        {/*<p>{this.props.dayItems}</p>*/}
       </li>
     );
   }
