@@ -1,5 +1,5 @@
 import React from "react";
 
 export function DayItem(props) {
-  return <h1>{props.name}</h1>;
+  return <li>{props.name}</li>;
 }
