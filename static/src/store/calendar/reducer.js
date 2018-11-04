@@ -5,7 +5,7 @@ export default (state = {}, action) => {
     case ADD_DAY_ITEM:
       return {
         ...state,
-        [action.payload.dateId]: [...(state[action.payload.dateId] || []), action.payload.mealName]
+        [action.payload.dateId]: [...(state[action.payload.dateId] || []), action.payload.mealId]
       };
 
     default:

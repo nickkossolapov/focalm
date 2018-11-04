@@ -9,7 +9,7 @@ import {addDayItem} from "../../store/calendar/actions";
 const itemTarget = {
   drop(props, monitor) {
     let item = monitor.getItem();
-    props.addDayItem(item.mealName, props.dateId);
+    props.addDayItem(item.mealId, props.dateId);
   }
 };
 
@@ -21,7 +21,6 @@ function collect(connect, monitor) {
 
 class Day extends Component {
   render() {
-    console.log(this.props.dayItems);
     const { connectDropTarget } = this.props;
     return connectDropTarget(
       <li>
@@ -32,8 +31,8 @@ class Day extends Component {
   }
 }
 
-function mapStateToProps({dayItems}, ownProps) {
-  return {dayItems: dayItems[ownProps.dateId]};
+function mapStateToProps({dayItems, meals}, ownProps) {
+  return {dayItems: dayItems[ownProps.dateId], meals};
 }
 
 export default connect(mapStateToProps, {addDayItem})(DropTarget(MEAL_TILE, itemTarget, collect)(Day));
