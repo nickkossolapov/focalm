@@ -4,7 +4,7 @@
   "description": "React front-end for focalm",
   "main": "index.js",
   "scripts": {
-    "build": "webpack -p --env.API_URL=https://www.focalm.com/api --config webpack.config.js",
+    "build": "webpack -p --env.API_URL=https://focalm.herokuapp.com/api --config webpack.config.js",
     "postinstall": "npm run build",
     "dev": "webpack --env.API_URL=http://localhost:5000/api --watch --config webpack.dev.js"
   },
