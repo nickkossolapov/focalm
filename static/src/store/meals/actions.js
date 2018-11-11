@@ -1,23 +1,14 @@
 import axios from 'axios';
 import {CREATE_MEAL, FETCH_MEAL, FETCH_MEALS} from "./types";
 import {SubmissionError} from "redux-form";
+import {getApiGetRequest, getApiPostRequest} from "../helpers/api_helpers";
 
-const ROOT_URL = process.env.API_URL;
+const MEALS_API = '/meals/';
 
 export const createMeal = (meal, callback) => async (dispatch, getState) => {
   try {
-    console.log(meal);
-
     const { auth: {authenticated: token} } = getState();
-    const apiRequest = {
-      method: 'POST',
-      url: ROOT_URL + '/meals/',
-      headers: {
-        ...(token && {token: token})
-      },
-      data: meal
-    };
-
+    const apiRequest = getApiPostRequest(MEALS_API, token, meal);
     const response = await axios(apiRequest);
 
     dispatch({
@@ -34,13 +25,7 @@ export const createMeal = (meal, callback) => async (dispatch, getState) => {
 export const fetchMeal = (id) =>  async (dispatch, getState) => {
   try {
     const { auth: {authenticated: token} } = getState();
-    const apiRequest = {
-      method: 'GET',
-      url: ROOT_URL + '/meals/' + id,
-      headers: {
-        ...(token && {token: token})
-      }
-    };
+    const apiRequest = getApiGetRequest(MEALS_API + id, token);
     const response = await axios(apiRequest);
 
     dispatch({
@@ -55,13 +40,7 @@ export const fetchMeal = (id) =>  async (dispatch, getState) => {
 export const fetchMeals = () =>  async (dispatch, getState) => {
   try {
     const { auth: {authenticated: token} } = getState();
-    const apiRequest = {
-      method: 'GET',
-      url: ROOT_URL + '/meals/',
-      headers: {
-        ...(token && {token: token})
-      }
-    };
+    const apiRequest = getApiGetRequest(MEALS_API, token);
     const response = await axios(apiRequest);
 
     dispatch({
