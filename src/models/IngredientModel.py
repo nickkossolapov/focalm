@@ -12,7 +12,8 @@ class IngredientUnit(IntEnum):
     LITRE = 4,
     TEASPOON = 5,
     TABLESPOON = 6,
-    CUP = 7
+    CUP = 7,
+    NONE = 8
 
 
 class IngredientModel(db.Model):
