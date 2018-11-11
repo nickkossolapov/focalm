@@ -10,12 +10,18 @@ const itemTarget = {
   drop(props, monitor) {
     let item = monitor.getItem();
     props.addDayItem(item.mealId, props.dateId);
+  },
+  canDrop(props, monitor) {
+    let item = monitor.getItem();
+
+    return !(props.dayMealIds && (props.dayMealIds.length > 2 || props.dayMealIds.includes(item.mealId)));
   }
 };
 
 function collect(connect, monitor) {
   return {
-    connectDropTarget: connect.dropTarget()
+    connectDropTarget: connect.dropTarget(),
+    canDrop: monitor.canDrop()
   }
 }
 
@@ -25,17 +31,19 @@ class Day extends Component {
     return connectDropTarget(
       <li>
         <p>{this.props.day}</p>
-        {this.props.dayMealIds && this.props.dayMealIds.map(mealId => {
-          let meal = this.props.meals[mealId];
-          return <DayItem name={meal.name}/>
-        })}
+        <ul>
+          {this.props.dayMealIds && this.props.dayMealIds.map(mealId => {
+            let meal = this.props.meals[mealId];
+            return <DayItem name={meal.name} key={meal.id}/>
+          })}
+        </ul>
       </li>
     );
   }
 }
 
-function mapStateToProps({dayItems, meals}, ownProps) {
-  return {dayMealIds: dayItems[ownProps.dateId], meals};
+function mapStateToProps({dayMealIds, meals}, ownProps) {
+  return {dayMealIds: dayMealIds[ownProps.dateId], meals};
 }
 
 export default connect(mapStateToProps, {addDayItem})(DropTarget(MEAL_TILE, itemTarget, collect)(Day));
