@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {CREATE_MEAL, FETCH_MEAL, FETCH_MEALS} from "./types";
+import {CREATE_MEAL, DELETE_MEAL, FETCH_MEAL, FETCH_MEALS} from "./types";
 import {SubmissionError} from "redux-form";
-import {getApiGetRequest, getApiPostRequest} from "../helpers/api_helpers";
+import {getApiDeleteRequest, getApiGetRequest, getApiPostRequest} from "../helpers/api_helpers";
 
 const MEALS_API = '/meals/';
 
@@ -51,4 +51,20 @@ export const fetchMeals = () =>  async (dispatch, getState) => {
     console.log(err);
   }
 };
+
+export const deleteMeal = (mealId, callback) => async (dispatch, getState) => {
+  try {
+    const { auth: {authenticated: token} } = getState();
+    const apiRequest = getApiDeleteRequest(MEALS_API + mealId, token);
+    const response = await axios(apiRequest);
+
+    dispatch({
+      type: DELETE_MEAL,
+      payload: mealId
+    });
+    callback();
+  } catch (err) {
+    console.log(err);
+  }
+}
 
