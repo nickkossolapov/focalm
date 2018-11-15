@@ -33,7 +33,7 @@ def create_meal_view():
         meal = MealModel.get_meal(meal_id)
         meal.delete()
 
-        return make_response(None, 204)
+        return make_response('', 204)
 
     @meal_api.route('/<meal_id>', methods=['PUT'])
     @Auth.auth_required
