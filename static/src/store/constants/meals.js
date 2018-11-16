@@ -8,3 +8,9 @@ export let MEAL_UNIT = Object.freeze({
   "CUP": {name: "cup", id: 7},
   "NONE": {name: "-", id: 8}
 });
+
+export let MEAL_TIMES = Object.freeze({
+  "BREAKFAST" : 1,
+  "LUNCH" : 2,
+  "DINNER" : 3
+});
