@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 
 import Day from './day';
 import './calendar.css';
+import requireAuth from "../require_auth";
+import connect from "react-redux/es/connect/connect";
+import {fetchMeals} from "../../store/meals/actions";
+import {fetchCalendar} from "../../store/calendar/actions";
 
 function getDates() {
   let indexDate = new Date(Date.now());
@@ -34,6 +38,10 @@ function renderDayNames() {
 }
 
 class Calendar extends Component {
+  componentDidMount() {
+    this.props.fetchCalendar();
+  }
+
   render() {
     const dates = getDates();
     return (
@@ -47,4 +55,6 @@ class Calendar extends Component {
   }
 }
 
-export default Calendar;
+export default requireAuth(
+  connect(null, {fetchCalendar})(Calendar)
+);

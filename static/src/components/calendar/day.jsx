@@ -9,6 +9,7 @@ import {addDayItem} from "../../store/calendar/actions";
 const itemTarget = {
   drop(props, monitor) {
     let item = monitor.getItem();
+    console.log(props);
     props.addDayItem(item.mealId, props.dateId);
   },
   canDrop(props, monitor) {
@@ -28,6 +29,7 @@ function collect(connect, monitor) {
 class Day extends Component {
   render() {
     const { connectDropTarget } = this.props;
+
     return connectDropTarget(
       <li>
         <p>{this.props.day}</p>

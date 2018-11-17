@@ -50,7 +50,7 @@ class CalendarMealModel(db.Model):
 
 class CalendarMealSchema(Schema):
     id = fields.Int(dump_only=True)
-    user_id = fields.Int(dump_only=True)
+    user_id = fields.Int(dump_only=True) #TODO: don't return user ID?
     meal_id = fields.Int(required=True)
     meal_time = IntEnumField(MealTime, required=True)
     meal_date = fields.DateTime('%Y%m%d', required=True)
