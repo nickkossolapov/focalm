@@ -23,4 +23,15 @@ def create_calender_meal_view():
         except ValidationError as err:
             return Response(status=400)
 
+    @calendar_meal_api.route('/', methods=['GET'])
+    @Auth.auth_required
+    def get_all():
+        user_id = g.user.get('id')
+        calendar_meals = CalendarMealModel.get_calendar_meals_by_user(user_id)
+        ser_meals = jsonify([calendar_meal_schema.dump(m) for m in calendar_meals])
+
+        response = make_response(ser_meals, 200)
+        response.mimetype = "application/json"
+        return response
+
     return calendar_meal_api
