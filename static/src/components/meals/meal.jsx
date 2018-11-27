@@ -1,10 +1,10 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
-import {deleteMeal, fetchMeal} from "../../store/meals/actions";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {deleteMeal, fetchMeal} from '../../store/meals/actions';
 
-import "./meal.css"
-import {stopSubmit} from "redux-form";
+import './meal.css'
+import {stopSubmit} from 'redux-form';
 
 class Meal extends Component {
   componentDidMount() {
@@ -23,11 +23,11 @@ class Meal extends Component {
     const {meal} = this.props;
 
     if (!this.props.meal) {
-      return <section className="meal">Loading...</section>;
+      return <section className='meal'>Loading...</section>;
     }
 
     return (
-      <section className="meal">
+      <section className='meal'>
         <h3>{meal.name}</h3>
         <h6>{meal.description}</h6>
         <p>{meal.servings} servings</p>

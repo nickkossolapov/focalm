@@ -12,13 +12,13 @@ class Home extends Component {
   render() {
     if (this.props.authenticated){
       return (
-        <main className="main">
+        <main className='main'>
           <Calendar/>
-          <Meals className="home-meals"/>
+          <Meals className='home-meals'/>
         </main>
       );
     } else {
-      return <h3 className="main-welcome">Welcome!</h3>
+      return <h3 className='main-welcome'>Welcome!</h3>
     }
   }
 }

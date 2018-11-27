@@ -8,15 +8,15 @@ class Header extends Component {
     if (this.props.authenticated) {
       return (
         <div>
-          <Link to="/meal/create">Create Meal</Link>
-          <Link to="/signout">Sign Out</Link>
+          <Link to='/meal/create'>Create Meal</Link>
+          <Link to='/signout'>Sign Out</Link>
         </div>
       )
     } else {
       return (
         <div>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/signin">Sign In</Link>
+          <Link to='/signup'>Sign Up</Link>
+          <Link to='/signin'>Sign In</Link>
         </div>
       )
     }
@@ -24,8 +24,8 @@ class Header extends Component {
 
   render() {
     return (
-      <header className="header">
-        <Link className="logo" to="/">Focalm</Link>
+      <header className='header'>
+        <Link className='logo' to='/'>Focalm</Link>
         {this.renderLinks()}
       </header>
     );

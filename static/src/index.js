@@ -29,12 +29,12 @@ ReactDOM.render(
     <BrowserRouter>
       <App>
         <Switch>
-          <Route path="/signup" component={SignUp}/>
-          <Route path="/signin" component={SignIn}/>
-          <Route path="/signout" component={SignOut}/>
-          <Route path="/meal/create" component={MealForm}/>
-          <Route path="/meal/:id" component={Meal}/>
-          <Route path="/" component={Home}/>
+          <Route path='/signup' component={SignUp}/>
+          <Route path='/signin' component={SignIn}/>
+          <Route path='/signout' component={SignOut}/>
+          <Route path='/meal/create' component={MealForm}/>
+          <Route path='/meal/:id' component={Meal}/>
+          <Route path='/' component={Home}/>
         </Switch>
       </App>
     </BrowserRouter>

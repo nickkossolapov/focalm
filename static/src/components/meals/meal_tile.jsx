@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { DragSource } from 'react-dnd';
-import {MEAL_TILE} from "../../store/calendar/drag_types";
+import {MEAL_TILE} from '../../store/calendar/drag_types';
 
 
 const itemSource = {
@@ -24,7 +24,7 @@ class MealTile extends Component {
     const { isDragging, connectDragSource, src } = this.props;
 
     return connectDragSource(
-      <li className="meal-list-item">
+      <li className='meal-list-item'>
         <Link to={`/meal/${this.props.id}`}>
           {this.props.name}
         </Link>

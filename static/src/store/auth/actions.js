@@ -1,6 +1,6 @@
 import axios from 'axios';
 import _ from 'lodash'
-import {AUTH_USER, AUTH_ERROR} from "./types";
+import {AUTH_USER, AUTH_ERROR} from './types';
 
 const ROOT_URL = process.env.API_URL;
 

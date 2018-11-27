@@ -1,5 +1,5 @@
-import {ADD_DAY_ITEM, FETCH_CALENDAR} from "./types";
-import _ from "lodash";
+import {ADD_DAY_ITEM, FETCH_CALENDAR} from './types';
+import _ from 'lodash';
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -10,7 +10,7 @@ export default (state = {}, action) => {
       };
 
     case FETCH_CALENDAR:
-      return _.mapKeys(action.payload, "meal_date");
+      return _.mapKeys(action.payload, 'meal_date');
 
     default:
       return state;

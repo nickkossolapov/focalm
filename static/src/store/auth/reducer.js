@@ -1,4 +1,4 @@
-import {AUTH_USER, AUTH_ERROR} from "./types";
+import {AUTH_USER, AUTH_ERROR} from './types';
 
 const INITIAL_STATE = {
   authenticated: '',

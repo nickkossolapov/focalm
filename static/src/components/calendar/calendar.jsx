@@ -30,7 +30,7 @@ function getDates() {
 }
 
 function renderDayNames() {
-  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   return days.map((day) => {
     return <li key={day}>{day}</li>
@@ -45,7 +45,7 @@ class Calendar extends Component {
   render() {
     const dates = getDates();
     return (
-      <ul className="calendar">
+      <ul className='calendar'>
         {renderDayNames()}
         {dates.map(({day, month, year, dateId}) => {
           return <Day key={day} day={day} month={month} year={year} dateId={dateId}/>

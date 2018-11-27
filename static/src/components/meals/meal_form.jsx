@@ -1,12 +1,12 @@
-import React, {Component} from "react";
-import {Field, FieldArray, reduxForm, startSubmit, stopSubmit, setSubmitFailed} from "redux-form";
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
-import {createMeal} from "../../store/meals/actions";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, {Component} from 'react';
+import {Field, FieldArray, reduxForm, startSubmit, stopSubmit, setSubmitFailed} from 'redux-form';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {createMeal} from '../../store/meals/actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import {MEAL_UNIT} from "../../store/constants/meals"
-import "./meal_form.css"
+import {MEAL_UNIT} from '../../store/constants/meals'
+import './meal_form.css'
 
 class MealForm extends Component {
   constructor(){
@@ -26,7 +26,7 @@ class MealForm extends Component {
         <label>{label}</label>
         <input
           type={type}
-          className={touched && error ? "input-danger" : undefined}
+          className={touched && error ? 'input-danger' : undefined}
           placeholder={touched && error ? `${error}` : undefined}
           {...input}
         />
@@ -36,11 +36,11 @@ class MealForm extends Component {
 
   renderSteps({fields, meta: {error}}) {
     return (
-      <ol className="">
+      <ol className=''>
         <div>
           <h3>Steps</h3>
-          <button type="button" className="increment-button" onClick={() => fields.push({})}>
-            <FontAwesomeIcon icon="plus-circle" />
+          <button type='button' className='increment-button' onClick={() => fields.push({})}>
+            <FontAwesomeIcon icon='plus-circle' />
           </button>
         </div>
         {fields.map((step, index) => {
@@ -48,18 +48,18 @@ class MealForm extends Component {
           <li key={index}>
             <Field
               name={`${step}.step`}
-              type="text"
-              className="list-field"
+              type='text'
+              className='list-field'
               component={MealForm.renderField}
             />
             <button
-              type="button"
-              title="Remove Step"
+              type='button'
+              title='Remove Step'
               onClick={() => fields.remove(index)}
-              label="Delete"
-              className="increment-button"
+              label='Delete'
+              className='increment-button'
             >
-              <FontAwesomeIcon icon="times-circle" />
+              <FontAwesomeIcon icon='times-circle' />
             </button>
           </li>
         )})}
@@ -70,48 +70,48 @@ class MealForm extends Component {
   renderIngredients(props) {
     let {fields, meta: {error}} = props;
     return (
-      <ul className="general-list">
+      <ul className='general-list'>
         <div>
           <h3>Ingredients</h3>
-          <button type="button" className="increment-button" onClick={() => fields.push({unit: "GRAM"})}>
-            <FontAwesomeIcon icon="plus-circle" />
+          <button type='button' className='increment-button' onClick={() => fields.push({unit: 'GRAM'})}>
+            <FontAwesomeIcon icon='plus-circle' />
           </button>
         </div>
         {fields.map((ingredient, index) => {
           return (
             <li key={index}>
               <Field
-                label="Ingredient"
+                label='Ingredient'
                 name={`${ingredient}.ingredient`}
-                type="text"
+                type='text'
                 component={MealForm.renderField}
               />
-              <div className="meal-form-qty">
+              <div className='meal-form-qty'>
                 <Field
-                  label="Qty"
+                  label='Qty'
                   name={`${ingredient}.qty`}
-                  type="text"
+                  type='text'
                   normalize={value => value < 0 ? 0 : value.replace(/[^\d.]/g, '', '')}
                   component={MealForm.renderField}
                 />
                 <Field
                   name={`${ingredient}.unit`}
-                  type="text"
-                  component="select"
+                  type='text'
+                  component='select'
                 >
                   {/*TODO: add a default and validation? Maybe try again to creat field element*/}
-                  {/*<option value="" disabled="disabled">Select a unit</option>*/}
+                  {/*<option value='' disabled='disabled'>Select a unit</option>*/}
                   {MealForm.renderIngredientDropdown()}
                 </Field>
               </div>
               <button
-                type="button"
-                title="Remove Ingredient"
+                type='button'
+                title='Remove Ingredient'
                 onClick={() => fields.remove(index)}
-                label="Delete"
-                className="increment-button"
+                label='Delete'
+                className='increment-button'
               >
-                <FontAwesomeIcon icon="times-circle" />
+                <FontAwesomeIcon icon='times-circle' />
               </button>
             </li>
           )})}
@@ -149,39 +149,39 @@ class MealForm extends Component {
     const {handleSubmit, pristine, reset, submitting} = this.props;
 
     return (
-      <form className="meal-form" onSubmit={handleSubmit(values => this.onSubmit(values))}>
-        <div className="meal-form-title">
+      <form className='meal-form' onSubmit={handleSubmit(values => this.onSubmit(values))}>
+        <div className='meal-form-title'>
           <Field
-            label="Name"
-            name="name"
-            type="text"
+            label='Name'
+            name='name'
+            type='text'
             component={MealForm.renderField}
           />
           <Field
-            label="Servings"
-            name="servings"
-            type="number"
-            defaultValue="1"
+            label='Servings'
+            name='servings'
+            type='number'
+            defaultValue='1'
             normalize={value => value < 1 ? 1 : Number.parseInt(value)}
             component={MealForm.renderField}
           />
         </div>
-        <div className="meal-form-description">
+        <div className='meal-form-description'>
           <Field
-            label="Description"
-            name="description"
-            type="text"
+            label='Description'
+            name='description'
+            type='text'
             component={MealForm.renderField}
           />
         </div>
-        <FieldArray name="steps" component={this.renderSteps} />
-        <FieldArray name="ingredients" component={this.renderIngredients} />
+        <FieldArray name='steps' component={this.renderSteps} />
+        <FieldArray name='ingredients' component={this.renderIngredients} />
         <div>
-          <button type="submit" disabled={submitting}>Submit</button>
-          <button type="button" disabled={pristine || submitting} onClick={reset}>
+          <button type='submit' disabled={submitting}>Submit</button>
+          <button type='button' disabled={pristine || submitting} onClick={reset}>
             Clear Values
           </button>
-          <Link to="/">Cancel</Link>
+          <Link to='/'>Cancel</Link>
         </div>
         {submitting && <div>Loading...</div>}
         {this.state.promiseFailed && !submitting && <div>Submit failed, please try again</div>}
@@ -194,27 +194,27 @@ function validate(values) {
   const errors = {steps: [], ingredients: []};
 
   if (!values.name) {
-    errors.name = "Required";
+    errors.name = 'Required';
   }
   if (!values.description) {
-    errors.description = "Required";
+    errors.description = 'Required';
   }
   if (!values.servings) {
-    errors.servings = "Required";
+    errors.servings = 'Required';
   } else if (values.serving <= 0 || Number.isInteger(values.serving)) {
-    errors.servings = "Must be positive whole number"
+    errors.servings = 'Must be positive whole number'
   }
 
   if (values.ingredients) {
     values.ingredients.forEach((ingredient, i) => {
       let ingredientError = {};
       if (!ingredient.ingredient){
-        ingredientError.ingredient = "Required";
+        ingredientError.ingredient = 'Required';
       }
       if (!ingredient.qty){
-        ingredientError.qty = "Required";
+        ingredientError.qty = 'Required';
       } else if (ingredient.qty <= 0){
-        ingredientError.qty = "Must be positive";
+        ingredientError.qty = 'Must be positive';
       }
       errors.ingredients[i] = ingredientError;
     });
@@ -224,7 +224,7 @@ function validate(values) {
     values.steps.forEach((step, i) => {
       let stepError = {};
       if (!step.step){
-        stepError.step = "Required";
+        stepError.step = 'Required';
       }
       errors.steps[i] = stepError;
     });
@@ -234,5 +234,5 @@ function validate(values) {
 
 export default reduxForm({
   validate,
-  form: "mealForm"
+  form: 'mealForm'
 })(connect(null, {createMeal})(MealForm));

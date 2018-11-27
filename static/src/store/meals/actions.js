@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {CREATE_MEAL, DELETE_MEAL, FETCH_MEAL, FETCH_MEALS} from "./types";
-import {SubmissionError} from "redux-form";
-import {getApiDeleteRequest, getApiGetRequest, getApiPostRequest} from "../helpers/api_helpers";
+import {CREATE_MEAL, DELETE_MEAL, FETCH_MEAL, FETCH_MEALS} from './types';
+import {SubmissionError} from 'redux-form';
+import {getApiDeleteRequest, getApiGetRequest, getApiPostRequest} from '../helpers/api_helpers';
 
 const MEALS_API = '/meals/';
 

@@ -26,7 +26,7 @@ class Meals extends Component {
 
   render() {
     return (
-      <section className="home-meals">
+      <section className='home-meals'>
         <h3>Meals</h3>
         <ul>
           {this.renderMeals()}

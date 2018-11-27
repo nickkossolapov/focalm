@@ -18,20 +18,20 @@ class SignIn extends Component {
     const {handleSubmit} = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)} className="auth-form">
+      <form onSubmit={handleSubmit(this.onSubmit)} className='auth-form'>
         <Field
-          label="Email"
-          name="email"
-          type="text"
+          label='Email'
+          name='email'
+          type='text'
           component={authField}
-          autoComplete="none"
+          autoComplete='none'
         />
         <Field
-          label="Password"
-          name="password"
-          type="password"
+          label='Password'
+          name='password'
+          type='password'
           component={authField}
-          autoComplete="none"
+          autoComplete='none'
         />
         <div>{this.props.errorMessage}</div>
         <button>Sign in</button>

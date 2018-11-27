@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { DropTarget } from 'react-dnd';
 
-import {MEAL_TILE} from "../../store/calendar/drag_types";
-import {DayItem} from "./day_item";
-import {addDayItem} from "../../store/calendar/actions";
+import {MEAL_TILE} from '../../store/calendar/drag_types';
+import {DayItem} from './day_item';
+import {addDayItem} from '../../store/calendar/actions';
 
 const itemTarget = {
   drop(props, monitor) {
