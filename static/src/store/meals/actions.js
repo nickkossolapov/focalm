@@ -56,7 +56,7 @@ export const deleteMeal = (mealId, callback) => async (dispatch, getState) => {
   try {
     const { auth: {authenticated: token} } = getState();
     const apiRequest = getApiDeleteRequest(MEALS_API + mealId, token);
-    const response = await axios(apiRequest);
+    await axios(apiRequest);
 
     dispatch({
       type: DELETE_MEAL,
@@ -66,5 +66,4 @@ export const deleteMeal = (mealId, callback) => async (dispatch, getState) => {
   } catch (err) {
     console.log(err);
   }
-}
-
+};

@@ -46,7 +46,9 @@ def create_meal_view():
             meal.update(data)
             ser_meal = meal_schema.dump(meal)
 
-            return custom_response(ser_meal, 200)
+            response = make_response(ser_meal, 204)
+            response.mimetype = "application/json"
+            return response
 
         except ValidationError as err:
             return custom_response(err.messages, 400)

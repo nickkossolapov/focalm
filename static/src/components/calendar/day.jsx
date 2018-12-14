@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import { DropTarget } from 'react-dnd';
 
 import {MEAL_TILE} from '../../store/calendar/drag_types';
-import {DayItem} from './day_item';
+import DayItem from './day_item';
 import {addDayItem} from '../../store/calendar/actions';
 
 const itemTarget = {
@@ -45,16 +45,20 @@ function DayItems(props) {
   }
   return (
     <ul>
-      {props.dayMealIds && props.dayMealIds.map(mealId => {
+      {props.calendarItems && props.calendarItems.map(({calendarItemId, mealId}) => {
         let meal = props.meals[mealId];
-        return <DayItem name={meal.name} key={meal.id}/>
+        return <DayItem
+          name={meal.name}
+          key={meal.id}
+          dateId={props.dateId}
+          calendarItemId={calendarItemId}/>
       })}
     </ul>
   );
 }
 
-function mapStateToProps({dayMealIds, meals}, ownProps) {
-  return {dayMealIds: dayMealIds[ownProps.dateId], meals};
+function mapStateToProps({calendarItems, meals}, ownProps) {
+  return {calendarItems: calendarItems[ownProps.dateId], meals};
 }
 
 export default connect(mapStateToProps, {addDayItem})(DropTarget(MEAL_TILE, itemTarget, collect)(Day));

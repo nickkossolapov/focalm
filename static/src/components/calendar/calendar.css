@@ -10,4 +10,13 @@
 
 ul {
   list-style: none;
+  padding: 0;
+}
+
+.day-item-title {
+  display: inline;
+}
+
+.day-item-button {
+  float: right;
 }

@@ -1,7 +1,6 @@
-import {ADD_DAY_ITEM, FETCH_CALENDAR} from './types';
-import {getApiGetRequest, getApiPostRequest} from '../helpers/api_helpers';
+import {ADD_DAY_ITEM, DELETE_DAY_ITEM, FETCH_CALENDAR} from './types';
+import {getApiDeleteRequest, getApiGetRequest, getApiPostRequest} from '../helpers/api_helpers';
 import axios from 'axios';
-import {FETCH_MEALS} from '../meals/types';
 
 const CALENDAR_API = '/calendar/';
 
@@ -16,13 +15,30 @@ export const addDayItem = (mealId, dateId) => async (dispatch, getState) =>  {
 
     const apiRequest = getApiPostRequest(CALENDAR_API, token, data);
     const response = await axios(apiRequest);
+    let {id} = response.data;
 
     dispatch({
       type: ADD_DAY_ITEM,
       payload: {
         dateId,
-        mealId
+        mealId,
+        calendarItemId: id
       }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteDayItem = (dateId, calendarItemId) => async (dispatch, getState) => {
+  try {
+    const { auth: {authenticated: token} } = getState();
+    const apiRequest = getApiDeleteRequest(CALENDAR_API + calendarItemId, token);
+    await axios(apiRequest);
+
+    dispatch({
+      type: DELETE_DAY_ITEM,
+      payload: {dateId, calendarItemId}
     });
   } catch (err) {
     console.log(err);
@@ -33,7 +49,7 @@ function processCalendarData(calendarItems) {
   let calendar = {};
 
   calendarItems.forEach(item => {
-    calendar[item.meal_date] = [...(calendar[item.meal_date] || []), item.meal_id]
+    calendar[item.meal_date] = [...(calendar[item.meal_date] || []), {mealId: item.meal_id, calendarItemId: item.id}]
   });
 
   return calendar;

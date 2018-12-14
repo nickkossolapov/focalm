@@ -18,8 +18,11 @@ def create_calender_meal_view():
 
             calendar_meal = CalendarMealModel(data, g.user.get('id'))
             calendar_meal.save()
+            ser_meal = jsonify(calendar_meal_schema.dump(calendar_meal))
 
-            return Response(status=201)
+            response = make_response(ser_meal, 201)
+            response.mimetype = "application/json"
+            return response
         except ValidationError as err:
             return Response(status=400)
 
@@ -33,5 +36,13 @@ def create_calender_meal_view():
         response = make_response(ser_meals, 200)
         response.mimetype = "application/json"
         return response
+
+    @calendar_meal_api.route('/<calendar_meal_id>', methods=['DELETE'])
+    @Auth.auth_required
+    def delete(calendar_meal_id):
+        meal = CalendarMealModel.get_calendar_meal(calendar_meal_id)
+        meal.delete()
+
+        return make_response('', 204)
 
     return calendar_meal_api
