@@ -33,15 +33,24 @@ class Day extends Component {
     return connectDropTarget(
       <li>
         <p>{this.props.day}</p>
-        <ul>
-          {this.props.dayMealIds && this.props.dayMealIds.map(mealId => {
-            let meal = this.props.meals[mealId];
-            return <DayItem name={meal.name} key={meal.id}/>
-          })}
-        </ul>
+        <DayItems {...this.props}/>
       </li>
     );
   }
+}
+
+function DayItems(props) {
+  if (Object.keys(props.meals).length === 0){
+    return <p>...</p>
+  }
+  return (
+    <ul>
+      {props.dayMealIds && props.dayMealIds.map(mealId => {
+        let meal = props.meals[mealId];
+        return <DayItem name={meal.name} key={meal.id}/>
+      })}
+    </ul>
+  );
 }
 
 function mapStateToProps({dayMealIds, meals}, ownProps) {

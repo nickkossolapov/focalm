@@ -14,8 +14,8 @@ export const addDayItem = (mealId, dateId) => async (dispatch, getState) =>  {
       'meal_time': 'BREAKFAST' //TODO: remove enum?
     };
 
-    // const apiRequest = getApiPostRequest(CALENDAR_API, token, data);
-    // const response = await axios(apiRequest);
+    const apiRequest = getApiPostRequest(CALENDAR_API, token, data);
+    const response = await axios(apiRequest);
 
     dispatch({
       type: ADD_DAY_ITEM,
@@ -29,17 +29,27 @@ export const addDayItem = (mealId, dateId) => async (dispatch, getState) =>  {
   }
 };
 
+function processCalendarData(calendarItems) {
+  let calendar = {};
+
+  calendarItems.forEach(item => {
+    calendar[item.meal_date] = [...(calendar[item.meal_date] || []), item.meal_id]
+  });
+
+  return calendar;
+}
+
 export const fetchCalendar = () =>  async (dispatch, getState) => {
   try {
     const { auth: {authenticated: token} } = getState();
     const apiRequest = getApiGetRequest(CALENDAR_API, token);
-    const response = await axios(apiRequest); //TODO: fix data structure of calendar
+    const response = await axios(apiRequest);
 
-
-    // dispatch({
-    //   type: FETCH_CALENDAR,
-    //   payload: response.data
-    // });
+    let processedCalendar = processCalendarData(response.data);
+    dispatch({
+      type: FETCH_CALENDAR,
+      payload: processedCalendar
+    });
   } catch (err) {
     console.log(err);
   }

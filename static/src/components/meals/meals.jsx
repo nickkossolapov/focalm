@@ -13,26 +13,26 @@ class Meals extends Component {
     this.props.fetchMeals();
   }
 
-  renderMeals() {
-    const {meals} = this.props;
-    if (Object.keys(meals).length === 0) {
-      return <div>Loading...</div>
-    } else {
-      return _.map(meals, meal => {
-        return <MealTile {...meal} key={meal.id}/>;
-      });
-    }
-  }
-
   render() {
     return (
       <section className='home-meals'>
         <h3>Meals</h3>
         <ul>
-          {this.renderMeals()}
+          <Meal meals={this.props.meals}/>
         </ul>
       </section>
     );
+  }
+}
+
+function Meal(props){
+  const {meals} = props;
+  if (Object.keys(meals).length === 0) {
+    return <div>Loading...</div>
+  } else {
+    return _.map(meals, meal => {
+      return <MealTile {...meal} key={meal.id}/>;
+    });
   }
 }
 

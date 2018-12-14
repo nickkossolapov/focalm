@@ -10,7 +10,7 @@ export default (state = {}, action) => {
       };
 
     case FETCH_CALENDAR:
-      return _.mapKeys(action.payload, 'meal_date');
+      return action.payload;
 
     default:
       return state;
