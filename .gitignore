@@ -108,6 +108,8 @@ static/webpack.config.js
 #generated files
 bundle.js
 style.css
+bundle.js.map
+style.css.map
 /static/style.css
 
 #misc scripts
