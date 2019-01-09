@@ -27,6 +27,7 @@ class Meals extends Component {
 
 function Meal(props){
   const {meals} = props;
+
   if (Object.keys(meals).length === 0) {
     return <div>Loading...</div>
   } else {

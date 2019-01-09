@@ -34,9 +34,7 @@ class Day extends Component {
   }
 
   render() {
-    const {  } = this.props;
-    let { connectDropTarget, dateId, initialSelectedDateId, selectedStartDateId, selectedEndDateId } = this.props;
-    console.log(this.props);
+    const { connectDropTarget, dateId, initialSelectedDateId, selectedStartDateId, selectedEndDateId } = this.props;
     let className;
 
     if (dateId == initialSelectedDateId || (selectedStartDateId <= dateId && dateId <= selectedEndDateId)){
@@ -70,20 +68,21 @@ function DayItems(props) {
   );
 }
 
-function mapStateToProps(
-    {
-      calendarItems, meals,
-      selections: {isSelecting, initialSelectedDateId, selectedStartDateId, selectedEndDateId}
-    },
-    ownProps
-  ) {
+function mapStateToProps(state, ownProps) {
+  const {
+    calendarItems,
+    meals,
+    selections: { isSelecting, initialSelectedDateId, selectedStartDateId, selectedEndDateId }
+  } = state;
+
   return {
     calendarItems: calendarItems[ownProps.dateId],
     meals,
     isSelecting,
     initialSelectedDateId,
     selectedStartDateId,
-    selectedEndDateId};
+    selectedEndDateId
+  };
 }
 
 export default connect(mapStateToProps, {addDayItem, selectDate})(DropTarget(MEAL_TILE, itemTarget, collect)(Day));

@@ -16,8 +16,9 @@ function Selector(props){
   );
 }
 
-function mapStateToProps({selections: {isSelecting, doneSelecting}}) {
-  return {isSelecting, doneSelecting};
+function mapStateToProps(state) {
+  const { selections: {isSelecting, doneSelecting} } = state;
+  return { isSelecting, doneSelecting };
 }
 
 export default connect(mapStateToProps, {startSelecting, clearSelection})(Selector);

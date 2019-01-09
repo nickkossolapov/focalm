@@ -20,7 +20,7 @@ class Meal extends Component {
   }
 
   render() {
-    const {meal} = this.props;
+    const { meal } = this.props;
 
     if (!this.props.meal) {
       return <section className='meal'>Loading...</section>;
@@ -38,8 +38,8 @@ class Meal extends Component {
   }
 }
 
-function mapStateToProps({meals}, ownProps) {
-  return {meal: meals[ownProps.match.params.id]};
+function mapStateToProps(state, ownProps) {
+  return {meal: state.meals[ownProps.match.params.id]};
 }
 
 export default connect(mapStateToProps, {fetchMeal, deleteMeal})(Meal);
