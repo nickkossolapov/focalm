@@ -1,8 +1,10 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import './selector.css';
 import {connect} from 'react-redux';
 import {clearSelection, startSelecting} from '../../store/selections/actions';
+
 
 function Selector(props){
   return (
@@ -11,6 +13,14 @@ function Selector(props){
         props.isSelecting || props.doneSelecting
         ?  <button onClick={props.clearSelection}>Cancel</button>
         : <button onClick={props.startSelecting}>Start</button>
+      }
+      {
+        props.doneSelecting &&
+        <Link to={'/shoppinglist'}>
+          <button>
+            Get Shopping List
+          </button>
+        </Link>
       }
     </div>
   );

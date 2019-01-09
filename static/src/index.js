@@ -12,6 +12,7 @@ import MealForm from './components/meals/meal_form/meal_form';
 import SignUp from './components/auth/signup';
 import SignIn from './components/auth/signin';
 import SignOut from './components/auth/signout';
+import ShoppingList from './components/selections/shopping_list';
 import reducers from './store';
 
 
@@ -34,6 +35,7 @@ ReactDOM.render(
           <Route path='/signout' component={SignOut}/>
           <Route path='/meal/create' component={MealForm}/>
           <Route path='/meal/:id' component={Meal}/>
+          <Route path='/shoppinglist' component={ShoppingList}/>
           <Route path='/' component={Home}/>
         </Switch>
       </App>

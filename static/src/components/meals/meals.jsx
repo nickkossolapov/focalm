@@ -25,7 +25,7 @@ class Meals extends Component {
   }
 }
 
-function Meal(props){
+function Meal(props){ //todo: rename!
   const {meals} = props;
 
   if (Object.keys(meals).length === 0) {
