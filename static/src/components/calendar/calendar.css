@@ -20,3 +20,7 @@ ul {
 .day-item-button {
   float: right;
 }
+
+.selected-day {
+  background-color: aliceblue;
+}

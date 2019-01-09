@@ -1,0 +1,4 @@
+.selector{
+  grid-column: span 6;
+  grid-column-start: 2;
+}

@@ -19,9 +19,9 @@ class Calendar extends Component {
 
     for (let i = 0; i < 28; i++){
       indexDate.setDate(indexDate.getDate() + 1);
-      let day = indexDate.getDate(),
-        month = indexDate.getMonth(),
-        year = indexDate.getFullYear();
+      let day = padWithZeroes(indexDate.getDate() + 1),
+          month = padWithZeroes(indexDate.getMonth() + 1),
+          year = indexDate.getFullYear();
 
       dates.push({
         day,
@@ -45,6 +45,10 @@ class Calendar extends Component {
       </ul>
     );
   }
+}
+
+function padWithZeroes(num) {
+  return ('0' + num).slice(-2);
 }
 
 function DaysOfWeek(props) {

@@ -5,7 +5,9 @@ import {DragDropContext} from 'react-dnd'
 
 import Meals from './meals/meals';
 import Calendar from './calendar/calendar';
+import Selector from './selections/selector';
 import './home.css';
+
 
 
 class Home extends Component {
@@ -13,6 +15,7 @@ class Home extends Component {
     if (this.props.authenticated){
       return (
         <main className='main'>
+          <Selector/>
           <Calendar/>
           <Meals className='home-meals'/>
         </main>

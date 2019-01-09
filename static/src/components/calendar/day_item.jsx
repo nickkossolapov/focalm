@@ -10,7 +10,6 @@ function DayItem(props) {
 
       <button
         onClick={() => {
-          console.log(props);
           props.deleteDayItem(props.dateId, props.calendarItemId);
         }}
         className='increment-button day-item-button'
