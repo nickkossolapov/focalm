@@ -1,7 +1,7 @@
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import connect from 'react-redux/es/connect/connect';
-import {deleteDayItem} from '../../store/calendar/actions';
+import {deleteDayItem} from '../../../store/calendar/actions';
 
 function DayItem(props) {
   return(

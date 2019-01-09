@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import HTML5Backend from 'react-dnd-html5-backend'
 import {DragDropContext} from 'react-dnd'
 
-import Meals from './meals/meals';
+import Meals from './sidebar/meals';
 import Calendar from './calendar/calendar';
-import Selector from './selections/selector';
+import Selector from './selector/selector';
 import './home.css';
 
 

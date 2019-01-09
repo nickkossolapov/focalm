@@ -6,13 +6,13 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/app';
-import Home from './components/home'
+import Home from './components/home/home'
 import Meal from './components/meals/meal'
-import MealForm from './components/meals/meal_form/meal_form';
+import MealForm from './components/meal_form/meal_form';
 import SignUp from './components/auth/signup';
 import SignIn from './components/auth/signin';
 import SignOut from './components/auth/signout';
-import ShoppingList from './components/selections/shopping_list';
+import ShoppingList from './components/shopping_list/shopping_list';
 import reducers from './store';
 
 

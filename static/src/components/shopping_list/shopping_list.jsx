@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import _ from 'lodash';
 
-import requireAuth from '../require_auth';
+import requireAuth from '../shared/require_auth';
 
 function getSelectedMeals(meals, calendarItems, selectedStartDateId, selectedEndDateId) {
   let selectedMeals = [];

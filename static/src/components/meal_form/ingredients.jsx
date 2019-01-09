@@ -2,7 +2,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Field} from 'redux-form';
 import {InputField} from './input_field';
 import React from 'react';
-import {MEAL_UNIT} from '../../../store/constants/meals';
+import {MEAL_UNIT} from '../../store/constants/meals';
 
 export function Ingredients(props) {
   let {fields, meta: {error}} = props;

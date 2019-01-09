@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Field, FieldArray, reduxForm, startSubmit, stopSubmit} from 'redux-form';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {createMeal} from '../../../store/meals/actions';
+import {createMeal} from '../../store/meals/actions';
 import './meal_form.css'
 import {InputField} from './input_field';
 import {Ingredients} from './ingredients';
