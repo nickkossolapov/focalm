@@ -1,15 +1,6 @@
-from datetime import datetime
-from enum import IntEnum
 from marshmallow import fields, Schema
 
 from . import db
-from .helpers.IntEnumField import IntEnumField
-
-
-class MealTime(IntEnum):
-    BREAKFAST = 1,
-    LUNCH = 2,
-    DINNER = 3
 
 
 class CalendarMealModel(db.Model):
@@ -18,14 +9,12 @@ class CalendarMealModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     meal_id = db.Column(db.Integer, db.ForeignKey('meals.id'), nullable=False)
-    meal_time = db.Column(db.Integer, nullable=False)
-    meal_date = db.Column(db.Date, nullable=False)
+    date_id = db.Column(db.Integer, nullable=False)
 
     def __init__(self, data, user_id):
         self.user_id = user_id
         self.meal_id = data.get('meal_id')
-        self.meal_time = int(data.get('meal_time'))
-        self.meal_date = data.get('meal_date')
+        self.date_id = data.get('date_id')
 
     def save(self):
         db.session.add(self)
@@ -54,7 +43,5 @@ class CalendarMealModel(db.Model):
 
 class CalendarMealSchema(Schema):
     id = fields.Int(dump_only=True)
-    user_id = fields.Int(dump_only=True) #TODO: don't return user ID?
     meal_id = fields.Int(required=True)
-    meal_time = IntEnumField(MealTime, required=True)
-    meal_date = fields.DateTime('%Y%m%d', required=True)
+    date_id = fields.Int(required=True)

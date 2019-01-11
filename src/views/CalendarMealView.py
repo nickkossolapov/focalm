@@ -1,4 +1,4 @@
-from flask import request, json, Response, Blueprint, g, jsonify, make_response
+from flask import request, Response, Blueprint, g, jsonify, make_response
 from marshmallow import ValidationError
 
 from ..models.CalendarMealModel import CalendarMealModel, CalendarMealSchema
