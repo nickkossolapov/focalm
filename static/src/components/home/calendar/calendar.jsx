@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 
 import Day from './day';
 import './calendar.css';
-import requireAuth from "../shared/require_auth";
+import requireAuth from "../../shared/require_auth";
 import connect from "react-redux/es/connect/connect";
-import {fetchCalendar} from "../../store/calendar/actions";
+import {fetchCalendar} from "../../../store/calendar/actions";
 
 
 class Calendar extends Component {

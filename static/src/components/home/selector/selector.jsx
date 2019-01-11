@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import './selector.css';
 import {connect} from 'react-redux';
-import {clearSelection, startSelecting} from '../../store/selections/actions';
+import {clearSelection, startSelecting} from '../../../store/selections/actions';
 
 
 function Selector(props){

@@ -9,8 +9,7 @@ export const addDayItem = (mealId, dateId) => async (dispatch, getState) =>  {
     const { auth: {authenticated: token} } = getState();
     const data = {
       'meal_id': mealId,
-      'meal_date': dateId,
-      'meal_time': 'BREAKFAST' //TODO: remove enum?
+      'date_id': dateId
     };
 
     const apiRequest = getApiPostRequest(CALENDAR_API, token, data);
