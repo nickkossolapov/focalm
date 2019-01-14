@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import {deleteMeal, fetchMeal} from '../../store/meals/actions';
 
 import './meal.css'
-import {stopSubmit} from 'redux-form';
 
 class Meal extends Component {
   componentDidMount() {

@@ -1,9 +1,11 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Field} from 'redux-form';
-import {InputField} from './input_field';
 import React from 'react';
 
-export function Steps({fields, meta: {error}}) {
+import InputField from './input_field';
+
+const Steps = (props) => {
+  const {fields, meta: {error}} = props;
   return (
     <ol className=''>
       <div>
@@ -35,4 +37,6 @@ export function Steps({fields, meta: {error}}) {
       })}
     </ol>
   )
-}
+};
+
+export default Steps;

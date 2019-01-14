@@ -1,28 +1,26 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import HTML5Backend from 'react-dnd-html5-backend'
 import {DragDropContext} from 'react-dnd'
 
-import Meals from './sidebar/meals';
+import Meals from './sidebar/meal_list';
 import Calendar from './calendar/calendar';
 import Selector from './selector/selector';
 import './home.css';
 
 
 
-class Home extends Component {
-  render() {
-    if (this.props.authenticated){
-      return (
-        <main className='main'>
-          <Selector/>
-          <Calendar/>
-          <Meals className='home-meals'/>
-        </main>
-      );
-    } else {
-      return <h3 className='main-welcome'>Welcome!</h3>
-    }
+function Home (props) {
+  if (props.authenticated){
+    return (
+      <main className='main'>
+        <Selector/>
+        <Calendar/>
+        <Meals className='home-meals'/>
+      </main>
+    );
+  } else {
+    return <h3 className='main-welcome'>Welcome!</h3>
   }
 }
 

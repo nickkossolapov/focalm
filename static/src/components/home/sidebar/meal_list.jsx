@@ -6,9 +6,9 @@ import MealTile from './meal_tile';
 import {fetchMeals} from '../../../store/meals/actions';
 import requireAuth from '../../shared/require_auth';
 
-import './meals.css';
+import './meal_list.css';
 
-class Meals extends Component {
+class MealList extends Component {
   componentDidMount() {
     this.props.fetchMeals();
   }
@@ -18,14 +18,14 @@ class Meals extends Component {
       <section className='home-meals'>
         <h3>Meals</h3>
         <ul>
-          <Meal meals={this.props.meals}/>
+          <Meals meals={this.props.meals}/>
         </ul>
       </section>
     );
   }
 }
 
-function Meal(props){ //todo: rename!
+function Meals(props){ //todo: rename!
   const {meals} = props;
 
   if (Object.keys(meals).length === 0) {
@@ -42,5 +42,5 @@ function mapStateToProps(state) {
 }
 
 export default requireAuth(
-  connect(mapStateToProps, {fetchMeals})(Meals)
+  connect(mapStateToProps, {fetchMeals})(MealList)
 );

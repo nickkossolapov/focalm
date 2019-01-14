@@ -8,7 +8,7 @@ import reduxThunk from 'redux-thunk';
 import App from './components/app';
 import Home from './components/home/home'
 import Meal from './components/meals/meal'
-import MealForm from './components/meal_form/meal_form';
+import MealForm from './components/meal_form/meal_form_container';
 import SignUp from './components/auth/signup';
 import SignIn from './components/auth/signin';
 import SignOut from './components/auth/signout';

@@ -1,11 +1,13 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Field} from 'redux-form';
-import {InputField} from './input_field';
 import React from 'react';
+
+import InputField from './input_field';
 import {MEAL_UNIT} from '../../store/constants/meals';
 
-export function Ingredients(props) {
+export default function Ingredients(props) {
   let {fields, meta: {error}} = props;
+
   return (
     <ul className='general-list'>
       <div>
@@ -55,7 +57,7 @@ export function Ingredients(props) {
       })}
     </ul>
   )
-}
+};
 
 function IngredientDropdown() {
   return Object.keys(MEAL_UNIT).map(key => {
