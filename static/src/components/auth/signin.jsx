@@ -18,24 +18,27 @@ class SignIn extends Component {
     const {handleSubmit} = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)} className='auth-form'>
-        <Field
-          label='Email'
-          name='email'
-          type='text'
-          component={authField}
-          autoComplete='none'
-        />
-        <Field
-          label='Password'
-          name='password'
-          type='password'
-          component={authField}
-          autoComplete='none'
-        />
-        <div>{this.props.errorMessage}</div>
-        <button>Sign in</button>
-      </form>
+      <div className='auth-grid'>
+        <form onSubmit={handleSubmit(this.onSubmit)} className='auth-form'>
+          <Field
+            label='Email'
+            name='email'
+            type='text'
+            component={authField}
+            autoComplete='none'
+          />
+          <Field
+            label='Password'
+            name='password'
+            type='password'
+            component={authField}
+            autoComplete='none'
+          />
+          <div className='auth-error-message'>{this.props.errorMessage}</div>
+          <button className='auth-submit-button'>Sign in</button>
+        </form>
+      </div>
+
     )
   }
 }

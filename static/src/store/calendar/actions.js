@@ -44,16 +44,6 @@ export const deleteDayItem = (dateId, calendarItemId) => async (dispatch, getSta
   }
 };
 
-function processCalendarData(calendarItems) {
-  let calendar = {};
-
-  calendarItems.forEach(item => {
-    calendar[item.meal_date] = [...(calendar[item.meal_date] || []), {mealId: item.meal_id, calendarItemId: item.id}]
-  });
-
-  return calendar;
-}
-
 export const fetchCalendar = () =>  async (dispatch, getState) => {
   try {
     const { auth: {authenticated: token} } = getState();
@@ -69,3 +59,13 @@ export const fetchCalendar = () =>  async (dispatch, getState) => {
     console.log(err);
   }
 };
+
+function processCalendarData(calendarItems) {
+  let calendar = {};
+
+  calendarItems.forEach(item => {
+    calendar[item.date_id] = [...(calendar[item.date_id] || []), {mealId: item.meal_id, calendarItemId: item.id}]
+  });
+
+  return calendar;
+}

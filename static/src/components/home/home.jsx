@@ -3,20 +3,21 @@ import {connect} from 'react-redux';
 import HTML5Backend from 'react-dnd-html5-backend'
 import {DragDropContext} from 'react-dnd'
 
-import Meals from './sidebar/meal_list';
 import Calendar from './calendar/calendar';
 import Selector from './selector/selector';
+import Sidebar from './sidebar/sidebar';
 import './home.css';
-
 
 
 function Home (props) {
   if (props.authenticated){
     return (
-      <main className='main'>
-        <Selector/>
-        <Calendar/>
-        <Meals className='home-meals'/>
+      <main className='home'>
+        <div className='home-left-row'>
+          <Selector/>
+          <Calendar/>
+        </div>
+        <Sidebar className='home-right-row'/>
       </main>
     );
   } else {

@@ -1,9 +1,9 @@
-.main {
-  grid-column: span 8;
+.home {
   grid-column-start: 2;
+  grid-row-start: 2;
   display: grid;
-  grid-template-columns: repeat(5, 200px);
-  grid-template-rows: 100px;
+  grid-template-columns: 900px 200px;
+  grid-template-rows: 1fr;
 }
 
 .main-welcome {

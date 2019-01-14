@@ -37,7 +37,7 @@ def create_user_view(mail_service):
             data = user_schema.load(req_data, partial=True)
 
             if not data.get('email') or not data.get('password'):
-                return custom_response({'error': 'You need email and password to sign in'}, 400)
+                return custom_response({'error': 'Email and password are required'}, 400)
 
             user = UserModel.get_user_by_email(data.get('email'))
 

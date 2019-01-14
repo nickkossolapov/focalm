@@ -6,8 +6,6 @@ import MealTile from './meal_tile';
 import {fetchMeals} from '../../../store/meals/actions';
 import requireAuth from '../../shared/require_auth';
 
-import './meal_list.css';
-
 class MealList extends Component {
   componentDidMount() {
     this.props.fetchMeals();

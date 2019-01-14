@@ -1,16 +1,31 @@
 .header {
-  grid-column: span 12;
   grid-column-start: 2;
-  grid-column-end: 8;
   display: flex;
   justify-content: space-between;
 }
 
 .logo {
-  align: center;
+  font-family: 'Libre+Baskerville';
+  font-size: 32pt;
+  text-decoration: none;
+  color: black;
+  padding-left: 50px;
+  padding-top: 10px;
 }
 
-.header a {
-  margin: 0 10px;
+.login-links {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-links a {
+  padding-left: 20px;
+  text-decoration: none;
+  color: #A0A0A0;
+}
+
+.login-links a:hover {
+  color: #707070;
 }
 

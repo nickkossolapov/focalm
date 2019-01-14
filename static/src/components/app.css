@@ -1,11 +1,17 @@
-* {
-  font-family: 'Montserrat', sans-serif;
+html, body, #root, #wrapper{
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
-.wrapper {
+* {
+  font-family: 'Work Sans', sans-serif;
+}
+
+#wrapper {
   display: grid;
-  grid-template-columns: 1fr repeat(6, 180px) 1fr;
-  grid-template-rows: 40px 1fr;
+  grid-template-columns: 1fr 1100px 1fr;
+  grid-template-rows: 80px 1fr 80px;
 }
 
 .increment-button {
