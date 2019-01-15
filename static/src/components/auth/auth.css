@@ -19,6 +19,11 @@
   width: 100%;
   font-size: 14pt;
   margin-top: 15px;
+  cursor: pointer;
+}
+
+.auth-submit-button:hover {
+  background-color: #101010;
 }
 
 .auth-error-message {

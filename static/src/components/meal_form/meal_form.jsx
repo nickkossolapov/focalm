@@ -13,7 +13,7 @@ export default function MealForm(props) {
 
   return (
     <form className='meal-form' onSubmit={handleSubmit(submitForm)}>
-      <div className='meal-form-title'>
+      <div className='meal-form-description'>
         <Field
           label='Name'
           name='name'
@@ -28,8 +28,6 @@ export default function MealForm(props) {
           normalize={value => value < 1 ? 1 : Number.parseInt(value)}
           component={InputField}
         />
-      </div>
-      <div className='meal-form-description'>
         <Field
           label='Description'
           name='description'
@@ -37,9 +35,11 @@ export default function MealForm(props) {
           component={InputField}
         />
       </div>
-      <FieldArray name='steps' component={Steps} />
-      <FieldArray name='ingredients' component={Ingredients} />
-      <div>
+      <div className='meal-form-lists'>
+        <FieldArray name='steps' component={Steps} />
+        <FieldArray name='ingredients' component={Ingredients} />
+      </div>
+      <div className='meal-form-buttons'>
         <button type='submit' disabled={submitting}>Submit</button>
         <button type='button' disabled={pristine || submitting} onClick={reset}>
           Clear Values

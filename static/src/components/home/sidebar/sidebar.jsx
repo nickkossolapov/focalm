@@ -8,9 +8,11 @@ export default function Sidebar(props) {
   return (
     <div>
       <MealList className='home-meals'/>
-      <button className='create-meal-button'>
-        <Link to='/meal/create'>Create Meal</Link>
-      </button>
+      <Link to='/meal/create'>
+        <button className='create-meal-button'>
+          Create Meal
+        </button>
+      </Link>
     </div>
   )
 }

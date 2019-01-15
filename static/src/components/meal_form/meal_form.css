@@ -1,31 +1,33 @@
 .meal-form {
-  grid-column: span 2;
-  grid-column-start: 3;
+  grid-column-start: 2;
+  grid-row-start: 2;
   display: grid;
-  grid-template-columns: repeat(2, 360px);
-  grid-template-rows: 50px 50px 1fr 50px;
+  grid-template-areas: ". description ."
+                       ". lists ."
+                       ". buttons .";
+  grid-template-columns: 1fr 720px 1fr;
+  grid-template-rows: min-content min-content 50px;
 }
 
-.list-field {
-  display: inline;
-}
-
-fieldset {
+.meal-form fieldset {
   border: none;
 }
 
-h3 {
-  display: inline;
-}
-
-.meal-form-title {
-  grid-column-start: span 2;
-}
-
 .meal-form-description {
-  grid-column-start: span 2;
+  grid-area: description;
 }
 
-.meal-form-qty {
-  display: inline;
+.meal-form-lists {
+  grid-area: lists;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "ingredients steps";
+}
+
+.meal-form-lists h3{
+  text-align: center;
+}
+
+.meal-form-buttons {
+  grid-area: buttons;
 }
