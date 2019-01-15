@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import signout from '../../store/auth/actions';
+import {signout} from '../../store/auth/actions';
 import './header.css';
 
 class Header extends Component {
@@ -10,7 +10,7 @@ class Header extends Component {
     if (this.props.authenticated) {
       return (
         <div className='login-links'>
-          <a onClick={() => this.props.signout}>Sign out</a>
+          <span onClick={() => this.props.signout()} className='sign-out-link'>Sign out</span>
         </div>
       )
     } else {
@@ -39,4 +39,4 @@ function mapStateToProps(state){
   return {authenticated: state.auth.authenticated};
 }
 
-export default connect(mapStateToProps, signout)(Header);
+export default connect(mapStateToProps, {signout})(Header);
