@@ -1,9 +1,10 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Field} from 'redux-form';
 import React from 'react';
 
 import InputField from './input_field';
 import {MEAL_UNIT} from '../../store/constants/meals';
+import CrossButton from "../shared/cross_button";
+import PlusButton from "../shared/plus_button";
 
 export default function Ingredients(props) {
   let {fields, meta: {error}} = props;
@@ -12,9 +13,7 @@ export default function Ingredients(props) {
     <ul className='general-list'>
       <div>
         <h3>Ingredients</h3>
-        <button type='button' className='increment-button' onClick={() => fields.push({unit: 'GRAM'})}>
-          <FontAwesomeIcon icon='plus-circle'/>
-        </button>
+        <PlusButton title="Add Ingredient"  handleClick={() => fields.push({unit: 'GRAM'})}/>
       </div>
       {fields.map((ingredient, index) => {
         return (
@@ -43,15 +42,7 @@ export default function Ingredients(props) {
                 <IngredientDropdown/>
               </Field>
             </div>
-            <button
-              type='button'
-              title='Remove Ingredient'
-              onClick={() => fields.remove(index)}
-              label='Delete'
-              className='increment-button'
-            >
-              <FontAwesomeIcon icon='times-circle'/>
-            </button>
+            <CrossButton title="Remove Ingredient"  handleClick={() => fields.remove(index)}/>
           </li>
         )
       })}

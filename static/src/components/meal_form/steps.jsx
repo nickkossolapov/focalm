@@ -3,6 +3,7 @@ import {Field} from 'redux-form';
 import React from 'react';
 
 import InputField from './input_field';
+import PlusButton from "./ingredients";
 
 const Steps = (props) => {
   const {fields, meta: {error}} = props;
@@ -10,9 +11,7 @@ const Steps = (props) => {
     <ol className=''>
       <div>
         <h3>Steps</h3>
-        <button type='button' className='increment-button' onClick={() => fields.push({})}>
-          <FontAwesomeIcon icon='plus-circle'/>
-        </button>
+        <PlusButton title="Add Step"  handleClick={() => fields.push({})}/>
       </div>
       {fields.map((step, index) => {
         return (
@@ -23,15 +22,7 @@ const Steps = (props) => {
               className='list-field'
               component={InputField}
             />
-            <button
-              type='button'
-              title='Remove Step'
-              onClick={() => fields.remove(index)}
-              label='Delete'
-              className='increment-button'
-            >
-              <FontAwesomeIcon icon='times-circle'/>
-            </button>
+            <CrossButton title="Remove Step"  handleClick={() => fields.remove(index)}/>
           </li>
         )
       })}

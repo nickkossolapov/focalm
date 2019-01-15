@@ -14,11 +14,6 @@ html, body, #root, #wrapper{
   grid-template-rows: 80px 1fr 80px;
 }
 
-.increment-button {
-  border:0;
-  background:none;
-}
-
 .general-list {
   list-style: none;
 }
