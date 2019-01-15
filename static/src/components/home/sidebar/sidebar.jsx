@@ -7,10 +7,10 @@ import './sidebar.css';
 export default function Sidebar(props) {
   return (
     <div>
+      <MealList className='home-meals'/>
       <button className='create-meal-button'>
         <Link to='/meal/create'>Create Meal</Link>
       </button>
-      <MealList className='home-meals'/>
     </div>
   )
 }
