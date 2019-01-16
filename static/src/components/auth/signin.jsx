@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../store/auth/actions';
 import authField from './auth_field';
 import './auth.css';
+import SubmitButton from './submit_button';
 
 class SignIn extends Component {
   onSubmit = (formProps) => {
@@ -35,7 +36,7 @@ class SignIn extends Component {
             autoComplete='none'
           />
           <div className='auth-error-message'>{this.props.errorMessage}</div>
-          <button className='auth-submit-button'>Sign in</button>
+          <SubmitButton label="Sign in" loading={this.props.loading}/>
         </form>
       </div>
 
@@ -44,7 +45,7 @@ class SignIn extends Component {
 }
 
 function mapStateToProps(state){
-  return {errorMessage: state.auth.errorMessage};
+  return {errorMessage: state.auth.errorMessage, loading: state.auth.loading};
 }
 
 export default compose(
