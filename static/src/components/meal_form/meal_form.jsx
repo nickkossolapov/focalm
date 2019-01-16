@@ -43,11 +43,15 @@ export default function MealForm(props) {
         <FieldArray name='ingredients' component={Ingredients} />
       </div>
       <div className='meal-form-buttons'>
-        <button type='submit' disabled={submitting}>Submit</button>
-        <button type='button' disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </button>
-        <Link to='/'>Cancel</Link>
+        <button className='meal-form-button' type='submit' disabled={submitting}>Submit</button>
+        <button className='meal-form-button' type='button' disabled={pristine || submitting} onClick={reset}>
+          Clear
+        </button >
+        <Link to='/'>
+          <button className='meal-form-button'>
+            Cancel
+          </button>
+        </Link>
       </div>
       {submitting && <div>Loading...</div>}
       {promiseFailed && !submitting && <div>Submit failed, please try again</div>}

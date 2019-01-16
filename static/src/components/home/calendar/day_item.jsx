@@ -1,8 +1,7 @@
 import React from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import connect from 'react-redux/es/connect/connect';
 import {deleteDayItem} from '../../../store/calendar/actions';
-import CrossButton from "../../meal_form/ingredients";
+import CrossButton from "../../shared/cross_button";
 
 function DayItem(props) {
   return(

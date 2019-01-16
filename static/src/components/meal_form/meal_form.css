@@ -6,7 +6,7 @@
                        ". lists ."
                        ". buttons .";
   grid-template-columns: 1fr 720px 1fr;
-  grid-template-rows: min-content min-content 50px;
+  grid-template-rows: min-content min-content 100px;
 }
 
 .meal-form fieldset {
@@ -85,6 +85,7 @@
 }
 
 .meal-form-lists {
+  margin-top: 20px;
   grid-area: lists;
   display: grid;
   grid-template-columns: 360px 360px;
@@ -94,8 +95,32 @@
 
 .meal-form-lists h3{
   text-align: center;
+  font-size: 14pt;
+  font-weight: normal;
 }
 
 .meal-form-buttons {
   grid-area: buttons;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.meal-form-button {
+  color: #e0e0e0;
+  background-color: black;
+  border: 2px;
+  padding: 15px 32px;
+  width: 150px;
+  font-size: 12pt;
+  margin: 50px 10px 0 10px;
+  cursor: pointer;
+}
+
+.meal-form-button:hover {
+  background-color: #101010;
+}
+
+.meal-form-button:active {
+  background-color: black;
 }

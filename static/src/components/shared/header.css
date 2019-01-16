@@ -17,10 +17,11 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
+  margin-right: 30px;
 }
 
 .login-links a {
-  padding-left: 20px;
+  padding-right: 20px;
   text-decoration: none;
   color: #A0A0A0;
   cursor: pointer;
