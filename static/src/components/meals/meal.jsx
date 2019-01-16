@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {deleteMeal, fetchMeal} from '../../store/meals/actions';
 
 import './meal.css'
+import requireAuth from "../shared/require_auth";
 
 class Meal extends Component {
   componentDidMount() {
@@ -40,4 +41,6 @@ function mapStateToProps(state, ownProps) {
   return {meal: state.meals[ownProps.match.params.id]};
 }
 
-export default connect(mapStateToProps, {fetchMeal, deleteMeal})(Meal);
+export default requireAuth(
+  connect(mapStateToProps, {fetchMeal, deleteMeal})(Meal)
+);

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {reduxForm, startSubmit, stopSubmit} from 'redux-form';
 import {connect} from 'react-redux';
-import {createMeal} from '../../store/meals/actions';
+import {createMeal, deleteMeal, fetchMeal} from '../../store/meals/actions';
 import MealForm from './meal_form';
+import requireAuth from "../shared/require_auth";
 
 class Container extends Component {
   constructor(props){
@@ -81,7 +82,9 @@ function validate(values) {
   return errors;
 }
 
-export default reduxForm({
-  validate,
-  form: 'mealForm'
-})(connect(null, {createMeal})(Container));
+export default requireAuth(
+  reduxForm({
+    validate,
+    form: 'mealForm'
+  })(connect(null, {createMeal})(Container))
+);
