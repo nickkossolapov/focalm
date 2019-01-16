@@ -5,34 +5,37 @@ import {Field, FieldArray} from 'redux-form';
 import InputField from './input_field';
 import Steps from './steps';
 import Ingredients from './ingredients';
-
+import TextAreaField from './textarea_field';
+import Servings from "./servings";
 import './meal_form.css'
+
+
 
 export default function MealForm(props) {
   const {handleSubmit, pristine, reset, submitting, promiseFailed, submitForm} = props;
 
   return (
     <form className='meal-form' onSubmit={handleSubmit(submitForm)}>
-      <div className='meal-form-description'>
+      <div className='meal-form-info'>
         <Field
           label='Name'
           name='name'
           type='text'
+          className='meal-form-name'
           component={InputField}
         />
         <Field
           label='Servings'
           name='servings'
-          type='number'
           defaultValue='1'
           normalize={value => value < 1 ? 1 : Number.parseInt(value)}
-          component={InputField}
+          component={Servings}
         />
         <Field
           label='Description'
           name='description'
-          type='text'
-          component={InputField}
+          className='meal-form-description'
+          component={TextAreaField}
         />
       </div>
       <div className='meal-form-lists'>

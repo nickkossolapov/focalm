@@ -7,7 +7,7 @@ import CrossButton from "../shared/cross_button";
 import PlusButton from "../shared/plus_button";
 
 export default function Ingredients(props) {
-  let {fields, meta: {error}} = props;
+  const {fields, meta: {error}} = props;
 
   return (
     <ul className='general-list'>

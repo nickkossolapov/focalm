@@ -53,14 +53,6 @@ function validate(values) {
   if (!values.name) {
     errors.name = 'Required';
   }
-  if (!values.description) {
-    errors.description = 'Required';
-  }
-  if (!values.servings) {
-    errors.servings = 'Required';
-  } else if (values.servings <= 0 || Number.isInteger(values.servings)) {
-    errors.servings = 'Must be positive'
-  }
 
   if (values.ingredients) {
     values.ingredients.forEach((ingredient, i) => {

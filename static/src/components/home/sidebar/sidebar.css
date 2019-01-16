@@ -16,3 +16,7 @@
 .create-meal-button:hover {
   background-color: #101010;
 }
+
+.create-meal-button:active {
+  background-color: black;
+}

@@ -17,6 +17,10 @@
   background-color: #101010;
 }
 
+.auth-submit-button:active {
+  background-color: black;
+}
+
 .spinner {
   margin: 5px auto 5px ;
   width: 70px;

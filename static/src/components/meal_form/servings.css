@@ -1,0 +1,38 @@
+.meal-form-servings {
+  display: flex;
+  align-items: center;
+}
+
+.meal-form-servings label {
+  margin-right: 15px;
+  margin-left: 45px;
+}
+
+.meal-form-servings span {
+  width: 25px;
+  height: 22px;
+  text-align: center;
+  font-size: 14pt;
+  border: 1px black;
+}
+
+.meal-form-servings-button {
+  height: 22px;
+  width: 22px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  justify-content: center;
+  color: #e0e0e0;
+  background-color: #202020;
+  border: 2px;
+  cursor: pointer;
+}
+
+.meal-form-servings-button:hover {
+  background-color: #505050;
+}
+
+.meal-form-servings-button:active {
+  background-color: #202020;
+}

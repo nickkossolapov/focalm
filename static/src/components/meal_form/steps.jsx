@@ -1,12 +1,13 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Field} from 'redux-form';
 import React from 'react';
 
 import InputField from './input_field';
-import PlusButton from "./ingredients";
+import PlusButton from "../shared/plus_button";
+import CrossButton from '../shared/cross_button';
 
-const Steps = (props) => {
+export default function Steps(props) {
   const {fields, meta: {error}} = props;
+
   return (
     <ol className=''>
       <div>
@@ -29,5 +30,3 @@ const Steps = (props) => {
     </ol>
   )
 };
-
-export default Steps;
