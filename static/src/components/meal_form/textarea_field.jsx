@@ -27,8 +27,8 @@ class TextArea extends Component {
       <TextareaAutosize
         className={touched && error ? 'input-danger' : undefined}
         placeholder={touched && error ? `${error}` : undefined}
-        maxLength="256"
-        maxRows={5}
+        maxLength={this.props.maxLength}
+        maxRows={this.props.maxRows}
         {...input}
       />
     )

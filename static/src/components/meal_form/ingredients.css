@@ -1,0 +1,24 @@
+.meal-form-ingredient fieldset {
+  padding: 0 5px 0 0;
+  display: inline;
+}
+
+.meal-form-ingredient input {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid gray;
+  font-size: 12pt;
+  color: #505050;
+  padding: 2px 10px 2px 10px;
+  margin-top: 2px;
+  margin-left: 20px;
+}
+.ingredient-name input {
+  width: 280px;
+  margin-bottom: 10px;
+}
+
+.ingredient-qty {
+  float: right;
+  margin-bottom: 20px;
+}

@@ -35,6 +35,8 @@ export default function MealForm(props) {
           label='Description'
           name='description'
           className='meal-form-description'
+          maxLength={256}
+          maxRows={5}
           component={TextAreaField}
         />
       </div>
