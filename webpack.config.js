@@ -43,6 +43,19 @@ module.exports = (env) => {
             },
             "css-loader"
           ]
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '../static'
+              }
+            },
+            "css-loader",
+            "sass-loader"
+          ]
         }
       ]
     },

@@ -21,4 +21,8 @@
 .ingredient-qty {
   float: right;
   margin-bottom: 20px;
+
+  input {
+    width: 100px;
+  }
 }

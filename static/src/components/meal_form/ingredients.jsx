@@ -6,7 +6,7 @@ import {MEAL_UNIT} from '../../store/constants/meals';
 import CrossButton from '../shared/cross_button';
 import PlusButton from '../shared/plus_button';
 
-import './ingredients.css';
+import './ingredients.scss';
 import TextAreaField from './textarea_field';
 
 export default function Ingredients(props) {
