@@ -7,7 +7,7 @@ import Steps from './steps';
 import Ingredients from './ingredients';
 import TextAreaField from './textarea_field';
 import Servings from "./servings";
-import './meal_form.css'
+import './meal_form.scss'
 
 
 
@@ -44,15 +44,13 @@ export default function MealForm(props) {
         <FieldArray name='steps' component={Steps} />
         <FieldArray name='ingredients' component={Ingredients} />
       </div>
-      <div className='meal-form-buttons'>
-        <button className='meal-form-button' type='submit' disabled={submitting}>Submit</button>
-        <button className='meal-form-button' type='button' disabled={pristine || submitting} onClick={reset}>
+      <div className='meal-form-btns'>
+        <button className='meal-form-btn' type='submit' disabled={submitting}>Submit</button>
+        <button className='meal-form-btn' type='button' disabled={pristine || submitting} onClick={reset}>
           Clear
         </button >
-        <Link to='/'>
-          <button className='meal-form-button'>
-            Cancel
-          </button>
+        <Link to='/' className='meal-form-cancel-btn'>
+          Cancel
         </Link>
       </div>
       {submitting && <div>Loading...</div>}

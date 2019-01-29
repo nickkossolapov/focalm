@@ -5,9 +5,9 @@ import InputField from './input_field';
 import {MEAL_UNIT} from '../../store/constants/meals';
 import CrossButton from '../shared/cross_button';
 import PlusButton from '../shared/plus_button';
+import DropdownSelector from './dropdown_selector';
 
 import './ingredients.scss';
-import TextAreaField from './textarea_field';
 
 export default function Ingredients(props) {
   const {fields, meta: {error}} = props;
@@ -37,16 +37,12 @@ export default function Ingredients(props) {
                 <Field
                   name={`${ingredient}.unit`}
                   type='text'
-                  component='select'
+                  component={DropdownSelector}
                   className='qty-dropdown'
+                  items={MEAL_UNIT}
                 >
-                  {/*TODO: add a default and validation? Maybe try again to creat field element*/}
-                  {/*TODO: https://www.w3schools.com/Css/css_dropdowns.asp https://wisdmlabs.com/blog/customize-drop-down-list-using-css/*/}
-                  {/*<option value='' disabled='disabled'>Select a unit</option>*/}
-                  <IngredientDropdown/>
                 </Field>
               </div>
-
             </li>
           )
         })}
@@ -55,8 +51,3 @@ export default function Ingredients(props) {
   )
 };
 
-function IngredientDropdown() {
-  return Object.keys(MEAL_UNIT).map(key => {
-    return <option value={key} key={key}>{MEAL_UNIT[key].name}</option>
-  });
-}

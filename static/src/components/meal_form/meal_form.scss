@@ -1,0 +1,133 @@
+.meal-form {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  display: grid;
+  grid-template-areas: ". info ."
+  ". lists ."
+  ". buttons .";
+  grid-template-columns: 1fr 720px 1fr;
+  grid-template-rows: min-content min-content 100px;
+}
+
+.meal-form fieldset {
+  border: none;
+}
+
+.meal-form-info {
+  margin-top: 10px;
+  grid-area: info;
+  display: grid;
+  grid-template-areas: "name name servings"
+  "description description description";
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 50px min-content;
+}
+
+.meal-form-info label {
+  font-size: 14pt;
+}
+
+.meal-form-info input {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid gray;
+  font-size: 14pt;
+  color: #505050;
+  padding: 2px 10px 2px 10px;
+}
+
+.meal-form-name {
+  grid-area: name;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.meal-form-name input {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid gray;
+  font-size: 14pt;
+  color: #505050;
+  padding: 2px 10px 2px 10px;
+  margin-top: 2px;
+  margin-left: 20px;
+  width: 320px;
+}
+
+.meal-form-servings {
+  grid-area: servings;
+}
+
+.meal-form-servings input {
+  width: 50px;
+}
+
+.meal-form-description {
+  margin-top: 10px;
+  grid-area: description;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.meal-form-description textarea {
+  height: 26px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid gray;
+  font-size: 14pt;
+  color: #505050;
+  padding: 2px 10px 2px 10px;
+  width: 630px;
+  resize: none;
+}
+
+.meal-form-lists {
+  margin-top: 20px;
+  grid-area: lists;
+  display: grid;
+  grid-template-columns: 360px 360px;
+  grid-template-rows: min-content;
+  grid-template-areas: "ingredients steps";
+}
+
+.meal-form-lists h3{
+  text-align: center;
+  font-size: 14pt;
+  font-weight: normal;
+}
+
+.meal-form-btns {
+  grid-area: buttons;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.meal-form-btn {
+  color: #e0e0e0;
+  background-color: black;
+  border: 2px;
+  padding: 15px 32px;
+  width: 150px;
+  font-size: 12pt;
+  margin: 50px 10px 0 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #101010;
+  }
+
+  &:active {
+    background-color: black;
+  }
+}
+
+.meal-form-cancel-btn {
+  @extend .meal-form-btn;
+
+  color: #e0e0e0;
+  text-decoration: none;
+}

@@ -3,7 +3,7 @@ import React from 'react';
 import './servings.css';
 
 export default function Servings(props) {
-  const { input: { value, onChange }, className } = props;
+  const { input: { value, onChange } } = props;
 
   return (
     <div className='meal-form-servings'>

@@ -6,7 +6,7 @@ export let MEAL_UNIT = Object.freeze({
   'TEASPOON': {name: 'tsp', id: 5},
   'TABLESPOON': {name: 'tbsp', id: 6},
   'CUP': {name: 'cup', id: 7},
-  'NONE': {name: '-', id: 8}
+  'NONE': {name: '—', id: 8}
 });
 
 export let MEAL_TIMES = Object.freeze({
