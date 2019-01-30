@@ -10,6 +10,8 @@ import SubmitButton from './signin';
 
 class SignUp extends Component {
   onSubmit = (formProps) => {
+    document.activeElement.blur();
+
     this.props.signup(formProps, () => {
       this.props.history.push('/');
     });

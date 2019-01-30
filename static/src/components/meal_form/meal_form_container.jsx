@@ -18,6 +18,8 @@ class Container extends Component {
   }
 
   async submitForm(values) {
+    document.activeElement.blur();
+
     if (values.steps) {
       for (let i = 0; i < values.steps.length; i++) {
         values.steps[i].order = i;
