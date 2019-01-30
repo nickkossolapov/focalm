@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './auth_field.css';
+import './auth_field.scss';
 
 export default function authField(props) {
   const {input, label, type, meta: {touched, error}} = props;

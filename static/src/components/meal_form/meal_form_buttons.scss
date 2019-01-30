@@ -1,3 +1,5 @@
+@import "../shared/globals";
+
 .meal-form-btns {
   grid-area: buttons;
   display: flex;
@@ -7,28 +9,13 @@
 }
 
 .meal-form-btn {
-  color: #e0e0e0;
-  background-color: black;
-  border: 2px;
+  @extend .btn;
+
   padding: 15px 32px;
   width: 150px;
   font-size: 12pt;
   margin: 50px 10px 0 10px;
-  cursor: pointer;
   height: 50px;
-
-  &:hover {
-    background-color: #202020;
-  }
-
-  &:active {
-    background-color: black;
-  }
-
-  &:disabled {
-    background-color: #202020;
-    cursor: default;
-  }
 }
 
 .meal-form-cancel-btn {

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../shared/globals.scss';
+
 export default function InputField(props) {
   const {input, label, type, className, meta: {touched, error}} = props;
 

@@ -5,11 +5,10 @@ import './meal_form_buttons.scss'
 import Spinner from '../shared/spinner';
 
 export default function MealFormButtons(props) {
-  const { promiseFailed, submitting, reset } = props;
+  const { submitting, reset } = props;
 
   return (
     <div className='meal-form-btns'>
-      { promiseFailed && !submitting && <div>Submit failed, please try again</div> }
       <button className='meal-form-btn' type='submit' disabled={submitting}>
         { submitting ? <Spinner className='meal-form-spinner'/> : 'Submit' }
       </button>

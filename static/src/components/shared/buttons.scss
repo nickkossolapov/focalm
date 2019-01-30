@@ -1,0 +1,17 @@
+@import "../shared/globals.scss";
+
+.increment-button {
+  border:0;
+  background:none;
+  cursor: pointer;
+  color: $btn-background;
+  padding: 0;
+
+  &:hover {
+    color: $btn-background-hover;
+  }
+
+  &:active {
+    color: $btn-background;
+  }
+}

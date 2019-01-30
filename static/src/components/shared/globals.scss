@@ -1,0 +1,27 @@
+$light-font-color: #e0e0e0;
+$input-font-color: #606060;
+
+$btn-background: black;
+$btn-background-hover: #202020;
+
+
+.btn {
+  color: $light-font-color;
+  background-color: $btn-background;
+  border: 2px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $btn-background-hover;
+  }
+
+  &:active {
+    background-color: $btn-background;
+  }
+
+  &:disabled {
+    background-color: $btn-background-hover;
+    cursor: default;
+  }
+}
+

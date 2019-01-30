@@ -1,7 +1,7 @@
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-import './buttons.css';
+import './buttons.scss';
 
 export default function CrossButton(props) {
   return (

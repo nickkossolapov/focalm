@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import * as ReactDOM from 'react-dom';
 import TextareaAutosize from 'react-autosize-textarea';
 
+import '../shared/globals.scss';
+
 export default function TextAreaField(props) {
   const {input, label, type, className, meta: {touched, error}} = props;
 

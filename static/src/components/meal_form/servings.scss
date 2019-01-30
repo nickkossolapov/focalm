@@ -1,0 +1,31 @@
+@import "../shared/globals";
+
+.meal-form-servings {
+  display: flex;
+  align-items: center;
+
+  label {
+    margin-right: 15px;
+    margin-left: 45px;
+  }
+
+  span {
+    width: 25px;
+    height: 22px;
+    text-align: center;
+    font-size: 14pt;
+    cursor: default;
+  }
+}
+
+.meal-form-servings-btn {
+  @extend .btn;
+
+  height: 22px;
+  width: 22px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  justify-content: center;
+  font-weight: bold;
+}

@@ -1,0 +1,14 @@
+@import "../../shared/globals";
+
+.meal-list-item:hover {
+  background-color: grey;
+}
+
+.create-meal-btn {
+  @extend .btn;
+
+  padding: 15px 32px;
+  width: 100%;
+  font-size: 14pt;
+  margin-top: 15px;
+}

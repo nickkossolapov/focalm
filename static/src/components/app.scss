@@ -14,15 +14,6 @@ html, body, #root, #wrapper{
   grid-template-rows: 80px 1fr 80px;
 }
 
-.general-list {
-  list-style: none;
-}
-
-input {
-  border: 1px solid grey;
-  border-radius: 2px;
-}
-
 .input-danger {
   border-color: #dc3545;
 }
