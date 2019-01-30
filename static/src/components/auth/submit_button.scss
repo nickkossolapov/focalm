@@ -1,0 +1,26 @@
+.auth-submit-button {
+  color: #e0e0e0;
+  background-color: black;
+  border: 2px;
+  padding: 15px 32px;
+  width: 100%;
+  margin-top: 15px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #101010;
+  }
+
+  &:active {
+    background-color: black;
+  }
+
+  span {
+    height: 15px;
+    font-size: 14pt;
+  }
+}
+
+.submit-button-spinner {
+  margin: 5px auto 5px;
+}

@@ -1,0 +1,52 @@
+.meal-form-btns {
+  grid-area: buttons;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.meal-form-btn {
+  color: #e0e0e0;
+  background-color: black;
+  border: 2px;
+  padding: 15px 32px;
+  width: 150px;
+  font-size: 12pt;
+  margin: 50px 10px 0 10px;
+  cursor: pointer;
+  height: 50px;
+
+  &:hover {
+    background-color: #202020;
+  }
+
+  &:active {
+    background-color: black;
+  }
+
+  &:disabled {
+    background-color: #202020;
+    cursor: default;
+  }
+}
+
+.meal-form-cancel-btn {
+  @extend .meal-form-btn;
+
+  color: #e0e0e0;
+  text-decoration: none;
+  width: 86px;
+  height: 20px;
+  text-align: center;
+
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+    background-color: #202020;
+  }
+}
+
+.meal-form-spinner {
+  margin: 0px auto 6px;
+}

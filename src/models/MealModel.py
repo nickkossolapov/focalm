@@ -24,10 +24,10 @@ class MealModel(db.Model):
         self.user_id = user_id
         self.description = data.get('description')
         self.servings = data.get('servings')
-        if 'ingredients' in data.values():
-            self.ingredients = [IngredientModel(i) for i in data.get('ingredients')]
-        if 'steps' in data.values():
-            self.steps = [StepModel(s) for s in data.get('steps')]
+        if 'ingredients' in data:
+            self.ingredients = [IngredientModel(i) for i in data['ingredients']]
+        if 'steps' in data:
+            self.steps = [StepModel(s) for s in data['steps']]
         self.created_at = datetime.datetime.utcnow()
 
     def save(self):
