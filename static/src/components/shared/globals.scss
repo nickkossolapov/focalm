@@ -4,6 +4,7 @@ $input-font-color: #606060;
 $btn-background: black;
 $btn-background-hover: #202020;
 
+$btn-focus: #505050;
 
 .btn {
   color: $light-font-color;
@@ -22,6 +23,10 @@ $btn-background-hover: #202020;
   &:disabled {
     background-color: $btn-background-hover;
     cursor: default;
+  }
+
+  &:focus {
+    background-color: $btn-focus;
   }
 }
 

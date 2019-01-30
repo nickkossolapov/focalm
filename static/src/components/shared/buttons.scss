@@ -14,4 +14,8 @@
   &:active {
     color: $btn-background;
   }
+
+  &:focus {
+    color: $btn-focus;
+  }
 }
