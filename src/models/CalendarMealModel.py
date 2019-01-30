@@ -37,6 +37,10 @@ class CalendarMealModel(db.Model):
     def get_calendar_meal(calendar_meal_id):
         return CalendarMealModel.query.filter_by(id=calendar_meal_id).first()
 
+    @staticmethod
+    def get_calendar_by_meal(meal_id):
+        return CalendarMealModel.query.filter_by(meal_id=meal_id).all()
+
     def __repr(self):
         return '<id {}>'.format(self.id)
 
