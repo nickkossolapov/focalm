@@ -1,10 +1,29 @@
-$light-font-color: #e0e0e0;
+$light-font-color: #E0E0E0;
+$medium-font-color: #808080;
+$dark-font-color: black;
 $input-font-color: #606060;
 
 $btn-background: black;
 $btn-background-hover: #202020;
 
 $btn-focus: #505050;
+
+$border-light: #E0E0E0;
+$border-dark: black;
+
+$meal-item-width: 150px;
+
+.meal-item {
+  display: inline-block;
+  text-align: center;
+  width: $meal-item-width;
+  color: $dark-font-color;
+  text-decoration: none;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+  font-size: 11pt;
+}
 
 .btn {
   color: $light-font-color;

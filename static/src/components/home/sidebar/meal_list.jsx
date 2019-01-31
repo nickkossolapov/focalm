@@ -6,6 +6,8 @@ import MealTile from './meal_tile';
 import {fetchMeals} from '../../../store/meals/actions';
 import requireAuth from '../../shared/require_auth';
 
+import './meal_list.scss';
+
 class MealList extends Component {
   componentDidMount() {
     this.props.fetchMeals();
@@ -15,7 +17,7 @@ class MealList extends Component {
     return (
       <section className='home-meals'>
         <h3>Meals</h3>
-        <ul>
+        <ul className='meals-list'>
           <Meals meals={this.props.meals}/>
         </ul>
       </section>

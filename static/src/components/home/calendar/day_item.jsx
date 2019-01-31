@@ -1,18 +1,19 @@
 import React from 'react';
 import connect from 'react-redux/es/connect/connect';
+
 import {deleteDayItem} from '../../../store/calendar/actions';
-import CrossButton from "../../shared/cross_button";
+import './day_item.scss'
 
 function DayItem(props) {
   return(
-    <li>
-      <p className='day-item-title'>{props.name}</p>
-      <CrossButton
-        title="Remove Meal"
-        handleClick={() => {
-          props.deleteDayItem(props.dateId, props.calendarItemId);
-        }}
-      />
+    <li
+      className='day-item'
+      title={props.name}
+      onClick={() => {
+        props.deleteDayItem(props.dateId, props.calendarItemId);
+      }}
+    >
+      {props.name}
     </li>
   );
 }

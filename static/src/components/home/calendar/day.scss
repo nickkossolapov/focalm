@@ -1,0 +1,28 @@
+@import "../../shared/globals";
+
+.day {
+  margin: 0 3px 0 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid #E0E0E0;
+
+  h2 {
+    width: 100%;
+    text-align: left;
+    font-weight: normal;
+    font-size: 13pt;
+    margin: 10px 0 5px 25px;
+    color: $medium-font-color;
+  }
+}
+
+.selected-day {
+  background-color: aliceblue;
+}
+
+.day-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

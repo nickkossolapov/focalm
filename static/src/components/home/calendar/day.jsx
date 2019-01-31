@@ -7,6 +7,8 @@ import DayItem from './day_item';
 import {addDayItem} from '../../../store/calendar/actions';
 import {selectDate} from '../../../store/selections/actions';
 
+import './day.scss';
+
 const itemTarget = {
   drop(props, monitor) {
     let item = monitor.getItem();
@@ -35,15 +37,15 @@ class Day extends Component {
 
   render() {
     const { connectDropTarget, dateId, initialSelectedDateId, selectedStartDateId, selectedEndDateId } = this.props;
-    let className;
+    let className = 'day';
 
     if (dateId == initialSelectedDateId || (selectedStartDateId <= dateId && dateId <= selectedEndDateId)){
-      className = 'selected-day';
+      className += 'selected-day';
     }
 
     return connectDropTarget(
       <li className={className} onClick={() => this.handleClick()}>
-        <p>{this.props.day}</p>
+        <h2>{this.props.day}</h2>
         <DayItems {...this.props}/>
       </li>
     );
@@ -55,12 +57,12 @@ function DayItems(props) {
     return <p>...</p>
   }
   return (
-    <ul>
+    <ul className='day-list'>
       {props.calendarItems && props.calendarItems.map(({calendarItemId, mealId}) => {
         let meal = props.meals[mealId];
         return <DayItem
           name={meal.name}
-          key={meal.id}
+          key={meal.id+calendarItemId}
           dateId={props.dateId}
           calendarItemId={calendarItemId}/>
       })}

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {signout} from '../../store/auth/actions';
-import './header.css';
+import './header.scss';
 
 class Header extends Component {
   renderLinks() {

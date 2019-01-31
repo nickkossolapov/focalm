@@ -1,0 +1,15 @@
+.home {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  display: grid;
+
+  grid-template-areas: "calendar sidebar"
+                       "selector sidebar";
+  grid-template-columns: 1100px 200px;
+  grid-template-rows: min-content 1fr;
+}
+
+.main-welcome {
+  grid-column: span 12;
+  text-align: center;
+}

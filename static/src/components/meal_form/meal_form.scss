@@ -18,7 +18,7 @@
   grid-area: info;
   display: grid;
   grid-template-areas: "name name servings"
-  "description description description";
+                       "description description description";
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 50px min-content;
 

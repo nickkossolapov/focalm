@@ -1,0 +1,11 @@
+@import "../../shared/globals";
+
+.day-item {
+  @extend .meal-item;
+
+  &:hover {
+    text-decoration: line-through;
+    cursor: default;
+  }
+}
+

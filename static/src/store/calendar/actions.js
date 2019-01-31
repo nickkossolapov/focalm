@@ -33,12 +33,13 @@ export const deleteDayItem = (dateId, calendarItemId) => async (dispatch, getSta
   try {
     const { auth: {authenticated: token} } = getState();
     const apiRequest = getApiDeleteRequest(CALENDAR_API + calendarItemId, token);
-    await axios(apiRequest);
 
     dispatch({
       type: DELETE_DAY_ITEM,
       payload: {dateId, calendarItemId}
     });
+
+    axios(apiRequest);
   } catch (err) {
     console.log(err);
   }

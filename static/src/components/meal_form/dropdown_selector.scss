@@ -1,14 +1,10 @@
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
+@import "../shared/globals";
 
 .dropdown-container {
   display: inline-block;
   position: relative;
-  color: #e0e0e0;
-  background-color: black;
+  color: $light-font-color;
+  background-color: $btn-background;
   border: 2px;
   width: 60px;
   height: 30px;

@@ -6,18 +6,16 @@ import {DragDropContext} from 'react-dnd'
 import Calendar from './calendar/calendar';
 import Selector from './selector/selector';
 import Sidebar from './sidebar/sidebar';
-import './home.css';
 
+import './home.scss';
 
 function Home (props) {
   if (props.authenticated){
     return (
       <main className='home'>
-        <div className='home-left-row'>
-          <Selector/>
-          <Calendar/>
-        </div>
-        <Sidebar className='home-right-row'/>
+        <Calendar />
+        <Selector />
+        <Sidebar />
       </main>
     );
   } else {

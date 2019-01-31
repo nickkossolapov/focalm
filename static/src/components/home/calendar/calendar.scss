@@ -1,0 +1,20 @@
+@import "../../shared/globals";
+
+.calendar {
+  grid-area: calendar;
+  display:grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 40px repeat(4, 120px);
+  padding-left: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.week-day-name {
+  font-size: 15pt;
+  text-align: center;
+  border-bottom: 1px solid $border-dark;
+}

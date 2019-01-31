@@ -1,0 +1,18 @@
+@import "../../shared/globals";
+
+.sidebar-meal-list-item {
+  cursor: move;
+  height: 30px;
+  width: $meal-item-width + 5px;
+  text-align: center;
+  line-height: 30px;
+  padding: 0 5px 0 5px;
+
+  &:hover {
+    background-color: #CCCCCC;
+  }
+
+  a {
+    @extend .meal-item;
+  }
+}

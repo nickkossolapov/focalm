@@ -4,6 +4,8 @@ import { DragSource } from 'react-dnd';
 import {MEAL_TILE} from '../../../store/calendar/drag_types';
 
 
+import './meal_tile.scss';
+
 const itemSource = {
   beginDrag(props) {
     return {
@@ -21,12 +23,12 @@ function collect(connect, monitor) {
 
 class MealTile extends Component {
   render() {
-    const { isDragging, connectDragSource, src } = this.props;
+    const { connectDragSource, name, id } = this.props;
 
     return connectDragSource(
-      <li className='meal-list-item'>
-        <Link to={`/meal/${this.props.id}`}>
-          {this.props.name}
+      <li className='sidebar-meal-list-item' title={name}>
+        <Link to={`/meal/${id}`}>
+          {name}
         </Link>
       </li>
     );

@@ -6,7 +6,7 @@ import './sidebar.scss';
 
 export default function Sidebar(props) {
   return (
-    <div>
+    <div className='sidebar'>
       <MealList className='home-meals'/>
       <Link to='/meal/create'>
         <button className='create-meal-btn'>

@@ -1,7 +1,19 @@
 @import "../../shared/globals";
 
-.meal-list-item:hover {
-  background-color: grey;
+.sidebar {
+  grid-area: sidebar;
+  padding-left: 15px;
+}
+
+.home-meals {
+  h3 {
+    text-align: center;
+    font-size: 16pt;
+    padding: 16px 0 14px 0;
+    border-bottom: 1px solid black;
+    font-weight: normal;
+    margin: 0;
+  }
 }
 
 .create-meal-btn {
@@ -10,5 +22,4 @@
   padding: 15px 32px;
   width: 100%;
   font-size: 14pt;
-  margin-top: 15px;
 }

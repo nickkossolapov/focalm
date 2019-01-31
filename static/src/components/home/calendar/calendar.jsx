@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import connect from "react-redux/es/connect/connect";
 
 import Day from './day';
-import './calendar.css';
 import requireAuth from "../../shared/require_auth";
-import connect from "react-redux/es/connect/connect";
 import {fetchCalendar} from "../../../store/calendar/actions";
+
+import './calendar.scss';
 
 
 class Calendar extends Component {
@@ -55,7 +56,7 @@ function DaysOfWeek(props) {
   let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   return days.map((day) => {
-    return <li key={day}>{day}</li>
+    return <li className='week-day-name' key={day}>{day}</li>
   });
 }
 

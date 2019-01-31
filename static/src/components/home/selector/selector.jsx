@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-
-import './selector.css';
 import {connect} from 'react-redux';
+
 import {clearSelection, startSelecting} from '../../../store/selections/actions';
 
+import './selector.scss';
 
 class Selector extends Component{
   componentWillMount() {

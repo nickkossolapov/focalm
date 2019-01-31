@@ -1,0 +1,44 @@
+.header {
+  grid-column-start: 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Libre+Baskerville';
+  font-size: 32pt;
+  text-decoration: none;
+  color: black;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.login-links {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 10px;
+
+  a {
+    padding-right: 20px;
+    text-decoration: none;
+    color: #A0A0A0;
+    cursor: pointer;
+
+    &:hover {
+      color: #707070;
+    }
+  }
+
+  span {
+    padding-left: 20px;
+    text-decoration: none;
+    color: #A0A0A0;
+    cursor: pointer;
+
+    &:hover {
+      color: #707070;
+    }
+  }
+}
+
