@@ -11,6 +11,7 @@ import './calendar.scss';
 class Calendar extends Component {
   componentDidMount() {
     this.props.fetchCalendar();
+    window.scrollTo(0, 0);
   }
 
   getDates() {

@@ -1,4 +1,4 @@
-import {CLEAR_SELECTION, ENABLE_SELECTING, SELECT_FIRST_DATE, SELECT_SECOND_DATE} from './types';
+import {CANCEL_SELECTION, CLEAR_SELECTION, ENABLE_SELECTING, SELECT_FIRST_DATE, SELECT_SECOND_DATE} from './types';
 
 const initialState = {
   isSelecting: false,
@@ -27,6 +27,15 @@ export default (state = initialState, action) => {
       };
 
     case CLEAR_SELECTION:
+      return {
+        selectedStartDateId: null,
+        selectedEndDateId: null,
+        initialSelectedDateId: null,
+        isSelecting: true,
+        doneSelecting: false
+      };
+
+    case CANCEL_SELECTION:
       return {
         selectedStartDateId: null,
         selectedEndDateId: null,

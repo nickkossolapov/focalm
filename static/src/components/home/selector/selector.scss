@@ -1,3 +1,37 @@
+@import "../../shared/globals";
+
 .selector {
   grid-area: selector;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.selector-btn {
+  @extend .btn;
+
+  padding: 15px 32px;
+  width: 150px;
+  font-size: 12pt;
+  margin: 30px 10px 0 10px;
+  height: 50px;
+}
+
+.selector-btn-link {
+  @extend .selector-btn;
+  @extend .unselectable;
+
+  display: inline-block;
+  color: $light-font-color;
+  text-decoration: none;
+  width: 86px;
+  height: 20px;
+  text-align: center;
+
+  &.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: $btn-disabled;
+  }
 }

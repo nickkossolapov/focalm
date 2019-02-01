@@ -40,7 +40,7 @@ class Day extends Component {
     let className = 'day';
 
     if (dateId == initialSelectedDateId || (selectedStartDateId <= dateId && dateId <= selectedEndDateId)){
-      className += 'selected-day';
+      className += ' selected-day';
     }
 
     return connectDropTarget(
@@ -54,8 +54,11 @@ class Day extends Component {
 
 function DayItems(props) {
   if (Object.keys(props.meals).length === 0){
-    return <p>...</p>
+    return null;
   }
+
+  let {isSelecting, doneSelecting} = props;
+
   return (
     <ul className='day-list'>
       {props.calendarItems && props.calendarItems.map(({calendarItemId, mealId}) => {
@@ -64,7 +67,8 @@ function DayItems(props) {
           name={meal.name}
           key={meal.id+calendarItemId}
           dateId={props.dateId}
-          calendarItemId={calendarItemId}/>
+          calendarItemId={calendarItemId}
+          {...{isSelecting, doneSelecting}}/>
       })}
     </ul>
   );
@@ -74,7 +78,7 @@ function mapStateToProps(state, ownProps) {
   const {
     calendarItems,
     meals,
-    selections: { isSelecting, initialSelectedDateId, selectedStartDateId, selectedEndDateId }
+    selections: { isSelecting, doneSelecting,initialSelectedDateId, selectedStartDateId, selectedEndDateId }
   } = state;
 
   return {
@@ -83,7 +87,8 @@ function mapStateToProps(state, ownProps) {
     isSelecting,
     initialSelectedDateId,
     selectedStartDateId,
-    selectedEndDateId
+    selectedEndDateId,
+    doneSelecting
   };
 }
 

@@ -2,34 +2,32 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {clearSelection, startSelecting} from '../../../store/selections/actions';
+import {cancelSelection, clearSelection, startSelecting} from '../../../store/selections/actions';
+import {SelectorButtons} from './selector_buttons';
 
 import './selector.scss';
 
 class Selector extends Component{
   componentWillMount() {
-    this.props.clearSelection();
+    this.props.cancelSelection();
   }
 
   render() {
-    const {isSelecting, doneSelecting, clearSelection, startSelecting} = this.props;
+    const { isSelecting, doneSelecting,  startSelecting } = this.props;
+
+    let buttonDiv;
+
+    if (isSelecting || doneSelecting){
+      buttonDiv = <SelectorButtons {...this.props}/>;
+    } else {
+      buttonDiv = <button className='selector-btn' onClick={startSelecting}>Start</button>;
+    }
+
     return (
-      <div className="selector">
-        {
-          isSelecting || doneSelecting
-            ?  <button onClick={clearSelection}>Cancel</button>
-            : <button onClick={startSelecting}>Start</button>
-        }
-        {
-          doneSelecting &&
-          <Link to={'/shoppinglist'}>
-            <button>
-              Get Shopping List
-            </button>
-          </Link>
-        }
+      <div className='selector'>
+        {buttonDiv}
       </div>
-    );
+    )
   }
 }
 
@@ -38,4 +36,4 @@ function mapStateToProps(state) {
   return { isSelecting, doneSelecting };
 }
 
-export default connect(mapStateToProps, {startSelecting, clearSelection})(Selector);
+export default connect(mapStateToProps, {startSelecting, clearSelection, cancelSelection})(Selector);

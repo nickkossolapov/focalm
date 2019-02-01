@@ -14,11 +14,16 @@
     font-size: 13pt;
     margin: 10px 0 5px 25px;
     color: $medium-font-color;
+    cursor: default;
   }
 }
 
 .selected-day {
-  background-color: aliceblue;
+  border-bottom: 3px solid $border-dark;
+
+  h2 {
+    color: $dark-font-color;
+  }
 }
 
 .day-list {

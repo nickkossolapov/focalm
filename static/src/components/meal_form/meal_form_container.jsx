@@ -17,6 +17,10 @@ class Container extends Component {
     this.props.initialize({servings: '1'});
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   async submitForm(values) {
     document.activeElement.blur();
 

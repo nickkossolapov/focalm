@@ -5,12 +5,14 @@ import {deleteDayItem} from '../../../store/calendar/actions';
 import './day_item.scss'
 
 function DayItem(props) {
+  const canClear = !(props.isSelecting || props.doneSelecting);
+
   return(
     <li
-      className='day-item'
+      className={'day-item' + (canClear ? ' can-clear' : '')}
       title={props.name}
       onClick={() => {
-        props.deleteDayItem(props.dateId, props.calendarItemId);
+        if (canClear) {props.deleteDayItem(props.dateId, props.calendarItemId)};
       }}
     >
       {props.name}

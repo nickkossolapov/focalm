@@ -3,6 +3,7 @@ import {
   ENABLE_SELECTING,
   SELECT_FIRST_DATE,
   SELECT_SECOND_DATE,
+  CANCEL_SELECTION
 } from './types';
 
 export const startSelecting = () => (dispatch) => {
@@ -30,5 +31,11 @@ export const selectDate = (dateId) => (dispatch, getState) => {
 export const clearSelection = () => (dispatch) => {
   dispatch({
     type: CLEAR_SELECTION
+  })
+};
+
+export const cancelSelection = () => (dispatch) => {
+  dispatch({
+    type: CANCEL_SELECTION
   })
 };

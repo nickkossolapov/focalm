@@ -2,10 +2,12 @@
 
 .day-item {
   @extend .meal-item;
+  cursor: default;
+}
 
+.can-clear{
   &:hover {
     text-decoration: line-through;
-    cursor: default;
   }
 }
 
