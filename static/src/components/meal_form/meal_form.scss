@@ -1,6 +1,6 @@
 .meal-form {
-  grid-column-start: 2;
-  grid-row-start: 2;
+  grid-area: main;
+
   display: grid;
   grid-template-areas: ". info ."
                        ". lists ."

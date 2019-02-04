@@ -1,8 +1,7 @@
 .home {
-  grid-column-start: 2;
-  grid-row-start: 2;
-  display: grid;
+  grid-area: main;
 
+  display: grid;
   grid-template-areas: "calendar sidebar"
                        "selector sidebar";
   grid-template-columns: 1100px 200px;

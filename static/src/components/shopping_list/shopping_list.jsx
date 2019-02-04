@@ -1,61 +1,22 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
-import _ from 'lodash';
 
-import requireAuth from '../shared/require_auth';
+import ShoppingListByIngredients from './shopping_list_by_ingredients';
+import ShoppingListByMeals from './shopping_list_by_meals';
+import ShoppingListHeader from './shopping_list_header';
 
-function getSelectedMeals(meals, calendarItems, selectedStartDateId, selectedEndDateId) {
-  let selectedMeals = [];
+import './shopping_list.scss';
 
-  _.map(calendarItems, (calendarMappings, dateId) => {
-    if (selectedStartDateId <= dateId && dateId <= selectedEndDateId) {
-      _.map(calendarMappings, calendarMapping => {
-        selectedMeals.push(meals[calendarMapping.mealId]);
-      })
-    }
-  });
 
-  return selectedMeals;
-}
-
-function ShoppingList(props) {
-  //todo: convert to component and load meals on componentWillMount?
-  const { meals, calendarItems, selectedStartDateId, selectedEndDateId } = props;
-
-  if (!(props.selectedStartDateId && props.selectedEndDateId)) {
-    return <Redirect to="/"></Redirect>
-  }
-
-  let selectedMeals = getSelectedMeals(meals, calendarItems, selectedStartDateId, selectedEndDateId);
-
+export default function ShoppingList(props) {
   return (
-    <section className='home-meals'>
-      <h3>Shopping List</h3>
-      <ul>
-        {
-          _.map(selectedMeals, meal => {
-            return <SelectedMeal {...meal} key={meal.id}/>;
-          })
-        }
-      </ul>
+    <section className='shopping-list'>
+      <ShoppingListHeader sortByMeals={props.sortByMeals} handleSortToggle={props.handleSortToggle} />
+      {
+        props.sortByMeals
+        ? <ShoppingListByMeals items={props.itemsSortedByMeals}/>
+        : <ShoppingListByIngredients items={props.itemsSortedByIngredients}/>
+      }
+      {props.sortByMeals}
     </section>
-  );
-}
-
-function SelectedMeal(props){
-  return (
-    <li>
-      {props.name}
-    </li>
   )
 }
-
-function mapStateToProps(state) {
-  const { meals, calendarItems, selections: {selectedStartDateId, selectedEndDateId} } = state;
-  return { meals, calendarItems, selectedStartDateId, selectedEndDateId };
-}
-
-export default requireAuth(
-  connect(mapStateToProps, null)(ShoppingList)
-);
