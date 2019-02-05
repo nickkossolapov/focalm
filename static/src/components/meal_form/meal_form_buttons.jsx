@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom';
 import './meal_form_buttons.scss'
 import Spinner from '../shared/spinner';
 
-function handleClick(func){
+function handleClick(callback){
   document.activeElement.blur();
-  return func;
+  callback();
 }
 
 export default function MealFormButtons(props) {
@@ -17,7 +17,7 @@ export default function MealFormButtons(props) {
       <button className='meal-form-btn' type='submit' disabled={submitting}>
         { submitting ? <Spinner className='meal-form-spinner'/> : 'Submit' }
       </button>
-      <button className='meal-form-btn' type='button' disabled={submitting} onClick={handleClick(reset)}>
+      <button className='meal-form-btn' type='button' disabled={submitting} onClick={() => handleClick(reset)}>
         Clear
       </button >
       <Link to='/' className={'meal-form-cancel-btn' + (submitting ? '  disabled' : '')}>

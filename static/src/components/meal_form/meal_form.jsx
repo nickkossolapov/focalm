@@ -13,7 +13,7 @@ import MealFormButtons from './meal_form_buttons';
 
 
 export default function MealForm(props) {
-  const {handleSubmit, pristine, reset, submitting, promiseFailed, submitForm} = props;
+  const {handleSubmit, reset, submitting, promiseFailed, submitForm} = props;
 
   return (
     <form className='meal-form' onSubmit={handleSubmit(submitForm)}>

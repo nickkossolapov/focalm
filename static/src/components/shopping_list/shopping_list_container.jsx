@@ -24,13 +24,11 @@ class ShoppingListContainer extends Component {
   constructor(props) {
     super(props);
 
-    //todo: convert to component and load meals on componentWillMount?
     const { meals, calendarItems, selectedStartDateId, selectedEndDateId } = this.props;
 
-    this.selectedMeals = getSelectedMeals(meals, calendarItems, selectedStartDateId, selectedEndDateId);
-
     this.state = {
-      sortByMeals: false
+      sortByMeals: false,
+      selectedMeals: getSelectedMeals(meals, calendarItems, selectedStartDateId, selectedEndDateId)
     }
   }
 
@@ -53,17 +51,54 @@ class ShoppingListContainer extends Component {
     if (!this.state.sortByMeals){
       return null;
     }
+
+    let items = {};
+
+    this.state.selectedMeals.map(meal => {
+      if (!items[meal.id]) {
+        items[meal.id] = {
+          meal,
+          qty: 1
+        }
+      } else {
+        items[meal.id]['qty']++;
+      }
+    });
+
+    return Object.values(items);
   }
 
   getItemsSortedByIngredients() {
     if (this.state.sortByMeals){
       return null;
     }
+
+    let items = {};
+
+    this.state.selectedMeals.map(meal => {
+      meal.ingredients.map(ingredient => {
+        if (!items[ingredient.id]) {
+          items[ingredient.id] = {
+            ingredient,
+            mealName: meal.name,
+            qty: 1
+          }
+        } else {
+          items[ingredient.id]['qty']++;
+        }
+      });
+    });
+
+    return Object.values(items).sort(compareIngredients);
   }
 
   handleSortToggle(value) {
     this.setState({sortByMeals: value})
   }
+}
+
+function compareIngredients(a, b) {
+  a.ingredient.ingredient.localeCompare(b.ingredient.ingredient)
 }
 
 function mapStateToProps(state) {
