@@ -11,12 +11,13 @@ export default function ShoppingList(props) {
   return (
     <section className='shopping-list'>
       <ShoppingListHeader sortByMeals={props.sortByMeals} handleSortToggle={props.handleSortToggle} />
-      {
-        props.sortByMeals
-        ? <ShoppingListByMeals items={props.itemsSortedByMeals}/>
-        : <ShoppingListByIngredients items={props.itemsSortedByIngredients}/>
-      }
-      {props.sortByMeals}
+      <div className='shopping-list-main'>
+        {
+          props.sortByMeals
+            ? <ShoppingListByMeals items={props.itemsSortedByMeals}/>
+            : <ShoppingListByIngredients items={props.itemsSortedByIngredients}/>
+        }
+      </div>
     </section>
   )
 }

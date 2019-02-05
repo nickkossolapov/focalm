@@ -6,7 +6,7 @@ $header-side-padding: 300px;
   grid-area: main;
 
   display: grid;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 68px 1fr;
   grid-template-areas: "shopping-list-header"
                        "shopping-list-main";
 }
@@ -18,18 +18,43 @@ $header-side-padding: 300px;
 
   h2 {
     grid-column-start: 2;
+    text-align: center;
+    font-weight: normal;
+    font-size: 18pt;
+    margin: 20px 0 20px 0;
   }
 }
 
 .shopping-list-main {
   grid-area: shopping-list-main;
+
+  display: grid;
+  grid-template-columns: 1fr 700px 1fr;
+
+  .shopping-list-content {
+    grid-column-start: 2;
+  }
+}
+
+.toggle-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.toggle-label {
+  color: $medium-font-color;
 }
 
 .toggle {
+  $toggle-height: 46px;
+  $toggle-width: 25px;
+  $toggle-transition: 21px;
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: $toggle-height;
+  height: $toggle-width;
+  margin-left: 10px;
 
   input {
     opacity: 0;
@@ -37,17 +62,13 @@ $header-side-padding: 300px;
     height: 0;
 
     &:checked + .slider {
-      background-color: #2196F3;
-    }
-
-    &:focus + .slider {
-      box-shadow: 0 0 1px #2196F3;
+      background-color: #707070;
     }
 
     &:checked + .slider:before {
-      -webkit-transform: translateX(26px);
-      -ms-transform: translateX(26px);
-      transform: translateX(26px);
+      -webkit-transform: translateX($toggle-transition);
+      -ms-transform: translateX($toggle-transition);
+      transform: translateX($toggle-transition);
     }
   }
 
@@ -58,19 +79,19 @@ $header-side-padding: 300px;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #CCC;
     -webkit-transition: .4s;
     -moz-transition: .4s;
     transition: .4s;
-    border-radius: 34px;
+    border-radius: $toggle-width;
 
     &:before {
       position: absolute;
       content: "";
-      height: 26px;
-      width: 26px;
-      left: 4px;
-      bottom: 4px;
+      height: $toggle-transition;
+      width: $toggle-transition;
+      left: 2px;
+      bottom: 2px;
       background-color: white;
       -webkit-transition: .4s;
       transition: .4s;
