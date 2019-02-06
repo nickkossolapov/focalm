@@ -26,6 +26,12 @@ $table-width: 700px;
   width: 100%;
   border: none;
 
+  $table-column-1: 170px;
+  $table-column-2: 450px;
+  $table-column-3: 30px;
+  $table-column-4: 30px;
+  $table-column-5: 20px;
+
   thead {
     display: table;
     width: $table-width;
@@ -38,13 +44,13 @@ $table-width: 700px;
       height: 50px;
 
       &:nth-child(1) {
-        width: 100px;
+        width: $table-column-1;
       }
       &:nth-child(2) {
-        width: 500px;
+        width: $table-column-2;
       }
       &:nth-child(3) {
-        width: 100px;
+        width: $table-column-3 + $table-column-4 + $table-column-4;
       }
     }
   }
@@ -61,19 +67,19 @@ $table-width: 700px;
       height: 50px;
 
       &:nth-child(1) {
-        width: 170px;
+        width: $table-column-1;
       }
       &:nth-child(2) {
-        width: 500px;
+        width: $table-column-2;
       }
       &:nth-child(3) {
-        width: 30px;
+        width: $table-column-3;
       }
       &:nth-child(4) {
-        width: 30px;
+        width: $table-column-4;
       }
       &:nth-child(5) {
-        width: 20px;
+        width: $table-column-5;
       }
     }
 
