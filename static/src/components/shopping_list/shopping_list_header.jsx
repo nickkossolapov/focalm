@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import './shopping_list.scss';
+import './shopping_list_header.scss';
 
 export default function ShoppingListHeader(props) {
   return <div className='shopping-list-header'>

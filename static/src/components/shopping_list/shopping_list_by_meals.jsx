@@ -21,7 +21,7 @@ function MealTableRow(props) {
   return (
     meal.ingredients.map((ingredient, index) => {
       return (
-        <tr>
+        <tr className={(index == 0) && 'new-meal-line'}>
           {(index == 0) && <td rowSpan={meal.ingredients.length}>{meal.name}</td>}
           <td>{ingredient.ingredient}</td>
           <td>{ingredient.qty}</td>

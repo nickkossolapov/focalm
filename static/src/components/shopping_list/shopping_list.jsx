@@ -12,7 +12,7 @@ export default function ShoppingList(props) {
     <section className='shopping-list'>
       <ShoppingListHeader sortByMeals={props.sortByMeals} handleSortToggle={props.handleSortToggle} />
       <div className='shopping-list-main'>
-        <table className='shopping-list-content'>
+        <table className='shopping-list-content' cellSpacing='0' cellPadding='0'>
           <thead>
             <tr>
               <th>Meal</th>
