@@ -8,14 +8,13 @@ export default function ShoppingListByIngredients(props) {
   const { items } = props;
   return (
     <tbody>
-    {items.map(item => {
+    {items.map((item, index) => {
       return (
-        <tr>
-          <td>{item.mealName}</td>
-          <td>{item.ingredient.ingredient}</td>
+        <tr key={index}>
+          <td><span>{item.mealName}</span></td>
+          <td><span>{item.ingredient.ingredient}</span></td>
           <td>{item.ingredient.qty}</td>
-          <td>{MEAL_UNIT[item.ingredient.unit].name}</td>
-          <td>x{item.qty}</td>
+          <td>{MEAL_UNIT[item.ingredient.unit].shoppingListName + (item.qty > 1 && item.qty ? `x${item.qty}` : '')}</td>
         </tr>
       )
     })}

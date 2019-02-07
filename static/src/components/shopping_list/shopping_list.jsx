@@ -17,7 +17,7 @@ export default function ShoppingList(props) {
             <tr>
               <th>Meal</th>
               <th>Ingredient</th>
-              <th colSpan='3'>Qty</th>
+              <th colSpan='2'>Qty</th>
             </tr>
           </thead>
           {

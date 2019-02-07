@@ -26,11 +26,11 @@ $table-width: 700px;
   width: 100%;
   border: none;
 
-  $table-column-1: 170px;
-  $table-column-2: 450px;
-  $table-column-3: 30px;
-  $table-column-4: 30px;
-  $table-column-5: 20px;
+  $table-column-1: 200px;
+  $table-column-2: 400px;
+  $table-column-3: 50px;
+  $table-column-4: 50px;
+
 
   thead {
     display: table;
@@ -50,12 +50,14 @@ $table-width: 700px;
         width: $table-column-2;
       }
       &:nth-child(3) {
-        width: $table-column-3 + $table-column-4 + $table-column-4;
+        width: $table-column-3 + $table-column-4;
       }
     }
   }
 
   tbody{
+    $row-height: 40px;
+
     display: table;
     width: $table-width;
 
@@ -64,26 +66,41 @@ $table-width: 700px;
     }
 
     td {
-      height: 50px;
+      height: $row-height;
 
-      &:nth-child(1) {
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: $row-height;
+      }
+
+      &:nth-last-child(4) {
         width: $table-column-1;
+        color: $light-font-color;
+
+        span {
+          width: $table-column-1
+        }
       }
-      &:nth-child(2) {
+      &:nth-last-child(3) {
         width: $table-column-2;
+
+        span {
+          width: $table-column-2
+        }
       }
-      &:nth-child(3) {
+      &:nth-last-child(2) {
         width: $table-column-3;
+        text-align: right;
+        padding-right: 5px;
       }
-      &:nth-child(4) {
+      &:nth-last-child(1) {
         width: $table-column-4;
       }
-      &:nth-child(5) {
-        width: $table-column-5;
-      }
     }
-
-
 
     .new-meal-line td {
       border-top: 1px solid $border-light;

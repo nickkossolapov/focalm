@@ -32,9 +32,9 @@ class ShoppingListContainer extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (!(this.props.selectedStartDateId && this.props.selectedEndDateId)) {
-      return <Redirect to="/"></Redirect>
+      this.props.history.push('/');
     }
   }
 
@@ -89,7 +89,10 @@ class ShoppingListContainer extends Component {
       });
     });
 
-    return Object.values(items).sort(compareIngredients);
+    let list = Object.values(items);
+    let sortedList = list.sort(compareIngredients);
+
+    return sortedList;
   }
 
   handleSortToggle(value) {
@@ -98,7 +101,7 @@ class ShoppingListContainer extends Component {
 }
 
 function compareIngredients(a, b) {
-  a.ingredient.ingredient.localeCompare(b.ingredient.ingredient)
+  return a.ingredient.ingredient.localeCompare(b.ingredient.ingredient)
 }
 
 function mapStateToProps(state) {
