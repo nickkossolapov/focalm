@@ -25,9 +25,9 @@ function MealTableRow(props) {
       return (
         <tr className={(index == 0) ? 'new-meal-line' : undefined} key={index}>
           {(index == 0) && <td rowSpan={meal.ingredients.length}>
-            <span>{meal.name}</span>
+            <span title={meal.name}>{meal.name}</span>
           </td>}
-          <td><span>{ingredient.ingredient}</span></td>
+          <td><span title={ingredient.ingredient}>{ingredient.ingredient}</span></td>
           <td>{ingredient.qty}</td>
           <td>{MEAL_UNIT[ingredient.unit].shoppingListName + (qty > 1 && qty ? `x${qty}` : '')}</td>
         </tr>

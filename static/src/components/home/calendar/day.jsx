@@ -65,7 +65,7 @@ function DayItems(props) {
         let meal = props.meals[mealId];
         return <DayItem
           name={meal.name}
-          key={meal.id+calendarItemId}
+          key={calendarItemId}
           dateId={props.dateId}
           calendarItemId={calendarItemId}
           {...{isSelecting, doneSelecting}}/>
