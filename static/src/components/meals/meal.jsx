@@ -1,46 +1,17 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {deleteMeal, fetchMeal} from '../../store/meals/actions';
+import React from 'react';
+import MealButtons from './meal_buttons';
 
-import './meal.css'
-import requireAuth from "../shared/require_auth";
+import "./meal.scss";
 
-class Meal extends Component {
-  componentDidMount() {
-    const {id} = this.props.match.params;
-    this.props.fetchMeal(id);
-  }
-
-  async onDeleteMeal(e) {
-    e.preventDefault();
-    await this.props.deleteMeal(this.props.meal.id, () => {
-      this.props.history.push('/');
-    });
-  }
-
-  render() {
-    const { meal } = this.props;
-
-    if (!this.props.meal) {
-      return <section className='meal'>Loading...</section>;
-    }
-
-    return (
-      <section className='meal'>
-        <h3>{meal.name}</h3>
-        <h6>{meal.description}</h6>
-        <p>{meal.servings} servings</p>
-        <p>Created on {meal.created_at}</p>
-        <button onClick={(e) => this.onDeleteMeal(e)}>Delete</button>
-      </section>
-    );
-  }
+export default function Meal(props) {
+  const { meal: {name, description, servings, created_at}, deleteMeal } = props;
+  return (
+    <section className='meal'>
+      <h3>{name}</h3>
+      <h6>{description}</h6>
+      <p>{servings} servings</p>
+      <p>Created on {created_at}</p>
+      <MealButtons deleteMeal={deleteMeal}/>
+    </section>
+  );
 }
-
-function mapStateToProps(state, ownProps) {
-  return {meal: state.meals[ownProps.match.params.id]};
-}
-
-export default requireAuth(
-  connect(mapStateToProps, {fetchMeal, deleteMeal})(Meal)
-);
