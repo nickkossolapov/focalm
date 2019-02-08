@@ -6,7 +6,7 @@ import './shopping_list.scss';
 
 export default function ShoppingListByMeals(props) {
   const { items } = props;
-  console.log('foo');
+
   return (
     <tbody>
     {items.map(item => {
@@ -18,7 +18,6 @@ export default function ShoppingListByMeals(props) {
 
 function MealTableRow(props) {
   const { meal, qty } = props;
-  console.log('bar');
 
   return (
     meal.ingredients.map((ingredient, index) => {

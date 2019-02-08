@@ -1,5 +1,109 @@
 @import "../shared/globals";
 
+$side-margin: 250px;
+
 .meal {
   grid-area: main;
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  align-items: center;
+  margin: 0 $side-margin;
+
+  h1 {
+    font-weight: normal;
+    font-size: 18pt;
+    margin: 25px 0 20px 0;
+    padding: 0;
+  }
+
+  h2 {
+    font-weight: normal;
+    font-size: 14pt;
+    color: $medium-font-color;
+    margin: 25px 0 10px 0;
+    padding: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ol {
+    margin: 0;
+  }
+
+  table {
+    margin: 0;
+  }
+
+  .meal-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 5px;
+
+    span {
+      color: $medium-font-color;
+      padding: 5px 15px;
+    }
+  }
+
+  .meal-steps {
+    li {
+      padding-bottom: 10px;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .meal-ingredients {
+    $row-height: 25px;
+
+    $table-column-1: 200px;
+    $table-column-2: 60px;
+    $table-column-3: 75px;
+
+    $table-width: $table-column-1 + $table-column-2 + $table-column-3 + 5px;
+
+    display: table;
+    width: $table-width;
+
+    tr {
+      width: $table-width;
+    }
+
+    td {
+      height: $row-height;
+
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: $row-height;
+      }
+
+
+      &:nth-child(1) {
+        width: $table-column-1;
+
+        span {
+          width: $table-column-1
+        }
+      }
+      &:nth-child(2) {
+        width: $table-column-2;
+        text-align: right;
+        padding-right: 5px;
+      }
+      &:nth-child(3) {
+        width: $table-column-3;
+      }
+    }
+  }
 }

@@ -25,7 +25,7 @@ class MealContainer extends Component {
       return <section className='meal'>Loading...</section>;
     }
 
-    return <Meal deleteMeal={() => this.onDeleteMeal()} meal={this.props.meal}/>
+    return <Meal deleteMeal={(e) => this.onDeleteMeal(e)} meal={this.props.meal}/>
   }
 }
 
