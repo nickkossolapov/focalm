@@ -3,6 +3,7 @@ import React from 'react';
 import ShoppingListByIngredients from './shopping_list_by_ingredients';
 import ShoppingListByMeals from './shopping_list_by_meals';
 import ShoppingListHeader from './shopping_list_header';
+import ShoppingListButtons from './shopping_list_buttons';
 
 import './shopping_list.scss';
 
@@ -26,6 +27,7 @@ export default function ShoppingList(props) {
               : <ShoppingListByIngredients items={props.itemsSortedByIngredients}/>
           }
         </table>
+        <ShoppingListButtons />
       </div>
     </section>
   )

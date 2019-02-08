@@ -1,0 +1,40 @@
+@import "../shared/globals";
+@import "shopping_list";
+
+.shopping-list-btns {
+  grid-area: shopping-list-buttons;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.shopping-list-btn {
+  @extend .btn;
+
+  padding: 15px 32px;
+  width: 150px;
+  font-size: 12pt;
+  margin: 50px 20px 0 20px;
+  height: 50px;
+
+  &:focus {
+    background-color: $btn-background;
+
+    &:hover {
+      background-color: $btn-background-hover;
+    }
+  }
+}
+
+.shopping-list-back-btn {
+  @extend .shopping-list-btn;
+  @extend .unselectable;
+
+  color: $light-font-color;
+  text-decoration: none;
+  width: 86px;
+  height: 20px;
+  text-align: center;
+}
