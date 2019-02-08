@@ -9,13 +9,13 @@ class Header extends Component {
   renderLinks() {
     if (this.props.authenticated) {
       return (
-        <div className='login-links'>
+        <div className='login-links no-print'>
           <span onClick={() => this.props.signout()} className='sign-out-link'>Sign out</span>
         </div>
       )
     } else {
       return (
-        <div className='login-links'>
+        <div className='login-links no-print'>
           <div>
             <Link to='/signin'>Sign In</Link>
             <Link to='/signup'>Sign Up</Link>

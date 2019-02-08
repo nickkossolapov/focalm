@@ -4,7 +4,7 @@ import React from 'react';
 import './shopping_list_header.scss';
 
 export default function ShoppingListHeader(props) {
-  return <div className='shopping-list-header'>
+  return <div className='shopping-list-header no-print'>
     <h2>Shopping List</h2>
     <div className='toggle-block'>
       <label className='toggle-label'>Sort by meals</label>
