@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {deleteMeal, fetchMeal} from '../../store/meals/actions';
+import {fetchMeal} from '../../store/meals';
 
 import requireAuth from "../shared/require_auth";
 import Meal from './meal';
+import {deleteMeal} from '../../store/meals';
 
 
 class MealContainer extends Component {

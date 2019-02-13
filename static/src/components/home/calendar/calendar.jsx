@@ -3,7 +3,7 @@ import connect from "react-redux/es/connect/connect";
 
 import Day from './day';
 import requireAuth from "../../shared/require_auth";
-import {fetchCalendar} from "../../../store/calendar/actions";
+import {fetchCalendar} from "../../../store/calendar";
 
 import './calendar.scss';
 

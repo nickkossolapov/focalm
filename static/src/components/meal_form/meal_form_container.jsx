@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {reduxForm, startSubmit, stopSubmit} from 'redux-form';
 import {connect} from 'react-redux';
-import {createMeal, deleteMeal, fetchMeal} from '../../store/meals/actions';
+
+import {createMeal} from '../../store/meals';
 import MealForm from './meal_form';
 import requireAuth from "../shared/require_auth";
 

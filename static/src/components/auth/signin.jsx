@@ -3,7 +3,7 @@ import {reduxForm, Field} from 'redux-form';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 
-import * as actions from '../../store/auth/actions';
+import { signin } from '../../store/auth';
 import authField from './auth_field';
 import './auth.css';
 import SubmitButton from './submit_button';
@@ -51,6 +51,6 @@ function mapStateToProps(state){
 }
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(mapStateToProps, { signin }),
   reduxForm({form: 'signin'})
 )(SignIn);

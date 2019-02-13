@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import MealTile from './meal_tile';
-import {fetchMeals} from '../../../store/meals/actions';
+import {fetchMeals} from '../../../store/meals';
 import requireAuth from '../../shared/require_auth';
 
 import './meal_list.scss';

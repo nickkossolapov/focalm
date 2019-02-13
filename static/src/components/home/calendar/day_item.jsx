@@ -1,7 +1,7 @@
 import React from 'react';
 import connect from 'react-redux/es/connect/connect';
 
-import {deleteDayItem} from '../../../store/calendar/actions';
+import {deleteDayItem} from '../../../store/calendar';
 import './day_item.scss'
 
 function DayItem(props) {

@@ -7,7 +7,7 @@ import "./meal.scss";
 
 
 export default function Meal(props) {
-  const { meal: {name, description, servings, created_at, steps, ingredients}, deleteMeal } = props;
+  const { meal: {name, description, servings, created_at, steps, ingredients, id}, deleteMeal } = props;
   return (
     <section className='meal'>
       <h1>{name}</h1>
@@ -23,7 +23,7 @@ export default function Meal(props) {
       {
         ingredients.length > 0 && <Ingredients ingredients={ingredients}/>
       }
-      <MealButtons deleteMeal={deleteMeal} submitting={props.submitting}/>
+      <MealButtons deleteMeal={deleteMeal} submitting={props.submitting} mealId={id}/>
     </section>
   );
 }

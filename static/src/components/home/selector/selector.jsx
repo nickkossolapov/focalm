@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {cancelSelection, clearSelection, startSelecting} from '../../../store/selections/actions';
+import {startSelecting} from '../../../store/selections';
 import {SelectorButtons} from './selector_buttons';
 
 import './selector.scss';
+import {cancelSelection, clearSelection} from '../../../store/selections';
 
 class Selector extends Component{
   componentWillMount() {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { DragSource } from 'react-dnd';
-import {MEAL_TILE} from '../../../store/calendar/drag_types';
+import {MEAL_TILE} from '../../../store/constants/drag_types';
 
 
 import './meal_tile.scss';

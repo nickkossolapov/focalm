@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { DropTarget } from 'react-dnd';
 
-import {MEAL_TILE} from '../../../store/calendar/drag_types';
+import {MEAL_TILE} from '../../../store/constants/drag_types';
 import DayItem from './day_item';
-import {addDayItem} from '../../../store/calendar/actions';
-import {selectDate} from '../../../store/selections/actions';
+import {addDayItem} from '../../../store/calendar';
+import {selectDate} from '../../../store/selections';
 
 import './day.scss';
 

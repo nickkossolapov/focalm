@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {signout} from '../../store/auth/actions';
+import {signout} from '../../store/auth';
 import './header.scss';
 
 class Header extends Component {
