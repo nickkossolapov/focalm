@@ -3,9 +3,9 @@
 import axios from 'axios';
 import _ from 'lodash';
 
-export const AUTH_USER = 'auth_user';
-export const AUTH_ERROR = 'auth_error';
-export const LOADING = 'loading';
+const AUTH_USER = 'focalm/auth/auth_user';
+const AUTH_ERROR = 'focalm/auth/auth_error';
+const LOADING = 'focalm/auth/loading';
 
 const INITIAL_STATE = {
   authenticated: '',
@@ -25,7 +25,7 @@ export default reducer = (state = INITIAL_STATE, action) => {
     default:
       return state;
   }
-}
+};
 
 
 const ROOT_URL = process.env.API_URL;

@@ -4,9 +4,9 @@ import axios from 'axios';
 import _ from 'lodash';
 import {getApiDeleteRequest, getApiGetRequest, getApiPostRequest} from './helpers/api_helpers';
 
-export const ADD_DAY_ITEM = 'add_day_item';
-export const FETCH_CALENDAR = 'fetch_calendar';
-export const DELETE_DAY_ITEM = 'delete_day_item';
+const ADD_DAY_ITEM = 'focalm/calendar/add_day_item';
+const FETCH_CALENDAR = 'focalm/calendar/fetch_calendar';
+const DELETE_DAY_ITEM = 'focalm/calendar/delete_day_item';
 
 export default reducer = (state = {}, action) => {
   switch (action.type) {

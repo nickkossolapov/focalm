@@ -3,12 +3,13 @@
 import _ from 'lodash';
 import axios from 'axios';
 import {SubmissionError} from 'redux-form';
+
 import {getApiDeleteRequest, getApiGetRequest, getApiPostRequest} from './helpers/api_helpers';
 
-export const CREATE_MEAL = 'create_meal';
-export const FETCH_MEAL = 'fetch_meal';
-export const FETCH_MEALS = 'fetch_meals';
-export const DELETE_MEAL = 'delete_meal';
+const CREATE_MEAL = 'focalm/meals/create_meal';
+const FETCH_MEAL = 'focalm/meals/fetch_meal';
+const FETCH_MEALS = 'focalm/meals/fetch_meals';
+const DELETE_MEAL = 'focalm/meals/delete_meal';
 
 
 export default reducer = (state = {}, action) => {

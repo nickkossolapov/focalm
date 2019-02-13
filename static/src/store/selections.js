@@ -1,11 +1,10 @@
 // Quack! This is a duck. https://github.com/erikras/ducks-modular-redux
 
-
-export const ENABLE_SELECTING = 'enable_selecting';
-export const SELECT_FIRST_DATE = 'select_first_date';
-export const SELECT_SECOND_DATE = 'select_second_date';
-export const CLEAR_SELECTION = 'clear_selection';
-export const CANCEL_SELECTION = 'cancel_selection';
+const ENABLE_SELECTING = 'focalm/selections/enable_selecting';
+const SELECT_FIRST_DATE = 'focalm/selections/select_first_date';
+const SELECT_SECOND_DATE = 'focalm/selections/select_second_date';
+const CLEAR_SELECTION = 'focalm/selections/clear_selection';
+const CANCEL_SELECTION = 'focalm/selections/cancel_selection';
 
 
 const INITIAL_STATE = {
