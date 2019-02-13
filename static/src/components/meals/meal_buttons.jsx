@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import Spinner from '../shared/spinner';
+
 import './meal_buttons.scss';
 
 export default function MealButtons(props) {
@@ -10,7 +12,7 @@ export default function MealButtons(props) {
         Home
       </Link>
       <button className='shopping-list-btn' type='button' onClick={props.deleteMeal}>
-        Delete
+        { props.submitting ? <Spinner className='meal-delete-btn-spinner'/> : 'Delete' }
       </button>
     </div>
   )

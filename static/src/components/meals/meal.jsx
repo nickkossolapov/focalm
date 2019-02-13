@@ -17,13 +17,13 @@ export default function Meal(props) {
       </div>
       <p>{description}</p>
       {
-        steps && <Steps steps={steps}/>
+        steps.length > 0 && <Steps steps={steps}/>
       }
 
       {
-        ingredients && <Ingredients ingredients={ingredients}/>
+        ingredients.length > 0 && <Ingredients ingredients={ingredients}/>
       }
-      <MealButtons deleteMeal={deleteMeal}/>
+      <MealButtons deleteMeal={deleteMeal} submitting={props.submitting}/>
     </section>
   );
 }

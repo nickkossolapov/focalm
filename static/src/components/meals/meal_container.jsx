@@ -7,17 +7,36 @@ import Meal from './meal';
 
 
 class MealContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      submitting: false
+    }
+  }
+
   componentDidMount() {
     const {id} = this.props.match.params;
     this.props.fetchMeal(id);
     window.scrollTo(0, 0);
   }
 
-  async onDeleteMeal(e) {
-    e.preventDefault();
-    await this.props.deleteMeal(this.props.meal.id, () => {
-      this.props.history.push('/');
+  async onDeleteMeal(event) {
+    event.preventDefault();
+    this.setState({
+      submitting: true
     });
+
+    try {
+      await this.props.deleteMeal(this.props.meal.id, () => {
+        this.props.history.push('/');
+      });
+    } finally {
+      this.setState({
+        submitting: false
+      })
+    }
+
   }
 
   render() {
@@ -25,7 +44,10 @@ class MealContainer extends Component {
       return <section className='meal'>Loading...</section>;
     }
 
-    return <Meal deleteMeal={(e) => this.onDeleteMeal(e)} meal={this.props.meal}/>
+    return <Meal
+      deleteMeal={(event) => this.onDeleteMeal(event)}
+      meal={this.props.meal}
+      submitting={this.state.submitting}/>
   }
 }
 
