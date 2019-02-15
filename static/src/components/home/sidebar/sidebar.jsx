@@ -8,7 +8,7 @@ export default function Sidebar(props) {
   return (
     <div className='sidebar'>
       <MealList className='home-meals'/>
-      <Link to='/meal/create'>
+      <Link to='/create'>
         <button className='create-meal-btn'>
           Create Meal
         </button>

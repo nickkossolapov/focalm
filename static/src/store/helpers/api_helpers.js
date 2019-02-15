@@ -8,9 +8,14 @@ export const getApiPostRequest  = (endpoint, token, data=null) => {
   return getBaseRequest('POST', endpoint, token, data);
 };
 
+export const getApiPatchRequest  = (endpoint, token, data=null) => {
+  return getBaseRequest('PATCH', endpoint, token, data);
+};
+
 export const getApiDeleteRequest  = (endpoint, token) => {
   return getBaseRequest('DELETE', endpoint, token, null);
 };
+
 
 function getBaseRequest(method, endpoint, token, data){
   const apiRequest = {

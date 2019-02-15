@@ -18,7 +18,7 @@ export default function MealFormButtons(props) {
         { submitting ? <Spinner className='meal-form-spinner'/> : 'Submit' }
       </button>
       <button className='meal-form-btn' type='button' disabled={submitting} onClick={() => handleClick(reset)}>
-        Clear
+        Reset
       </button >
       <Link to='/' className={'meal-form-cancel-btn' + (submitting ? '  disabled' : '')}>
         Cancel

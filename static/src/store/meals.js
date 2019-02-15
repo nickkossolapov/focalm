@@ -4,20 +4,20 @@ import _ from 'lodash';
 import axios from 'axios';
 import {SubmissionError} from 'redux-form';
 
-import {getApiDeleteRequest, getApiGetRequest, getApiPostRequest} from './helpers/api_helpers';
+import {getApiDeleteRequest, getApiGetRequest, getApiPatchRequest, getApiPostRequest} from './helpers/api_helpers';
 
 const CREATE_MEAL = 'focalm/meals/create_meal';
 const FETCH_MEAL = 'focalm/meals/fetch_meal';
 const FETCH_MEALS = 'focalm/meals/fetch_meals';
 const DELETE_MEAL = 'focalm/meals/delete_meal';
+const UPDATE_MEAL = 'focalm/meals/update_meal';
 
 
 export default function reducer(state = {}, action) {
   switch (action.type) {
     case CREATE_MEAL:
-      return {...state, [action.payload.id]: action.payload};
-
     case FETCH_MEAL:
+    case UPDATE_MEAL:
       return {...state, [action.payload.id]: action.payload};
 
     case FETCH_MEALS:
@@ -42,6 +42,23 @@ export const createMeal = (meal, callback) => async (dispatch, getState) => {
 
     dispatch({
       type: CREATE_MEAL,
+      payload: response.data,
+    });
+    callback(response.data.id);
+  } catch (err) {
+    console.log(err);
+    throw new SubmissionError({username: 'User does not exist', _error: 'Login failed!'})
+  }
+};
+
+export const updateMeal = (meal, callback) => async (dispatch, getState) => {
+  try {
+    const {auth: {authenticated: token}} = getState();
+    const apiRequest = getApiPatchRequest(MEALS_API + meal.id, token, meal);
+    const response = await axios(apiRequest);
+
+    dispatch({
+      type: UPDATE_MEAL,
       payload: response.data,
     });
     callback(response.data.id);

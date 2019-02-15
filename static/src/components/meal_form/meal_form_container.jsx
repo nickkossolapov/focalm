@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {reduxForm, startSubmit, stopSubmit} from 'redux-form';
 import {connect} from 'react-redux';
 
-import {createMeal} from '../../store/meals';
+import {createMeal, updateMeal} from '../../store/meals';
 import MealForm from './meal_form';
 import requireAuth from "../shared/require_auth";
 
@@ -11,11 +11,24 @@ class Container extends Component {
     super(props);
 
     this.state = {
-      promiseFailed: false
+      promiseFailed: false,
     }
   }
+
   componentWillMount () {
-    this.props.initialize({servings: '1'});
+    const { location, initialize, history, meal } = this.props;
+
+    if (location.pathname.startsWith('/edit'))
+    {
+      if (meal){
+        initialize(meal);
+      } else {
+        history.push('/create');
+      }
+
+    } else {
+      initialize({servings: '1'});
+    }
   }
 
   componentDidMount() {
@@ -33,7 +46,9 @@ class Container extends Component {
 
     startSubmit();
     try{
-      await this.props.createMeal(values, (id) => {
+      const submitFunc = (location.pathname.startsWith('/edit')) ? this.props.updateMeal : this.props.createMeal;
+
+      await submitFunc(values, (id) => {
         stopSubmit();
         this.props.history.push('/meal/' + id);
       });
@@ -89,9 +104,13 @@ function validate(values) {
   return errors;
 }
 
+function mapStateToProps(state, ownProps) {
+  return { meal: state.meals[ownProps.match.params.id] };
+}
+
 export default requireAuth(
   reduxForm({
     validate,
     form: 'mealForm'
-  })(connect(null, {createMeal})(Container))
+  })(connect(mapStateToProps, {createMeal, updateMeal})(Container))
 );

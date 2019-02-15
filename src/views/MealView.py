@@ -35,7 +35,7 @@ def create_meal_view():
 
         return make_response('', 204)
 
-    @meal_api.route('/<meal_id>', methods=['PUT'])
+    @meal_api.route('/<meal_id>', methods=['PATCH'])
     @Auth.auth_required
     def update(meal_id):
         try:

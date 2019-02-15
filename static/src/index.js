@@ -8,7 +8,7 @@ import reduxThunk from 'redux-thunk';
 import App from './components/app';
 import Home from './components/home/home'
 import Meal from './components/meals/meal_container'
-import MealForm from './components/meal_form/meal_form_container';
+import MealFormContainer from './components/meal_form/meal_form_container';
 import SignUp from './components/auth/signup';
 import SignIn from './components/auth/signin';
 import ShoppingListContainer from './components/shopping_list/shopping_list_container';
@@ -32,7 +32,8 @@ ReactDOM.render(
           <Route path='/' exact component={Home}/>
           <Route path='/signup' component={SignUp}/>
           <Route path='/signin' component={SignIn}/>
-          <Route path='/meal/create' component={MealForm}/>
+          <Route path='/create' component={MealFormContainer}/>
+          <Route path='/edit/:id' component={MealFormContainer}/>
           <Route path='/meal/:id' component={Meal}/>
           <Route path='/shoppinglist' component={ShoppingListContainer}/>
           <Route component={NoMatch} />

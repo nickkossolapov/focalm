@@ -9,7 +9,7 @@ export default function ShoppingListButtons() {
       <button className='shopping-list-btn' type='button' onClick={() => window.print()}>
         Print
       </button >
-      <Link to='/' className='shopping-list-back-btn'>
+      <Link to='/' className='shopping-list-link-btn'>
         Home
       </Link>
     </div>
