@@ -12,7 +12,7 @@ const FETCH_MEALS = 'focalm/meals/fetch_meals';
 const DELETE_MEAL = 'focalm/meals/delete_meal';
 
 
-export default reducer = (state = {}, action) => {
+export default function reducer(state = {}, action) {
   switch (action.type) {
     case CREATE_MEAL:
       return {...state, [action.payload.id]: action.payload};

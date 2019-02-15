@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 };
 
 
-export default reducer = (state = INITIAL_STATE, action) => {
+export default function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case AUTH_USER:
       return {...state, authenticated: action.payload};
@@ -25,7 +25,7 @@ export default reducer = (state = INITIAL_STATE, action) => {
     default:
       return state;
   }
-};
+}
 
 
 const ROOT_URL = process.env.API_URL;

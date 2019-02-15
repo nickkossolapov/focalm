@@ -8,7 +8,7 @@ const ADD_DAY_ITEM = 'focalm/calendar/add_day_item';
 const FETCH_CALENDAR = 'focalm/calendar/fetch_calendar';
 const DELETE_DAY_ITEM = 'focalm/calendar/delete_day_item';
 
-export default reducer = (state = {}, action) => {
+export default function reducer(state = {}, action) {
   switch (action.type) {
     case ADD_DAY_ITEM:
       return {

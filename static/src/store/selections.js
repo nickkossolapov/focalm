@@ -15,7 +15,7 @@ const INITIAL_STATE = {
   selectedEndDateId: null,
 };
 
-export default reducer = (state = INITIAL_STATE, action) => {
+export default function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case ENABLE_SELECTING:
       return {...state, isSelecting: true};
