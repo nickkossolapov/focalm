@@ -4,7 +4,7 @@ import _ from 'lodash';
 import axios from 'axios';
 import {SubmissionError} from 'redux-form';
 
-import {getApiDeleteRequest, getApiGetRequest, getApiPatchRequest, getApiPostRequest} from './helpers/api_helpers';
+import {getApiDeleteRequest, getApiGetRequest, getApiPutRequest, getApiPostRequest} from './helpers/api_helpers';
 
 const CREATE_MEAL = 'focalm/meals/create_meal';
 const FETCH_MEAL = 'focalm/meals/fetch_meal';
@@ -47,14 +47,13 @@ export const createMeal = (meal, callback) => async (dispatch, getState) => {
     callback(response.data.id);
   } catch (err) {
     console.log(err);
-    throw new SubmissionError({username: 'User does not exist', _error: 'Login failed!'})
   }
 };
 
 export const updateMeal = (meal, callback) => async (dispatch, getState) => {
   try {
     const {auth: {authenticated: token}} = getState();
-    const apiRequest = getApiPatchRequest(MEALS_API + meal.id, token, meal);
+    const apiRequest = getApiPutRequest(MEALS_API + meal.id, token, meal);
     const response = await axios(apiRequest);
 
     dispatch({
@@ -64,7 +63,6 @@ export const updateMeal = (meal, callback) => async (dispatch, getState) => {
     callback(response.data.id);
   } catch (err) {
     console.log(err);
-    throw new SubmissionError({username: 'User does not exist', _error: 'Login failed!'})
   }
 };
 

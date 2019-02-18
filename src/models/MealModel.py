@@ -60,11 +60,11 @@ class MealModel(db.Model):
 
 
 class MealSchema(Schema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
     name = fields.Str(required=True)
     user_id = fields.Int()
     description = fields.Str(required=True)
     servings = fields.Int(required=True)
     ingredients = fields.Nested(IngredientSchema, many=True)
     steps = fields.Nested(StepSchema, many=True)
-    created_at = fields.DateTime(dump_only=True)
+    created_at = fields.DateTime()

@@ -35,7 +35,7 @@ def create_meal_view():
 
         return make_response('', 204)
 
-    @meal_api.route('/<meal_id>', methods=['PATCH'])
+    @meal_api.route('/<meal_id>', methods=['PUT'])
     @Auth.auth_required
     def update(meal_id):
         try:
@@ -44,9 +44,9 @@ def create_meal_view():
 
             meal = MealModel.get_meal(meal_id)
             meal.update(data)
-            ser_meal = meal_schema.dump(meal)
+            ser_meal = jsonify(meal_schema.dump(meal))
 
-            response = make_response(ser_meal, 204)
+            response = make_response(ser_meal, 200)
             response.mimetype = "application/json"
             return response
 
