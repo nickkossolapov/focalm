@@ -50,5 +50,5 @@ class IngredientSchema(Schema):
     id = fields.Int(dump_only=True)
     meal_id = fields.Int()
     ingredient = fields.Str(required=True)
-    qty = fields.Int(required=True)
+    qty = fields.Number(required=True)
     unit = IntEnumField(IngredientUnit, required=True)
