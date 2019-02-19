@@ -2,10 +2,10 @@ from marshmallow import fields, Schema
 
 from . import db
 from .helpers.IntEnumField import IntEnumField
-from .IngredientModel import IngredientUnit
+from .ingredients import IngredientUnit
 
 
-class UserIngredientModel(db.Model):
+class UserIngredient(db.Model):
     __tablename__ = 'user_ingredients'
 
     user_id = db.Column(db.Integer, primary_key=True)
@@ -14,7 +14,7 @@ class UserIngredientModel(db.Model):
 
     @staticmethod
     def fetch_all_user_ingredients(user_id):
-        return UserIngredientModel.query.filter_by(user_id=user_id).all()
+        return UserIngredient.query.filter_by(user_id=user_id).all()
 
     def __repr(self):
         return '<id {}>'.format(self.id)

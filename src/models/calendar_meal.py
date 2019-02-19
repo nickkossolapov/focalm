@@ -3,7 +3,7 @@ from marshmallow import fields, Schema
 from . import db
 
 
-class CalendarMealModel(db.Model):
+class CalendarMeal(db.Model):
     __tablename__ = 'calendar_meals'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -31,15 +31,15 @@ class CalendarMealModel(db.Model):
 
     @staticmethod
     def get_calendar_meals_by_user(user_id):
-        return CalendarMealModel.query.filter_by(user_id=user_id).all()
+        return CalendarMeal.query.filter_by(user_id=user_id).all()
 
     @staticmethod
     def get_calendar_meal(calendar_meal_id):
-        return CalendarMealModel.query.filter_by(id=calendar_meal_id).first()
+        return CalendarMeal.query.filter_by(id=calendar_meal_id).first()
 
     @staticmethod
     def get_calendar_by_meal(meal_id):
-        return CalendarMealModel.query.filter_by(meal_id=meal_id).all()
+        return CalendarMeal.query.filter_by(meal_id=meal_id).all()
 
     def __repr(self):
         return '<id {}>'.format(self.id)

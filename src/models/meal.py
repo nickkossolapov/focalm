@@ -3,11 +3,11 @@ from marshmallow import fields, Schema
 from sqlalchemy.orm import relationship
 
 from . import db
-from .IngredientModel import IngredientModel, IngredientSchema
-from .StepModel import StepModel, StepSchema
+from .ingredients import Ingredient, IngredientSchema
+from .step import Step, StepSchema
 
 
-class MealModel(db.Model):
+class Meal(db.Model):
     __tablename__ = 'meals'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -15,8 +15,8 @@ class MealModel(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     description = db.Column(db.String(256))
     servings = db.Column(db.Integer, nullable=False)
-    ingredients = relationship('IngredientModel', cascade='save-update, delete, delete-orphan')
-    steps = relationship('StepModel', cascade='save-update, delete, delete-orphan')
+    ingredients = relationship('Ingredient', cascade='save-update, delete, delete-orphan')
+    steps = relationship('Step', cascade='save-update, delete, delete-orphan')
     created_at = db.Column(db.DateTime)
 
     def __init__(self, data, user_id):
@@ -25,9 +25,9 @@ class MealModel(db.Model):
         self.description = data.get('description')
         self.servings = data.get('servings')
         if 'ingredients' in data:
-            self.ingredients = [IngredientModel(i) for i in data['ingredients']]
+            self.ingredients = [Ingredient(i) for i in data['ingredients']]
         if 'steps' in data:
-            self.steps = [StepModel(s) for s in data['steps']]
+            self.steps = [Step(s) for s in data['steps']]
         self.created_at = datetime.datetime.utcnow()
 
     def save(self):
@@ -38,8 +38,8 @@ class MealModel(db.Model):
         self.name = data.get('name')
         self.description = data.get('description')
         self.servings = data.get('servings')
-        self.ingredients = [IngredientModel(i) for i in data.get('ingredients')]
-        self.steps = [StepModel(s) for s in data.get('steps')]
+        self.ingredients = [Ingredient(i) for i in data.get('ingredients')]
+        self.steps = [Step(s) for s in data.get('steps')]
 
         db.session.commit()
 
@@ -49,11 +49,11 @@ class MealModel(db.Model):
 
     @staticmethod
     def get_all_meals_by_user(user_id):
-        return MealModel.query.filter_by(user_id=user_id).all()
+        return Meal.query.filter_by(user_id=user_id).all()
 
     @staticmethod
     def get_meal(meal_id):
-        return MealModel.query.filter_by(id=meal_id).first()
+        return Meal.query.filter_by(id=meal_id).first()
 
     def __repr(self):
         return '<id {}>'.format(self.id)

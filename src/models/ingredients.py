@@ -16,7 +16,7 @@ class IngredientUnit(IntEnum):
     NONE = 8
 
 
-class IngredientModel(db.Model):
+class Ingredient(db.Model):
     __tablename__ = 'ingredients'
 
     id = db.Column(db.Integer, primary_key=True)

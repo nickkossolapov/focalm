@@ -4,7 +4,7 @@ from marshmallow import fields, Schema
 from . import db, bcrypt
 
 
-class UserModel(db.Model):
+class User(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -39,15 +39,15 @@ class UserModel(db.Model):
 
     @staticmethod
     def get_all_users():
-        return UserModel.query.all()
+        return User.query.all()
 
     @staticmethod
     def get_one_user(id):
-        return UserModel.query.get(id)
+        return User.query.get(id)
 
     @staticmethod
     def get_user_by_email(value):
-        return UserModel.query.filter_by(email=value).first()
+        return User.query.filter_by(email=value).first()
 
     @staticmethod
     def __generate_hash(password):

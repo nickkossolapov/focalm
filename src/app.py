@@ -1,11 +1,11 @@
 from flask import Flask, render_template
 from flask_cors import CORS
 
-from src.services.MailService import MailService
-from src.views.CalendarMealView import create_calender_meal_view
-from src.views.IngredientsView import create_ingredients_view
-from src.views.MealView import create_meal_view
-from src.views.UserView import create_user_view
+from src.services.mail_service import MailService
+from src.views.calendar_meal import create_calender_meal_view
+from src.views.ingredients import create_ingredients_view
+from src.views.meal import create_meal_view
+from src.views.user import create_user_view
 
 from .config import app_config
 from .models import db, bcrypt

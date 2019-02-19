@@ -3,7 +3,7 @@ from marshmallow import fields, Schema
 from . import db
 
 
-class StepModel(db.Model):
+class Step(db.Model):
     __tablename__ = 'steps'
 
     id = db.Column(db.Integer, primary_key=True)
