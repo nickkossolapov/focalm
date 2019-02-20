@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchMeal} from '../../store/meals';
+import {fetchMeals} from '../../store/meals';
 
 import requireAuth from "../shared/require_auth";
 import Meal from './meal';
@@ -17,8 +17,9 @@ class MealContainer extends Component {
   }
 
   componentDidMount() {
-    const {id} = this.props.match.params;
-    this.props.fetchMeal(id);
+    if (!this.props.meal) {
+      this.props.fetchMeals();
+    }
     window.scrollTo(0, 0);
   }
 
@@ -57,5 +58,5 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default requireAuth(
-  connect(mapStateToProps, {fetchMeal, deleteMeal})(MealContainer)
+  connect(mapStateToProps, {fetchMeals, deleteMeal})(MealContainer)
 );
