@@ -21,7 +21,7 @@ class Selector extends Component{
     if (isSelecting || doneSelecting){
       buttonDiv = <SelectorButtons {...this.props}/>;
     } else {
-      buttonDiv = <button className='selector-btn' onClick={startSelecting}>Start</button>;
+      buttonDiv = <button className='selector-btn' onClick={startSelecting}>Select</button>;
     }
 
     return (

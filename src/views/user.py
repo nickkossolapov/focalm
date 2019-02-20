@@ -19,7 +19,7 @@ def create_user_view(mail_service):
             data = user_schema.load(req_data)
             user_in_db = User.get_user_by_email(data.get('email'))
             if user_in_db:
-                message = {'error': 'User already exists'}
+                message = {ResponseError.USER_EXISTS_ERROR: 'Email already exists'}
                 return get_response(409, message)
 
             user = User(data)
@@ -39,14 +39,14 @@ def create_user_view(mail_service):
             data = user_schema.load(req_data, partial=True)
 
             if not data.get('email') or not data.get('password'):
-                return get_response(400, {'error': 'Email and password are required'})
+                return get_response(400, {ResponseError.CREDENTIALS_ERROR: 'Email and password are required'})
 
             user = User.get_user_by_email(data.get('email'))
 
             if not user:
-                return get_response(401, {ResponseError.CREDENTIALS_ERROR: 'Invalid credentials'})
+                return get_response(401, {ResponseError.CREDENTIALS_ERROR: 'Wrong email or password'})
             if not user.check_hash(data.get('password')):
-                return get_response(401, {ResponseError.CREDENTIALS_ERROR: 'Invalid credentials'})
+                return get_response(401, {ResponseError.CREDENTIALS_ERROR: 'Wrong email or password'})
 
             ser_data_id = user_schema.dump(user).get('id')
             token = generate_token(ser_data_id)

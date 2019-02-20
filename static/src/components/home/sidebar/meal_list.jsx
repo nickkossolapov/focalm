@@ -18,14 +18,14 @@ class MealList extends Component {
       <section className='home-meals'>
         <h3>Meals</h3>
         <ul className='meals-list'>
-          <Meals meals={this.props.meals}/>
+          <MealListContent meals={this.props.meals}/>
         </ul>
       </section>
     );
   }
 }
 
-function Meals(props){ //todo: rename!
+function MealListContent(props) {
   const {meals} = props;
 
   if (Object.keys(meals).length === 0) {
@@ -38,7 +38,7 @@ function Meals(props){ //todo: rename!
 }
 
 function mapStateToProps(state) {
-  return { meals: state.meals, token: state.auth.authenticated};
+  return {meals: state.meals, token: state.auth.authenticated};
 }
 
 export default requireAuth(

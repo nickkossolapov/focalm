@@ -28,7 +28,7 @@ function MealTableRow(props) {
           </td>}
           <td><span title={ingredient.ingredient}>{ingredient.ingredient}</span></td>
           <td>{ingredient.qty}</td>
-          <td>{MEAL_UNIT[ingredient.unit].shoppingListName + (qty > 1 && qty ? `x${qty}` : '')}</td>
+          <td>{MEAL_UNIT[ingredient.unit].shoppingListName + (qty > 1 ? `x${qty}` : '')}</td>
         </tr>
       )
     })

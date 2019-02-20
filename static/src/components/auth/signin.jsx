@@ -3,10 +3,12 @@ import {reduxForm, Field} from 'redux-form';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 
-import { signin } from '../../store/auth';
+import {clearErrors, signin} from '../../store/auth';
 import authField from './auth_field';
-import './auth.css';
 import SubmitButton from './submit_button';
+
+import './auth.css';
+
 
 class SignIn extends Component {
   onSubmit = (formProps) => {
@@ -17,8 +19,13 @@ class SignIn extends Component {
     });
   };
 
+  componentWillUnmount() {
+    this.props.clearErrors();
+  };
+
   render() {
     const {handleSubmit} = this.props;
+    const errorMessage = this.props.credentialsError || this.props.authError;
 
     return (
       <div className='auth-grid'>
@@ -37,20 +44,35 @@ class SignIn extends Component {
             component={authField}
             autoComplete='none'
           />
-          <div className='auth-error-message'>{this.props.errorMessage}</div>
+          <div className='auth-error-message'>{errorMessage}</div>
           <SubmitButton label="Sign in" loading={this.props.loading}/>
         </form>
       </div>
-
     )
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address'
+  }
+
+  if (!values.password) {
+    errors.password = 'Required';
+  }
+  return errors;
+}
+
 function mapStateToProps(state){
-  return {errorMessage: state.auth.errorMessage, loading: state.auth.loading};
+  const {credentialsError, authError, validationError, loading} = state.auth;
+  return {credentialsError, authError, validationError, loading};
 }
 
 export default compose(
-  connect(mapStateToProps, { signin }),
-  reduxForm({form: 'signin'})
+  connect(mapStateToProps, {signin, clearErrors}),
+  reduxForm({validate, form: 'signin'})
 )(SignIn);
