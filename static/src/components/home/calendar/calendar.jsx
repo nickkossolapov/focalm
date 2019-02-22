@@ -14,30 +14,8 @@ class Calendar extends Component {
     window.scrollTo(0, 0);
   }
 
-  getDates() {
-    let indexDate = new Date(Date.now());
-    indexDate.setDate(indexDate.getDate() - (indexDate.getDay() + 1));
-    let dates = [];
-
-    for (let i = 0; i < 28; i++){
-      indexDate.setDate(indexDate.getDate() + 1);
-      let day = padWithZeroes(indexDate.getDate() + 1),
-          month = padWithZeroes(indexDate.getMonth() + 1),
-          year = indexDate.getFullYear();
-
-      dates.push({
-        day,
-        month,
-        year,
-        dateId: `${year}${month}${day}`
-      });
-    }
-
-    return dates;
-  }
-
   render() {
-    const dates = this.getDates();
+    const dates = getDates();
     return (
       <ul className='calendar'>
         <DaysOfWeek />
@@ -47,6 +25,28 @@ class Calendar extends Component {
       </ul>
     );
   }
+}
+
+function getDates() {
+  let indexDate = new Date(Date.now());
+  indexDate.setDate(indexDate.getDate() - (indexDate.getDay() + 1));
+  let dates = [];
+
+  for (let i = 0; i < 28; i++){
+    indexDate.setDate(indexDate.getDate() + 1);
+    let day = padWithZeroes(indexDate.getDate()),
+      month = padWithZeroes(indexDate.getMonth() + 1),
+      year = indexDate.getFullYear();
+
+    dates.push({
+      day,
+      month,
+      year,
+      dateId: `${year}${month}${day}`
+    });
+  }
+
+  return dates;
 }
 
 function padWithZeroes(num) {
