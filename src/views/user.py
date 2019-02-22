@@ -1,7 +1,7 @@
 from flask import request, Blueprint, g
 from marshmallow import ValidationError
 
-from src.shared.error_types import ResponseError
+from src.shared.error_response_messages import ErrorResponseMessages
 from src.shared.response_helpers import get_response
 from ..models.user import User, UserSchema
 from ..shared.auth import auth_required, generate_token
@@ -19,7 +19,7 @@ def create_user_view(mail_service):
             data = user_schema.load(req_data)
             user_in_db = User.get_user_by_email(data.get('email'))
             if user_in_db:
-                message = {ResponseError.USER_EXISTS_ERROR: 'Email already exists'}
+                message = {ErrorResponseMessages.USER_EXISTS_ERROR: 'Email already exists'}
                 return get_response(409, message)
 
             user = User(data)
@@ -30,7 +30,7 @@ def create_user_view(mail_service):
             return get_response(201, {'token': token})
 
         except ValidationError as err:
-            return get_response(400, {ResponseError.VALIDATION_ERROR: err.messages})
+            return get_response(400, {ErrorResponseMessages.VALIDATION_ERROR: err.messages})
 
     @user_api.route('/signin', methods=['POST'])
     def login():
@@ -39,21 +39,21 @@ def create_user_view(mail_service):
             data = user_schema.load(req_data, partial=True)
 
             if not data.get('email') or not data.get('password'):
-                return get_response(400, {ResponseError.CREDENTIALS_ERROR: 'Email and password are required'})
+                return get_response(400, {ErrorResponseMessages.CREDENTIALS_ERROR: 'Email and password are required'})
 
             user = User.get_user_by_email(data.get('email'))
 
             if not user:
-                return get_response(401, {ResponseError.CREDENTIALS_ERROR: 'Wrong email or password'})
+                return get_response(401, {ErrorResponseMessages.CREDENTIALS_ERROR: 'Wrong email or password'})
             if not user.check_hash(data.get('password')):
-                return get_response(401, {ResponseError.CREDENTIALS_ERROR: 'Wrong email or password'})
+                return get_response(401, {ErrorResponseMessages.CREDENTIALS_ERROR: 'Wrong email or password'})
 
             ser_data_id = user_schema.dump(user).get('id')
             token = generate_token(ser_data_id)
             return get_response(200, {'token': token})
 
         except ValidationError as err:
-            return get_response(400, {ResponseError.VALIDATION_ERROR: err.messages})
+            return get_response(400, {ErrorResponseMessages.VALIDATION_ERROR: err.messages})
 
     @user_api.route('/me', methods=['PUT'])
     @auth_required
@@ -68,7 +68,7 @@ def create_user_view(mail_service):
             return get_response(200, user_schema.dump(user))
 
         except ValidationError as err:
-            return get_response(400, {ResponseError.VALIDATION_ERROR: err.messages})
+            return get_response(400, {ErrorResponseMessages.VALIDATION_ERROR: err.messages})
 
     @user_api.route('/me', methods=['DELETE'])
     @auth_required

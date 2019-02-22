@@ -15,6 +15,7 @@ class Development(object):
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
     MAIL_PORT = 465
     MAIL_USE_SSL = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class Production(object):
@@ -31,6 +32,7 @@ class Production(object):
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
     MAIL_PORT = 465
     MAIL_USE_SSL = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 app_config = {

@@ -2,7 +2,7 @@ from flask import request, json, Response, Blueprint, g, make_response, jsonify
 from marshmallow import ValidationError
 
 from src.models import CalendarMeal
-from src.shared.error_types import ResponseError
+from src.shared.error_response_messages import ErrorResponseMessages
 from src.shared.response_helpers import get_response
 from ..models.meal import Meal, MealSchema
 from ..shared.auth import auth_required
@@ -46,7 +46,7 @@ def create_meal_view():
             return get_response(200, meal_schema.dump(meal))
 
         except ValidationError as err:
-            return get_response(400, {ResponseError.VALIDATION_ERROR: err.messages})
+            return get_response(400, {ErrorResponseMessages.VALIDATION_ERROR: err.messages})
 
     @meal_api.route('/', methods=['POST'])
     @auth_required
@@ -61,7 +61,7 @@ def create_meal_view():
             return get_response(201, meal_schema.dump(meal))
 
         except ValidationError as err:
-            return get_response(400, {ResponseError.VALIDATION_ERROR: err.messages})
+            return get_response(400, {ErrorResponseMessages.VALIDATION_ERROR: err.messages})
 
     @meal_api.route('/', methods=['GET'])
     @auth_required

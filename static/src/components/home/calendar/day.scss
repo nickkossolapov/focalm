@@ -10,7 +10,7 @@
   transition: border-color 0.2s linear;
 
   &:hover {
-    border-color: $border-dark;
+    border-color: $border-medium;
   }
 
   &.loading {

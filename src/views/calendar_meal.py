@@ -1,7 +1,7 @@
 from flask import request, Blueprint, g
 from marshmallow import ValidationError
 
-from src.shared.error_types import ResponseError
+from src.shared.error_response_messages import ErrorResponseMessages
 from src.shared.response_helpers import get_response
 from ..models.calendar_meal import CalendarMeal, CalendarMealSchema
 from ..shared.auth import auth_required
@@ -24,7 +24,7 @@ def create_calender_meal_view():
 
             return get_response(201, ser_meal)
         except ValidationError as err:
-            return get_response(400, {ResponseError.VALIDATION_ERROR: err.messages})
+            return get_response(400, {ErrorResponseMessages.VALIDATION_ERROR: err.messages})
 
     @calendar_meal_api.route('/', methods=['GET'])
     @auth_required
