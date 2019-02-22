@@ -29,7 +29,7 @@ export default function reducer(state = INITIAL_STATE, action) {
       };
 
     case FETCH_CALENDAR:
-      return action.payload;
+      return {...state, ...action.payload};
 
     case DELETE_DAY_ITEM:
       return {
@@ -48,16 +48,27 @@ export default function reducer(state = INITIAL_STATE, action) {
     case CALENDAR_LOADING:
       return {...state, loading: action.payload};
 
+    case TOGGLE_DAY_LOADING:
+      return {...state, loadingDays: toggleLoadingDays(action.payload, state.loadingDays)};
+
     default:
       return state;
   }
 };
 
+function toggleLoadingDays(dateId, currentLoadingDays) {
+  if (_.some(currentLoadingDays, el => el === dateId)) {
+    return _.remove(currentLoadingDays, el => el !== dateId);
+  } else {
+    return _.concat(dateId, currentLoadingDays);
+  }
+}
+
 
 const CALENDAR_API = '/calendar/';
 
 export const addDayItem = (mealId, dateId) => async (dispatch, getState) => {
-  try {
+  const apiRequestFunc = async () => {
     const {auth: {authenticated: token}} = getState();
     const data = {
       'meal_id': mealId,
@@ -76,37 +87,29 @@ export const addDayItem = (mealId, dateId) => async (dispatch, getState) => {
         calendarItemId: id,
       },
     });
-  } catch (err) {
-    console.log(err);
-  }
+  };
+
+  await doApiRequestWithLoading(apiRequestFunc, dispatch, TOGGLE_DAY_LOADING, dateId);
 };
 
 export const deleteDayItem = (dateId, calendarItemId) => async (dispatch, getState) => {
-  try {
+  const apiRequestFunc = async () => {
     const {auth: {authenticated: token}} = getState();
     const apiRequest = getApiDeleteRequest(CALENDAR_API + calendarItemId, token);
-
+    await axios(apiRequest);
     dispatch({
       type: DELETE_DAY_ITEM,
       payload: {dateId, calendarItemId},
     });
+  };
 
-    axios(apiRequest);
-  } catch (err) {
-    console.log(err);
-  }
+  await doApiRequestWithLoading(apiRequestFunc, dispatch, TOGGLE_DAY_LOADING, dateId);
 };
 
 export const fetchCalendar = () => async (dispatch, getState) => {
-  try {
+  const apiRequestFunc = async () => {
     const {auth: {authenticated: token}} = getState();
     const apiRequest = getApiGetRequest(CALENDAR_API, token);
-
-    dispatch({
-      type: CALENDAR_LOADING,
-      payload: true,
-    });
-
     const response = await axios(apiRequest);
 
     let processedCalendar = processCalendarData(response.data);
@@ -114,13 +117,9 @@ export const fetchCalendar = () => async (dispatch, getState) => {
       type: FETCH_CALENDAR,
       payload: processedCalendar,
     });
-  } catch (err) {
-    console.log(err);
-    dispatch({
-      type: CALENDAR_LOADING,
-      payload: false,
-    });
-  }
+  };
+
+  await doApiRequestWithLoading(apiRequestFunc, dispatch, CALENDAR_LOADING);
 };
 
 export const refreshCalendar = () => (dispatch) => {
@@ -140,3 +139,24 @@ function processCalendarData(calendarItems) {
 
   return calendar;
 }
+
+const doApiRequestWithLoading = async (apiRequestFunc, dispatch, dispatchType, dispatchPayload=null) => {
+  const firstDispatchPayload = dispatchPayload || true;
+  const secondDispatchPayload = dispatchPayload || false;
+
+  try {
+    dispatch({
+      type: dispatchType,
+      payload: firstDispatchPayload,
+    });
+
+    await apiRequestFunc();
+  } catch (err) {
+    console.log(err);
+  } finally {
+    dispatch({
+      type: dispatchType,
+      payload: secondDispatchPayload,
+    });
+  }
+};

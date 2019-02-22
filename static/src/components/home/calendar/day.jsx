@@ -39,6 +39,10 @@ class Day extends Component {
     const { connectDropTarget, dateId, initialSelectedDateId, selectedStartDateId, selectedEndDateId } = this.props;
     let className = 'day';
 
+    if (this.props.isLoading) {
+      className += ' loading';
+    }
+
     if (dateId === initialSelectedDateId || (selectedStartDateId <= dateId && dateId <= selectedEndDateId)){
       className += ' selected-day';
     }
@@ -83,6 +87,8 @@ function mapStateToProps(state, ownProps) {
 
   return {
     calendarItems: calendarItems[ownProps.dateId],
+    isLoading: _.some(calendarItems.loadingDays, e => e === ownProps.dateId),
+    loadingDays: calendarItems.loadingDays,
     meals,
     isSelecting,
     initialSelectedDateId,
