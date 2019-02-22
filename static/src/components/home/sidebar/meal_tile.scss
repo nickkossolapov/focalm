@@ -8,6 +8,8 @@
   line-height: 30px;
   padding: 0 5px 0 5px;
 
+  transition: background-color 0.2s linear;
+
   &:hover {
     background-color: #CCCCCC;
   }

@@ -5,7 +5,7 @@ import InputField from './input_field';
 import PlusButton from '../shared/plus_button';
 import CrossButton from '../shared/cross_button';
 
-import './steps.css';
+import './steps.scss';
 import TextAreaField from './textarea_field';
 
 

@@ -35,7 +35,8 @@ class MealContainer extends Component {
         this.props.refreshCalendar();
         this.props.history.push('/');
       });
-    } finally {
+    } catch(err) {
+      console.log(err);
       this.setState({
         submitting: false
       })

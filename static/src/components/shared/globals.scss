@@ -14,6 +14,8 @@ $border-dark: black;
 
 $meal-item-width: 150px;
 
+$transition-in-duration: 0.15s;
+
 .meal-item {
   display: inline-block;
   text-align: center;
@@ -58,6 +60,22 @@ $meal-item-width: 150px;
   }
 }
 
+h1 {
+  @extend .unselectable;
+}
+
+h2 {
+  @extend .unselectable;
+}
+
+h3 {
+  @extend .unselectable;
+}
+
+label {
+  @extend .unselectable;
+}
+
 .unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -67,3 +85,14 @@ $meal-item-width: 150px;
   user-select: none;
 }
 
+@keyframes transition-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
