@@ -39,7 +39,7 @@ class Day extends Component {
     const { connectDropTarget, dateId, initialSelectedDateId, selectedStartDateId, selectedEndDateId } = this.props;
     let className = 'day';
 
-    if (dateId == initialSelectedDateId || (selectedStartDateId <= dateId && dateId <= selectedEndDateId)){
+    if (dateId === initialSelectedDateId || (selectedStartDateId <= dateId && dateId <= selectedEndDateId)){
       className += ' selected-day';
     }
 
@@ -54,7 +54,7 @@ class Day extends Component {
 
 function DayItems(props) {
   if (Object.keys(props.meals).length === 0){
-    return null;
+    return <ul className='day-list' />;
   }
 
   let {isSelecting, doneSelecting} = props;

@@ -7,8 +7,16 @@ import {getApiDeleteRequest, getApiGetRequest, getApiPostRequest} from './helper
 const ADD_DAY_ITEM = 'focalm/calendar/add_day_item';
 const FETCH_CALENDAR = 'focalm/calendar/fetch_calendar';
 const DELETE_DAY_ITEM = 'focalm/calendar/delete_day_item';
+const CLEAR_CALENDAR = 'focalm/calendar/clear_calendar';
+const CALENDAR_LOADING = 'focalm/calendar/calendar_loading';
+const TOGGLE_DAY_LOADING = 'focalm/calendar/toggle_day_loading';
 
-export default function reducer(state = {}, action) {
+const INITIAL_STATE = {
+  loading: false,
+  loadingDays: []
+};
+
+export default function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case ADD_DAY_ITEM:
       return {
@@ -33,6 +41,12 @@ export default function reducer(state = {}, action) {
             },
           ),
       };
+
+    case CLEAR_CALENDAR:
+      return INITIAL_STATE;
+
+    case CALENDAR_LOADING:
+      return {...state, loading: action.payload};
 
     default:
       return state;
@@ -87,6 +101,12 @@ export const fetchCalendar = () => async (dispatch, getState) => {
   try {
     const {auth: {authenticated: token}} = getState();
     const apiRequest = getApiGetRequest(CALENDAR_API, token);
+
+    dispatch({
+      type: CALENDAR_LOADING,
+      payload: true,
+    });
+
     const response = await axios(apiRequest);
 
     let processedCalendar = processCalendarData(response.data);
@@ -96,7 +116,19 @@ export const fetchCalendar = () => async (dispatch, getState) => {
     });
   } catch (err) {
     console.log(err);
+    dispatch({
+      type: CALENDAR_LOADING,
+      payload: false,
+    });
   }
+};
+
+export const refreshCalendar = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_CALENDAR
+  });
+
+  dispatch(fetchCalendar());
 };
 
 function processCalendarData(calendarItems) {
@@ -107,4 +139,4 @@ function processCalendarData(calendarItems) {
   });
 
   return calendar;
-};
+}

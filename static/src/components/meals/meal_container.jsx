@@ -5,6 +5,7 @@ import {fetchMeals} from '../../store/meals';
 import requireAuth from "../shared/require_auth";
 import Meal from './meal';
 import {deleteMeal} from '../../store/meals';
+import {refreshCalendar} from '../../store/calendar';
 
 
 class MealContainer extends Component {
@@ -31,6 +32,7 @@ class MealContainer extends Component {
 
     try {
       await this.props.deleteMeal(this.props.meal.id, () => {
+        this.props.refreshCalendar();
         this.props.history.push('/');
       });
     } finally {
@@ -58,5 +60,5 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default requireAuth(
-  connect(mapStateToProps, {fetchMeals, deleteMeal})(MealContainer)
+  connect(mapStateToProps, {fetchMeals, deleteMeal, refreshCalendar})(MealContainer)
 );
