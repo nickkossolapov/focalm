@@ -10,7 +10,7 @@ A basic meal planner to save recipes, keep track of meals, and to generate shopp
 
 ### Setup
 
-To build the React front-end, first install all the modules.
+The React front end is located in `/static/src`. To build the React front-end, first install all the modules.
 
 ```
 npm install
